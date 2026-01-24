@@ -247,6 +247,59 @@
       font-size: 24px;
     }
     
+    .lounge-section {
+      background: linear-gradient(135deg, #050505 0%, #1a1a1a 100%);
+      border-top: 2px solid #dc2626;
+      border-bottom: 2px solid #dc2626;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .lounge-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(220, 38, 38, 0.05) 0%, rgba(37, 99, 235, 0.05) 100%);
+      z-index: 1;
+    }
+    
+    .lounge-image {
+      border-radius: 16px;
+      border: 2px solid #333;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+    
+    .lounge-image:hover {
+      transform: translateY(-5px);
+      border-color: #dc2626;
+      box-shadow: 0 15px 40px rgba(220, 38, 38, 0.2);
+    }
+    
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+    
+    .feature-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.5rem;
+      background: rgba(26, 26, 26, 0.5);
+      border-radius: 8px;
+      border: 1px solid #333;
+    }
+    
+    .feature-item i {
+      color: #dc2626;
+      font-size: 1.25rem;
+    }
+    
     @media (max-width: 768px) {
       .hero-section {
         padding: 2rem 1rem;
@@ -261,6 +314,10 @@
         width: 50px;
         height: 50px;
         font-size: 20px;
+      }
+      
+      .feature-grid {
+        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -322,6 +379,106 @@
         <div class="stats-card rounded-2xl p-6 text-center">
           <div class="text-3xl font-bold text-red-500 mb-2">🏆</div>
           <div class="text-2xl font-bold mb-1">Melhor Preço</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NOVA SEÇÃO: ÁREA DE LAZER -->
+  <section class="lounge-section text-white py-16 relative">
+    <div class="container mx-auto px-4 relative z-10">
+      <div class="flex flex-col lg:flex-row gap-12 items-center">
+        <!-- Imagem da Área de Lazer -->
+        <div class="w-full lg:w-1/2">
+          <div class="relative">
+            <img src="https://raw.githubusercontent.com/Caerod1980/Imagens-Site-Bebcom/40852c79a2b6483d5cab7f6fc6886e3b7cb11b28/lounge%201.png" 
+                 alt="Área de Lazer Bebidas & Companhia" 
+                 class="lounge-image w-full h-auto">
+            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-6 rounded-b-2xl">
+              <div class="text-2xl font-bold text-red-500 mb-2">✨ ESPAÇO EXCLUSIVO ✨</div>
+              <div class="text-white text-lg font-semibold">Alugue por apenas R$ 100,00!</div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Descrição da Área de Lazer -->
+        <div class="w-full lg:w-1/2">
+          <h3 class="text-3xl md:text-4xl font-bold mb-6">
+            <span class="text-red-500">Área de Lazer</span> Privativa
+          </h3>
+          
+          <p class="text-lg text-gray-300 mb-6">
+            <strong>Perfeita para encontros, confraternizações e momentos especiais!</strong> 
+            Nossa área de lazer exclusiva está anexa à conveniência e está disponível para aluguel 
+            por apenas <span class="text-red-500 font-bold">R$ 100,00</span> com consumo de bebidas da nossa loja.
+          </p>
+          
+          <div class="mb-8">
+            <h4 class="text-xl font-bold mb-4 flex items-center text-red-500">
+              <i class="fas fa-check-circle mr-3"></i>
+              O que está incluso:
+            </h4>
+            <div class="feature-grid mb-6">
+              <div class="feature-item">
+                <i class="fas fa-chair"></i>
+                <span>Mesas e cadeiras</span>
+              </div>
+              <div class="feature-item">
+                <i class="fas fa-fire"></i>
+                <span>Churrasqueira</span>
+              </div>
+              <div class="feature-item">
+                <i class="fas fa-snowflake"></i>
+                <span>Geladeira</span>
+              </div>
+              <div class="feature-item">
+                <i class="fas fa-gamepad"></i>
+                <span>Sala de jogos</span>
+              </div>
+              <div class="feature-item">
+                <i class="fas fa-utensils"></i>
+                <span>Comida liberada*</span>
+              </div>
+              <div class="feature-item">
+                <i class="fas fa-wine-bottle"></i>
+                <span>Bebidas variadas</span>
+              </div>
+            </div>
+            <p class="text-sm text-gray-400 italic">
+              *Comida liberada: Traga sua comida à vontade! Nós fornecemos a estrutura, você traz o que preferir.
+            </p>
+          </div>
+          
+          <div class="bg-gray-900 rounded-xl p-6 mb-8">
+            <h4 class="text-xl font-bold mb-4 flex items-center text-blue-500">
+              <i class="fas fa-info-circle mr-3"></i>
+              Como funciona:
+            </h4>
+            <ul class="space-y-3">
+              <li class="flex items-start">
+                <i class="fas fa-cookie-bite text-red-500 mr-3 mt-1"></i>
+                <span>Aluguel: <strong>R$ 100,00</strong> (valor fixo pelo espaço)</span>
+              </li>
+              <li class="flex items-start">
+                <i class="fas fa-beer text-red-500 mr-3 mt-1"></i>
+                <span>Consumo obrigatório de bebidas da nossa loja</span>
+              </li>
+              <li class="flex items-start">
+                <i class="fas fa-users text-red-500 mr-3 mt-1"></i>
+                <span>Ideal para grupos de amigos e familiares</span>
+              </li>
+              <li class="flex items-start">
+                <i class="fas fa-clock text-red-500 mr-3 mt-1"></i>
+                <span>Horários flexíveis (agendar com antecedência)</span>
+              </li>
+            </ul>
+          </div>
+          
+          <a href="https://wa.me/5514996130369?text=Olá! Gostaria de mais informações sobre o aluguel da área de lazer!" 
+             class="btn-primary px-8 py-4 rounded-full text-white font-bold text-lg flex items-center justify-center space-x-3 w-full lg:w-auto">
+            <i class="fab fa-whatsapp text-xl"></i>
+            <span>Reserve pelo WhatsApp</span>
+          </a>
         </div>
       </div>
     </div>
