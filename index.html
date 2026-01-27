@@ -2,7 +2,11 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- VIEWPORT CORRIGIDO PARA PREVENIR ZOOM NO MOBILE -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta name="handheldfriendly" content="true">
+  <meta name="mobileoptimized" content="width">
+  
   <title>Bebidas & Companhia - Conveniência e Lounge</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
@@ -11,25 +15,62 @@
   <style>
     * {
       font-family: 'Inter', sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+    
+    /* PREVENIR COMPORTAMENTOS DE ZOOM NO MOBILE */
+    html {
+      touch-action: manipulation;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
     }
     
     body {
       background-color: #0a0a0a;
       color: #f5f5f5;
+      /* MARCA D'ÁGUA AJUSTADA - OCUPA TELA INTEIRA */
+      background-image: url('https://raw.githubusercontent.com/Caerod1980/Imagens-Site-Guardian/bb4b23a92bf0f6ec625b9c34de3f5aa6871d1143/logo%20loja.jpeg');
+      background-size: contain; /* Mantém proporção sem cortar */
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      /* EFEITO SUTIL DE MARCA D'ÁGUA */
+      position: relative;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+    
+    /* CAMADA ESCURA SOBRE A MARCA D'ÁGUA PARA MANTE-LA MAIS ESMAECIDA */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(5, 5, 5, 0.92); /* Aumentado para 0.92 para ficar mais esmaecido */
+      z-index: -1;
+    }
+    
+    /* Garantir que todo conteúdo fique acima da marca d'água */
+    body > * {
+      position: relative;
+      z-index: 1;
     }
     
     .dark-bg {
-      background-color: #0a0a0a;
+      background-color: transparent;
     }
     
     .darker-bg {
-      background-color: #050505;
+      background-color: transparent;
     }
     
     .card-dark {
-      background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+      background: linear-gradient(135deg, rgba(26, 26, 26, 0.9) 0%, rgba(45, 45, 45, 0.9) 100%);
       border: 1px solid #333;
       transition: all 0.3s ease;
+      backdrop-filter: blur(8px);
     }
     
     .card-dark:hover {
@@ -39,12 +80,13 @@
     }
     
     .header-gradient {
-      background: linear-gradient(135deg, #050505 0%, #1a1a1a 100%);
+      background: linear-gradient(135deg, rgba(5, 5, 5, 0.97) 0%, rgba(26, 26, 26, 0.97) 100%);
       border-bottom: 2px solid #dc2626;
+      backdrop-filter: blur(10px);
     }
     
     .hero-section {
-      background: linear-gradient(rgba(5, 5, 5, 0.9), rgba(5, 5, 5, 0.9)), 
+      background: linear-gradient(rgba(5, 5, 5, 0.94), rgba(5, 5, 5, 0.94)), 
                   url('https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80');
       background-size: cover;
       background-position: center;
@@ -107,7 +149,7 @@
       align-items: center;
       justify-content: center;
       font-size: 24px;
-      background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+      background: linear-gradient(135deg, rgba(26, 26, 26, 0.95) 0%, rgba(45, 45, 45, 0.95) 100%);
       border: 1px solid #333;
     }
     
@@ -161,7 +203,7 @@
       width: 100% !important;
       border-radius: 16px !important;
       overflow: hidden;
-      background-color: #1a1a1a !important;
+      background-color: rgba(26, 26, 26, 0.95) !important;
     }
     
     @media (min-width: 640px) {
@@ -207,7 +249,7 @@
     }
     
     .stats-card {
-      background: rgba(26, 26, 26, 0.7);
+      background: rgba(26, 26, 26, 0.85);
       backdrop-filter: blur(10px);
       border: 1px solid #333;
       transition: all 0.3s ease;
@@ -219,8 +261,9 @@
     }
     
     .footer-gradient {
-      background: linear-gradient(135deg, #050505 0%, #1a1a1a 100%);
+      background: linear-gradient(135deg, rgba(5, 5, 5, 0.97) 0%, rgba(26, 26, 26, 0.97) 100%);
       border-top: 2px solid #dc2626;
+      backdrop-filter: blur(10px);
     }
     
     .text-glow {
@@ -236,7 +279,7 @@
     .logo-placeholder {
       width: 60px;
       height: 60px;
-      background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+      background: linear-gradient(135deg, rgba(26, 26, 26, 0.95) 0%, rgba(45, 45, 45, 0.95) 100%);
       border: 2px solid #333;
       border-radius: 12px;
       display: flex;
@@ -248,7 +291,7 @@
     }
     
     .lounge-section {
-      background: linear-gradient(135deg, #050505 0%, #1a1a1a 100%);
+      background: linear-gradient(135deg, rgba(5, 5, 5, 0.97) 0%, rgba(26, 26, 26, 0.97) 100%);
       border-top: 2px solid #dc2626;
       border-bottom: 2px solid #dc2626;
       position: relative;
@@ -290,7 +333,7 @@
       align-items: center;
       gap: 0.75rem;
       padding: 0.5rem;
-      background: rgba(26, 26, 26, 0.5);
+      background: rgba(26, 26, 26, 0.6);
       border-radius: 8px;
       border: 1px solid #333;
     }
@@ -390,7 +433,7 @@
     
     /* Cards com efeito de vidro */
     .glass-effect {
-      background: rgba(26, 26, 26, 0.7);
+      background: rgba(26, 26, 26, 0.85);
       backdrop-filter: blur(10px);
       border: 1px solid rgba(255, 255, 255, 0.1);
     }
@@ -427,7 +470,7 @@
     
     /* Melhorias nos formulários e inputs */
     .input-enhanced {
-      background: rgba(26, 26, 26, 0.8);
+      background: rgba(26, 26, 26, 0.9);
       border: 2px solid #333;
       border-radius: 10px;
       padding: 12px 16px;
@@ -446,7 +489,7 @@
       position: relative;
       overflow: hidden;
       border-radius: 16px;
-      background-color: #050505; /* Fundo preto para substituir o branco */
+      background-color: #050505;
     }
     
     .fachada-container img {
@@ -454,10 +497,48 @@
       width: 100%;
       height: auto;
       object-fit: cover;
-      background-color: #050505; /* Garante fundo preto caso a imagem tenha transparência */
+      background-color: #050505;
     }
     
+    /* ADAPTAÇÕES ESPECÍFICAS PARA MOBILE */
     @media (max-width: 768px) {
+      body {
+        /* MARCA D'ÁGUA OCUPA TELA INTEIRA NO MOBILE TAMBÉM */
+        background-size: contain;
+        overflow-x: hidden;
+      }
+      
+      /* AJUSTE DO NOME DA LOJA NO MOBILE - DIVIDIDO EM DUAS LINHAS */
+      .logo-container > div:last-child {
+        flex: 1;
+        min-width: 0;
+      }
+      
+      /* TÍTULO DIVIDIDO EM DUAS LINHAS NO MOBILE */
+      .logo-container h1 {
+        font-size: 1.3rem !important;
+        line-height: 1.2;
+        white-space: normal !important; /* Permite quebra de linha */
+        overflow: visible !important;
+        text-overflow: clip !important;
+        max-width: 100% !important;
+        display: flex;
+        flex-direction: column;
+      }
+      
+      /* SUBTÍTULO VISÍVEL APENAS NO MOBILE, FONTE PEQUENA */
+      .logo-container .mobile-subtitle {
+        display: block !important;
+        font-size: 0.7rem !important;
+        line-height: 1.1;
+        margin-top: 2px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 100%;
+        color: #9ca3af;
+      }
+      
       .hero-section {
         padding: 2rem 1rem;
       }
@@ -471,10 +552,108 @@
         width: 50px;
         height: 50px;
         font-size: 20px;
+        bottom: 15px;
+        right: 15px;
       }
       
       .feature-grid {
         grid-template-columns: 1fr;
+      }
+      
+      /* Ajuste de fontes para mobile */
+      h1 { font-size: 1.75rem !important; }
+      h2 { font-size: 1.5rem !important; }
+      h3 { font-size: 1.25rem !important; }
+      
+      .btn-primary, .btn-secondary {
+        padding: 12px 20px;
+        font-size: 16px;
+      }
+      
+      /* Aumentar área de toque em mobile */
+      a, button, .card-dark {
+        min-height: 44px;
+        min-width: 44px;
+      }
+      
+      /* Prevenir zoom em inputs */
+      input, select, textarea {
+        font-size: 16px !important;
+      }
+    }
+    
+    /* Ajustes para telas muito pequenas */
+    @media (max-width: 480px) {
+      /* MARCA D'ÁGUA AJUSTADA PARA TELAS PEQUENAS */
+      body {
+        background-size: contain;
+      }
+      
+      .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+      
+      .logo-container {
+        gap: 10px;
+      }
+      
+      .logo-placeholder {
+        width: 50px;
+        height: 50px;
+        flex-shrink: 0; /* Evita que a logo diminua */
+      }
+      
+      /* Ajuste fino do título em telas muito pequenas */
+      .logo-container h1 {
+        font-size: 1.2rem !important;
+        max-width: 100% !important;
+      }
+      
+      .logo-container .mobile-subtitle {
+        font-size: 0.65rem !important;
+        max-width: 100%;
+      }
+    }
+    
+    /* Ajustes para telas extremamente pequenas */
+    @media (max-width: 380px) {
+      .logo-container h1 {
+        font-size: 1.1rem !important;
+        max-width: 100% !important;
+      }
+      
+      .logo-container .mobile-subtitle {
+        font-size: 0.6rem !important;
+        max-width: 100%;
+      }
+    }
+    
+    /* Estilo para mostrar subtítulo apenas em desktop */
+    @media (min-width: 769px) {
+      .logo-container .mobile-subtitle {
+        display: none !important;
+      }
+      
+      .logo-container .desktop-subtitle {
+        display: block !important;
+      }
+    }
+    
+    /* Esconder subtítulo mobile no desktop por padrão */
+    .logo-container .mobile-subtitle {
+      display: none;
+    }
+    
+    /* Mostrar subtítulo desktop por padrão */
+    .logo-container .desktop-subtitle {
+      display: block;
+    }
+    
+    /* Esconder subtítulo desktop no mobile */
+    @media (max-width: 768px) {
+      .logo-container .desktop-subtitle {
+        display: none !important;
       }
     }
   </style>
@@ -491,9 +670,19 @@
                  alt="Bebidas & Companhia" 
                  class="w-full h-full object-contain rounded-lg">
           </div>
-          <div>
-            <h1 class="text-2xl md:text-3xl font-bold">Bebidas & Companhia</h1>
-            <p class="text-sm text-gray-300">Conveniência e Lounge</p>
+          <div class="flex flex-col">
+            <!-- TÍTULO DIVIDIDO EM DUAS LINHAS APENAS NO MOBILE -->
+            <h1 class="text-2xl md:text-3xl font-bold truncate md:whitespace-normal">
+              <span class="md:hidden block">
+                <span class="block">Bebidas &</span>
+                <span class="block">Companhia</span>
+              </span>
+              <span class="hidden md:block">Bebidas & Companhia</span>
+            </h1>
+            <!-- Subtítulo visível apenas em desktop -->
+            <p class="desktop-subtitle text-sm text-gray-300">Conveniência e Lounge</p>
+            <!-- Subtítulo para mobile (visível apenas no mobile) -->
+            <p class="mobile-subtitle text-gray-300">Conveniência e Lounge</p>
           </div>
         </div>
         <div class="hidden md:flex items-center space-x-6">
@@ -511,10 +700,11 @@
     <div class="container mx-auto px-4">
       <div class="flex flex-col lg:flex-row gap-12 items-center">
         
-        <!-- Imagem da Fachada - CORRIGIDA SEM FUNDO BRANCO -->
+        <!-- Imagem da Fachada - CORRIGIDA SEM FUNDO BRANCO E COM NOVA IMAGEM -->
         <div class="w-full lg:w-1/2">
           <div class="fachada-container rounded-2xl border-2 border-gray-800 shadow-2xl">
-            <img src="https://raw.githubusercontent.com/Caerod1980/Imagens-Site-Bebcom/c96e89fc248900d29731d99262c98ea772bd978a/Fachada%20Bebidas%20e%20Companhia.png" 
+            <!-- NOVA IMAGEM DA FACHADA -->
+            <img src="https://github.com/Caerod1980/Imagens-Site-Bebcom/blob/c9d175f53da36a43b2d21bed4a057c8f7ff5a907/Fachada%20Bebidas%20e%20Companhia%202.jpeg?raw=true" 
                  alt="Fachada Bebidas & Companhia" 
                  class="w-full h-auto transition-transform duration-500 hover:scale-105">
             <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6">
@@ -1117,3 +1307,4 @@
   </script>
 </body>
 </html>
+
