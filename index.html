@@ -300,6 +300,163 @@
       font-size: 1.25rem;
     }
     
+    /* MELHORIAS DE INTERFACE - ADICIONADAS */
+    
+    /* Scroll suave para toda a página */
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    /* Melhorias nas animações */
+    .hover-lift {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .hover-lift:hover {
+      transform: translateY(-8px);
+    }
+    
+    /* Tooltips para elementos interativos */
+    [data-tooltip] {
+      position: relative;
+    }
+    
+    [data-tooltip]:before {
+      content: attr(data-tooltip);
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #1a1a1a;
+      color: white;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 14px;
+      white-space: nowrap;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 1000;
+      border: 1px solid #333;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+    
+    [data-tooltip]:hover:before {
+      opacity: 1;
+      visibility: visible;
+      bottom: calc(100% + 10px);
+    }
+    
+    /* Melhorias nos botões */
+    .btn-primary, .btn-secondary {
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .btn-primary:after, .btn-secondary:after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+    }
+    
+    .btn-primary:hover:after, .btn-secondary:hover:after {
+      width: 300px;
+      height: 300px;
+    }
+    
+    /* Progress bar para carregamento */
+    .loading-bar {
+      height: 3px;
+      background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 9999;
+      animation: loading 2s ease-in-out infinite;
+    }
+    
+    @keyframes loading {
+      0% { width: 0%; left: 0; }
+      50% { width: 70%; }
+      100% { width: 100%; left: 100%; }
+    }
+    
+    /* Cards com efeito de vidro */
+    .glass-effect {
+      background: rgba(26, 26, 26, 0.7);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    /* Botões com feedback tátil */
+    .btn-tactile {
+      transition: all 0.2s ease;
+    }
+    
+    .btn-tactile:active {
+      transform: scale(0.95);
+    }
+    
+    /* Indicador de rolagem */
+    .scroll-indicator {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: bounce 2s infinite;
+    }
+    
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateX(-50%) translateY(0);
+      }
+      40% {
+        transform: translateX(-50%) translateY(-10px);
+      }
+      60% {
+        transform: translateX(-50%) translateY(-5px);
+      }
+    }
+    
+    /* Melhorias nos formulários e inputs */
+    .input-enhanced {
+      background: rgba(26, 26, 26, 0.8);
+      border: 2px solid #333;
+      border-radius: 10px;
+      padding: 12px 16px;
+      color: white;
+      transition: all 0.3s ease;
+    }
+    
+    .input-enhanced:focus {
+      outline: none;
+      border-color: #dc2626;
+      box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.2);
+    }
+    
+    /* ESTILOS PARA A IMAGEM DA FACHADA SEM FUNDO BRANCO */
+    .fachada-container {
+      position: relative;
+      overflow: hidden;
+      border-radius: 16px;
+      background-color: #050505; /* Fundo preto para substituir o branco */
+    }
+    
+    .fachada-container img {
+      display: block;
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      background-color: #050505; /* Garante fundo preto caso a imagem tenha transparência */
+    }
+    
     @media (max-width: 768px) {
       .hero-section {
         padding: 2rem 1rem;
@@ -340,7 +497,7 @@
           </div>
         </div>
         <div class="hidden md:flex items-center space-x-6">
-          <a href="https://www.instagram.com/bebcombauru" class="flex items-center space-x-2 hover:text-red-500 transition-colors">
+          <a href="https://www.instagram.com/bebcombauru" class="flex items-center space-x-2 hover:text-red-500 transition-colors" data-tooltip="Abrir Instagram">
             <i class="fab fa-instagram text-xl"></i>
             <span>@bebcombauru</span>
           </a>
@@ -348,6 +505,110 @@
       </div>
     </div>
   </header>
+
+  <!-- NOVA SEÇÃO: CONHEÇA BEBIDAS & COMPANHIA -->
+  <section class="darker-bg text-white py-16">
+    <div class="container mx-auto px-4">
+      <div class="flex flex-col lg:flex-row gap-12 items-center">
+        
+        <!-- Imagem da Fachada - CORRIGIDA SEM FUNDO BRANCO -->
+        <div class="w-full lg:w-1/2">
+          <div class="fachada-container rounded-2xl border-2 border-gray-800 shadow-2xl">
+            <img src="https://raw.githubusercontent.com/Caerod1980/Imagens-Site-Bebcom/c96e89fc248900d29731d99262c98ea772bd978a/Fachada%20Bebidas%20e%20Companhia.png" 
+                 alt="Fachada Bebidas & Companhia" 
+                 class="w-full h-auto transition-transform duration-500 hover:scale-105">
+            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6">
+              <div class="text-white text-lg font-semibold">📍 Av. José Henrique Ferraz 18-10, Bauru</div>
+            </div>
+          </div>
+          
+          <!-- SEÇÃO "SOBRE NÓS" COM TEXTO MELHORADO -->
+          <div class="mt-8 card-dark rounded-2xl p-6">
+            <h3 class="text-2xl font-bold mb-4 flex items-center text-red-500">
+              <i class="fas fa-store mr-3"></i>
+              Sobre Nós
+            </h3>
+            <div class="space-y-4 text-gray-300">
+              <p>
+                <strong>Bebidas & Companhia</strong> é uma referência em conveniência e entretenimento em Bauru. 
+                Fundada em 27 de março de 2021, consolidou-se como o principal destino para quem busca qualidade, 
+                variedade e experiências memoráveis.
+              </p>
+              <p>
+                Oferecemos um amplo mix de bebidas e alimentos com a conveniência do delivery via iFood e a 
+                experiência única do <strong>Bebcom Lounge</strong> - um espaço exclusivo para festas, eventos 
+                e confraternizações. O Lounge pode ser alugado por uma taxa acessível, proporcionando a estrutura 
+                completa com churrasqueira, geladeira, sala de jogos e muito mais, aliada à praticidade de ter 
+                uma conveniência completa ao lado.
+              </p>
+              <p>
+                Nossa missão é transformar momentos comuns em experiências extraordinárias, oferecendo produtos 
+                sempre gelados e prontos para consumo com o melhor atendimento da região.
+              </p>
+              <p class="pt-4 text-white font-semibold italic border-t border-gray-700">
+                Seja bem-vindo à sua nova experiência em conveniência e lazer!
+              </p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Descrição da Loja -->
+        <div class="w-full lg:w-1/2">
+          <h2 class="text-3xl md:text-4xl font-bold mb-6">
+            <span class="text-red-500">Conheça </span> Bebidas & Companhia
+          </h2>
+          
+          <p class="text-lg text-gray-300 mb-6">
+            <strong>Bem-vindo ao seu ponto de encontro favorito em Bauru!</strong> 
+            Mais do que uma conveniência, somos um espaço completo para momentos 
+            especiais com amigos e família.
+          </p>
+          
+          <div class="space-y-4 mb-8">
+            <div class="feature-item">
+              <i class="fas fa-bolt text-red-500"></i>
+              <div>
+                <h4 class="font-bold text-white">Delivery Rápido pelo iFood</h4>
+                <p class="text-gray-300">Suas bebidas geladas entregues com agilidade</p>
+              </div>
+            </div>
+            
+            <div class="feature-item">
+              <i class="fas fa-couch text-red-500"></i>
+              <div>
+                <h4 class="font-bold text-white">Área de Lazer Privativa</h4>
+                <p class="text-gray-300">Alugue nosso espaço para confraternizações</p>
+              </div>
+            </div>
+            
+            <div class="feature-item">
+              <i class="fas fa-users text-red-500"></i>
+              <div>
+                <h4 class="font-bold text-white">Atendimento Personalizado</h4>
+                <p class="text-gray-300">Equipe sempre pronta para atender bem</p>
+              </div>
+            </div>
+            
+            <div class="feature-item">
+              <i class="fas fa-award text-red-500"></i>
+              <div>
+                <h4 class="font-bold text-white">Variedade e Qualidade</h4>
+                <p class="text-gray-300">As melhores marcas com os melhores preços</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="flex flex-col sm:flex-row gap-4">
+            <a href="https://www.google.com/maps/search/?api=1&query=Av.+José+Henrique+Ferraz+18-10,+Bauru,+SP" 
+               target="_blank"
+               class="border border-gray-700 px-8 py-3 rounded-full text-white font-bold text-lg flex items-center justify-center space-x-3 hover:bg-gray-800 transition-colors btn-tactile" data-tooltip="Abrir Google Maps">
+              <span>Como Chegar</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- Hero Section -->
   <section class="hero-section text-white py-16 relative">
@@ -360,28 +621,12 @@
         As bebidas mais geladas de Bauru entregues pelo iFood na sua porta com agilidade e qualidade, retiradas na loja ou consumidas no Lounge anexo a conveniência.
       </p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-        <a href="https://www.ifood.com.br/delivery/bauru-sp/bebidas-e-companhia-residencial-parque-granja-cecilia-b/aac15ae4-e526-4e8c-b3b6-6627cb7e2001" class="btn-secondary px-8 py-4 rounded-full text-white font-bold text-lg flex items-center space-x-3">
+        <a href="https://www.ifood.com.br/delivery/bauru-sp/bebidas-e-companhia-residencial-parque-granja-cecilia-b/aac15ae4-e526-4e8c-b3b6-6627cb7e2001" class="btn-secondary px-8 py-4 rounded-full text-white font-bold text-lg flex items-center space-x-3 btn-tactile" data-tooltip="Abrir iFood">
           <i class="fas fa-shopping-cart"></i>
           <span>Peça pelo iFood</span>
         </a>
       </div>
       
-      <!-- Stats -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16 max-w-4xl mx-auto">
-        <div class="stats-card rounded-2xl p-6 text-center">
-          <div class="text-3xl font-bold text-red-500 mb-2">⚡</div>
-          <div class="text-2xl font-bold mb-1">Entrega Rápida</div>
-        </div>
-        <div class="stats-card rounded-2xl p-6 text-center">
-          <div class="text-3xl font-bold text-blue-500 mb-2">❄️</div>
-          <div class="text-2xl font-bold mb-1">Sempre Gelado</div>
-        </div>
-        <div class="stats-card rounded-2xl p-6 text-center">
-          <div class="text-3xl font-bold text-red-500 mb-2">🏆</div>
-          <div class="text-2xl font-bold mb-1">Melhor Preço</div>
-        </div>
-      </div>
-    </div>
   </section>
 
   <!-- NOVA SEÇÃO: ÁREA DE LAZER -->
@@ -479,7 +724,7 @@
           </div>
           
           <a href="https://wa.me/5514996130369?text=Olá! Gostaria de mais informações sobre o aluguel da área de lazer!" 
-             class="btn-primary px-8 py-4 rounded-full text-white font-bold text-lg flex items-center justify-center space-x-3 w-full lg:w-auto">
+             class="btn-primary px-8 py-4 rounded-full text-white font-bold text-lg flex items-center justify-center space-x-3 w-full lg:w-auto btn-tactile" data-tooltip="Abrir WhatsApp">
             <i class="fab fa-whatsapp text-xl"></i>
             <span>Reserve pelo WhatsApp</span>
           </a>
@@ -503,7 +748,7 @@
             Bebidas Delivery
           </h4>
           <div class="category-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4">
-            <a href="https://www.ifood.com.br/delivery/bauru-sp/bebidas-e-companhia-residencial-parque-granja-cecilia-b/aac15ae4-e526-4e8c-b3b6-6627cb7e2001" class="card-dark rounded-xl p-4 flex items-center space-x-3">
+            <a href="https://www.ifood.com.br/delivery/bauru-sp/bebidas-e-companhia-residencial-parque-granja-cecilia-b/aac15ae4-e526-4e8c-b3b6-6627cb7e2001" class="card-dark rounded-xl p-4 flex items-center space-x-3 btn-tactile" data-tooltip="Ver todos os produtos">
               <div class="category-icon wine-color">
                 🏪
               </div>
@@ -513,7 +758,7 @@
               </div>
             </a>
             
-            <a href="https://www.ifood.com.br/delivery/bauru-sp/bebidas-e-companhia-residencial-parque-granja-cecilia-b/aac15ae4-e526-4e8c-b3b6-6627cb7e2001?corredor=c4a71510-5232-41e1-94b3-782382c6966b&originArea=aisleMenu" class="card-dark rounded-xl p-4 flex items-center space-x-3">
+            <a href="https://www.ifood.com.br/delivery/bauru-sp/bebidas-e-companhia-residencial-parque-granja-cecilia-b/aac15ae4-e526-4e8c-b3b6-6627cb7e2001?corredor=c4a71510-5232-41e1-94b3-782382c6966b&originArea=aisleMenu" class="card-dark rounded-xl p-4 flex items-center space-x-3 btn-tactile" data-tooltip="Ver cervejas">
               <div class="category-icon beer-color">
                 🍺
               </div>
@@ -523,7 +768,7 @@
               </div>
             </a>
             
-            <a href="https://www.ifood.com.br/delivery/bauru-sp/bebidas-e-companhia-residencial-parque-granja-cecilia-b/aac15ae4-e526-4e8c-b3b6-6627cb7e2001?corredor=285d4369-9503-47ec-af79-80159c4f4735&originArea=aisleMenu" class="card-dark rounded-xl p-4 flex items-center space-x-3">
+            <a href="https://www.ifood.com.br/delivery/bauru-sp/bebidas-e-companhia-residencial-parque-granja-cecilia-b/aac15ae4-e526-4e8c-b3b6-6627cb7e2001?corredor=285d4369-9503-47ec-af79-80159c4f4735&originArea=aisleMenu" class="card-dark rounded-xl p-4 flex items-center space-x-3 btn-tactile" data-tooltip="Ver copões">
               <div class="category-icon soda-color">
                 🥤
               </div>
@@ -533,7 +778,7 @@
               </div>
             </a>
             
-            <a href="https://www.ifood.com.br/delivery/bauru-sp/bebidas-e-companhia-residencial-parque-granja-cecilia-b/aac15ae4-e526-4e8c-b3b6-6627cb7e2001?corredor=1cd1f58a-3215-482a-9fbd-b298c3693f9e&originArea=aisleMenu" class="card-dark rounded-xl p-4 flex items-center space-x-3">
+            <a href="https://www.ifood.com.br/delivery/bauru-sp/bebidas-e-companhia-residencial-parque-granja-cecilia-b/aac15ae4-e526-4e8c-b3b6-6627cb7e2001?corredor=1cd1f58a-3215-482a-9fbd-b298c3693f9e&originArea=aisleMenu" class="card-dark rounded-xl p-4 flex items-center space-x-3 btn-tactile" data-tooltip="Ver refrigerantes">
               <div class="category-icon soda-color">
                 🥤
               </div>
@@ -543,7 +788,7 @@
               </div>
             </a>
             
-            <a href="https://www.ifood.com.br/delivery/bauru-sp/bebidas-e-companhia-residencial-parque-granja-cecilia-b/aac15ae4-e526-4e8c-b3b6-6627cb7e2001?corredor=48f7f33f-6b44-4374-9698-ae1041b6d39d&originArea=aisleMenu" class="card-dark rounded-xl p-4 flex items-center space-x-3">
+            <a href="https://www.ifood.com.br/delivery/bauru-sp/bebidas-e-companhia-residencial-parque-granja-cecilia-b/aac15ae4-e526-4e8c-b3b6-6627cb7e2001?corredor=48f7f33f-6b44-4374-9698-ae1041b6d39d&originArea=aisleMenu" class="card-dark rounded-xl p-4 flex items-center space-x-3 btn-tactile" data-tooltip="Ver energéticos">
               <div class="category-icon energy-color">
                 ⚡
               </div>
@@ -553,7 +798,7 @@
               </div>
             </a>
             
-            <a href="https://www.ifood.com.br/delivery/bauru-sp/bebidas-e-companhia-residencial-parque-granja-cecilia-b/aac15ae4-e526-4e8c-b3b6-6627cb7e2001?corredor=1839a922-7fed-4392-aadd-c93ab3a3eba5&originArea=aisleMenu" class="card-dark rounded-xl p-4 flex items-center space-x-3">
+            <a href="https://www.ifood.com.br/delivery/bauru-sp/bebidas-e-companhia-residencial-parque-granja-cecilia-b/aac15ae4-e526-4e8c-b3b6-6627cb7e2001?corredor=1839a922-7fed-4392-aadd-c93ab3a3eba5&originArea=aisleMenu" class="card-dark rounded-xl p-4 flex items-center space-x-3 btn-tactile" data-tooltip="Ver isotônicos">
               <div class="category-icon water-color">
                 🏃
               </div>
@@ -563,7 +808,7 @@
               </div>
             </a>
             
-            <a href="https://www.ifood.com.br/delivery/bauru-sp/bebidas-e-companhia-residencial-parque-granja-cecilia-b/aac15ae4-e526-4e8c-b3b6-6627cb7e2001?corredor=32a37ad0-ad5b-4c2b-9405-1beefc06a9d1&originArea=aisleMenu" class="card-dark rounded-xl p-4 flex items-center space-x-3">
+            <a href="https://www.ifood.com.br/delivery/bauru-sp/bebidas-e-companhia-residencial-parque-granja-cecilia-b/aac15ae4-e526-4e8c-b3b6-6627cb7e2001?corredor=32a37ad0-ad5b-4c2b-9405-1beefc06a9d1&originArea=aisleMenu" class="card-dark rounded-xl p-4 flex items-center space-x-3 btn-tactile" data-tooltip="Ver sucos">
               <div class="category-icon water-color">
                 🥤
               </div>
@@ -573,7 +818,7 @@
               </div>
             </a>
             
-            <a href="https://www.ifood.com.br/delivery/bauru-sp/bebidas-e-companhia-residencial-parque-granja-cecilia-b/aac15ae4-e526-4e8c-b3b6-6627cb7e2001?corredor=844ec7ae-3741-43e4-9a1c-aeb02601721b&originArea=aisleMenu" class="card-dark rounded-xl p-4 flex items-center space-x-3">
+            <a href="https://www.ifood.com.br/delivery/bauru-sp/bebidas-e-companhia-residencial-parque-granja-cecilia-b/aac15ae4-e526-4e8c-b3b6-6627cb7e2001?corredor=844ec7ae-3741-43e4-9a1c-aeb02601721b&originArea=aisleMenu" class="card-dark rounded-xl p-4 flex items-center space-x-3 btn-tactile" data-tooltip="Ver águas">
               <div class="category-icon water-color">
                 💧
               </div>
@@ -583,7 +828,7 @@
               </div>
             </a>
             
-            <a href="https://www.ifood.com.br/delivery/bauru-sp/bebidas-e-companhia-residencial-parque-granja-cecilia-b/aac15ae4-e526-4e8c-b3b6-6627cb7e2001?corredor=66cc2af9-48cb-4897-9f35-887f800277a1&originArea=aisleMenu" class="card-dark rounded-xl p-4 flex items-center space-x-3">
+            <a href="https://www.ifood.com.br/delivery/bauru-sp/bebidas-e-companhia-residencial-parque-granja-cecilia-b/aac15ae4-e526-4e8c-b3b6-6627cb7e2001?corredor=66cc2af9-48cb-4897-9f35-887f800277a1&originArea=aisleMenu" class="card-dark rounded-xl p-4 flex items-center space-x-3 btn-tactile" data-tooltip="Ver destilados">
               <div class="category-icon wine-color">
                 🥃
               </div>
@@ -602,7 +847,7 @@
             Comidas Delivery
           </h4>
           <div class="category-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4">
-            <a href="https://www.ifood.com.br/delivery/bauru-sp/bebidas-e-companhia-residencial-parque-granja-cecilia-b/aac15ae4-e526-4e8c-b3b6-6627cb7e2001?corredor=c87909e3-c580-4658-ad95-ec4832f7b492&originArea=aisleMenu" class="card-dark rounded-xl p-4 flex items-center space-x-3">
+            <a href="https://www.ifood.com.br/delivery/bauru-sp/bebidas-e-companhia-residencial-parque-granja-cecilia-b/aac15ae4-e526-4e8c-b3b6-6627cb7e2001?corredor=c87909e3-c580-4658-ad95-ec4832f7b492&originArea=aisleMenu" class="card-dark rounded-xl p-4 flex items-center space-x-3 btn-tactile" data-tooltip="Ver salgadinhos">
               <div class="category-icon food-color">
                 🍟
               </div>
@@ -612,7 +857,7 @@
               </div>
             </a>
             
-            <a href="https://www.ifood.com.br/delivery/bauru-sp/bebidas-e-companhia-residencial-parque-granja-cecilia-b/aac15ae4-e526-4e8c-b3b6-6627cb7e2001?corredor=08809668-2bb1-423a-aced-22c97e0fff47&originArea=aisleMenu" class="card-dark rounded-xl p-4 flex items-center space-x-3">
+            <a href="https://www.ifood.com.br/delivery/bauru-sp/bebidas-e-companhia-residencial-parque-granja-cecilia-b/aac15ae4-e526-4e8c-b3b6-6627cb7e2001?corredor=08809668-2bb1-423a-aced-22c97e0fff47&originArea=aisleMenu" class="card-dark rounded-xl p-4 flex items-center space-x-3 btn-tactile" data-tooltip="Ver doces">
               <div class="category-icon food-color">
                 🍬
               </div>
@@ -622,7 +867,7 @@
               </div>
             </a>
             
-            <a href="https://www.ifood.com.br/delivery/bauru-sp/bebidas-e-companhia-residencial-parque-granja-cecilia-b/aac15ae4-e526-4e8c-b3b6-6627cb7e2001?corredor=66cc2af9-48cb-4897-9f35-887f800277a1&originArea=aisleMenu" class="card-dark rounded-xl p-4 flex items-center space-x-3">
+            <a href="https://www.ifood.com.br/delivery/bauru-sp/bebidas-e-companhia-residencial-parque-granja-cecilia-b/aac15ae4-e526-4e8c-b3b6-6627cb7e2001?corredor=66cc2af9-48cb-4897-9f35-887f800277a1&originArea=aisleMenu" class="card-dark rounded-xl p-4 flex items-center space-x-3 btn-tactile" data-tooltip="Ver sorvetes">
               <div class="category-icon other-color">
                 🍦
               </div>
@@ -632,7 +877,7 @@
               </div>
             </a>
             
-            <a href="https://www.ifood.com.br/delivery/bauru-sp/bebidas-e-companhia-residencial-parque-granja-cecilia-b/aac15ae4-e526-4e8c-b3b6-6627cb7e2001?corredor=8c121c34-3510-4b8b-8fa0-8dea8387aa45&originArea=aisleMenu" class="card-dark rounded-xl p-4 flex items-center space-x-3">
+            <a href="https://www.ifood.com.br/delivery/bauru-sp/bebidas-e-companhia-residencial-parque-granja-cecilia-b/aac15ae4-e526-4e8c-b3b6-6627cb7e2001?corredor=8c121c34-3510-4b8b-8fa0-8dea8387aa45&originArea=aisleMenu" class="card-dark rounded-xl p-4 flex items-center space-x-3 btn-tactile" data-tooltip="Ver espetinhos">
               <div class="category-icon food-color">
                 🍢
               </div>
@@ -651,7 +896,7 @@
             Outros Delivery
           </h4>
           <div class="category-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4">
-            <a href="https://www.ifood.com.br/delivery/bauru-sp/bebidas-e-companhia-residencial-parque-granja-cecilia-b/aac15ae4-e526-4e8c-b3b6-6627cb7e2001?corredor=e304fc27-64f8-4512-a37e-99b261f52286&originArea=aisleMenu" class="card-dark rounded-xl p-4 flex items-center space-x-3">
+            <a href="https://www.ifood.com.br/delivery/bauru-sp/bebidas-e-companhia-residencial-parque-granja-cecilia-b/aac15ae4-e526-4e8c-b3b6-6627cb7e2001?corredor=e304fc27-64f8-4512-a37e-99b261f52286&originArea=aisleMenu" class="card-dark rounded-xl p-4 flex items-center space-x-3 btn-tactile" data-tooltip="Ver gelo saborizado">
               <div class="category-icon other-color">
                 ❄️
               </div>
@@ -661,7 +906,7 @@
               </div>
             </a>
             
-            <a href="https://www.ifood.com.br/delivery/bauru-sp/bebidas-e-companhia-residencial-parque-granja-cecilia-b/aac15ae4-e526-4e8c-b3b6-6627cb7e2001?corredor=ed9976c5-e584-4c80-a8e5-21a2d3cc25f7&originArea=aisleMenu" class="card-dark rounded-xl p-4 flex items-center space-x-3">
+            <a href="https://www.ifood.com.br/delivery/bauru-sp/bebidas-e-companhia-residencial-parque-granja-cecilia-b/aac15ae4-e526-4e8c-b3b6-6627cb7e2001?corredor=ed9976c5-e584-4c80-a8e5-21a2d3cc25f7&originArea=aisleMenu" class="card-dark rounded-xl p-4 flex items-center space-x-3 btn-tactile" data-tooltip="Ver mercearia">
               <div class="category-icon other-color">
                 🏪
               </div>
@@ -674,13 +919,12 @@
         </div>
       </section>
       
-      <!-- Instagram Feed Section -->
+      <!-- Instagram Feed Section - CORRIGIDA -->
       <section class="w-full lg:w-2/3">
         <h3 class="section-title text-3xl font-bold text-white mb-8">Novidades no Instagram</h3>
         <div class="card-dark rounded-2xl p-6">
           <div class="swiper mySwiper">
             <div class="swiper-wrapper">
-              <!-- Mantidos apenas os posts 2, 3, 4 e 6 (removidos 1, 5, 7, 8, 9) -->
               <div class="swiper-slide">
                 <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DLd0WeCp0q5/" data-instgrm-version="14" style="max-width: 540px; width: 100%;" data-instgrm-allow-script-access="true" data-instgrm-payload-type="video">
                   <a href="https://www.instagram.com/p/DLd0WeCp0q5/">Carregando...</a>
@@ -722,7 +966,7 @@
             Localização
           </h4>
           <p class="mb-2 text-gray-300">
-            <a href="https://www.google.com/maps/search/?api=1&query=Av.+José+Henrique+Ferraz+18-10,+Bauru,+SP" target="_blank" class="hover:text-red-500 transition-colors">
+            <a href="https://www.google.com/maps/search/?api=1&query=Av.+José+Henrique+Ferraz+18-10,+Bauru,+SP" target="_blank" class="hover:text-red-500 transition-colors" data-tooltip="Abrir Google Maps">
               Av. José Henrique Ferraz 18-10<br>
               Bauru, SP
             </a>
@@ -736,13 +980,13 @@
             Contato
           </h4>
           <p class="mb-2">
-            <a href="https://wa.me/5514996130369" class="hover:text-red-500 transition-colors flex items-center">
+            <a href="https://wa.me/5514996130369" class="hover:text-red-500 transition-colors flex items-center" data-tooltip="Abrir WhatsApp">
               <i class="fab fa-whatsapp mr-2"></i>
               (14) 99613-0369
             </a>
           </p>
           <p>
-            <a href="mailto:caerod@gmail.com" class="hover:text-red-500 transition-colors flex items-center">
+            <a href="mailto:caerod@gmail.com" class="hover:text-red-500 transition-colors flex items-center" data-tooltip="Enviar email">
               <i class="fas fa-envelope mr-2"></i>
               caerod@gmail.com
             </a>
@@ -756,10 +1000,10 @@
             Redes Sociais
           </h4>
           <div class="flex space-x-4">
-            <a href="https://www.instagram.com/bebcombauru" target="_blank" class="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center hover:bg-red-600 transition-all">
+            <a href="https://www.instagram.com/bebcombauru" target="_blank" class="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center hover:bg-red-600 transition-all btn-tactile" data-tooltip="Instagram">
               <i class="fab fa-instagram text-xl"></i>
             </a>
-            <a href="https://www.facebook.com/bebcombauru" target="_blank" class="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center hover:bg-blue-600 transition-all">
+            <a href="https://www.facebook.com/bebcombauru" target="_blank" class="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center hover:bg-blue-600 transition-all btn-tactile" data-tooltip="Facebook">
               <i class="fab fa-facebook text-xl"></i>
             </a>
           </div>
@@ -773,7 +1017,7 @@
   </footer>
 
   <!-- Floating WhatsApp Button -->
-  <a href="https://wa.me/5514996130369" class="floating-whatsapp" target="_blank" title="Fale conosco no WhatsApp">
+  <a href="https://wa.me/5514996130369" class="floating-whatsapp" target="_blank" title="Fale conosco no WhatsApp" data-tooltip="WhatsApp">
     <i class="fab fa-whatsapp"></i>
   </a>
 
@@ -807,7 +1051,26 @@
           },
         }
       });
-      
+
+      // Otimização simples do Instagram
+      const instagramEmbeds = document.querySelectorAll('.instagram-media');
+      instagramEmbeds.forEach((embed) => {
+        embed.style.opacity = '0';
+        embed.style.transition = 'opacity 0.5s ease';
+        
+        // Carregar embed após um pequeno delay
+        setTimeout(() => {
+          if (window.instgrm) {
+            window.instgrm.Embeds.process();
+          }
+          
+          // Mostrar embed após carregamento
+          setTimeout(() => {
+            embed.style.opacity = '1';
+          }, 1000);
+        }, 500);
+      });
+
       // Smooth scroll for anchor links
       document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
@@ -821,19 +1084,62 @@
           }
         });
       });
-      
-      // Add loading animation for Instagram embeds
-      const instagramEmbeds = document.querySelectorAll('.instagram-media');
-      instagramEmbeds.forEach(embed => {
-        embed.style.opacity = '0';
-        embed.style.transition = 'opacity 0.5s ease';
-        
-        // Show embed after a delay to simulate loading
-        setTimeout(() => {
-          embed.style.opacity = '1';
-        }, 1000);
+
+      // Adicionar tooltips para elementos interativos
+      document.querySelectorAll('a[href]').forEach(link => {
+        if (link.href.includes('ifood')) {
+          link.setAttribute('data-tooltip', 'Abrir iFood');
+        } else if (link.href.includes('wa.me')) {
+          link.setAttribute('data-tooltip', 'Abrir WhatsApp');
+        } else if (link.href.includes('instagram.com')) {
+          link.setAttribute('data-tooltip', 'Abrir Instagram');
+        }
       });
+
+      // Feedback tátil para botões
+      document.querySelectorAll('.btn-primary, .btn-secondary, .card-dark').forEach(btn => {
+        btn.classList.add('btn-tactile');
+      });
+
+      // Adicionar animação fade-in
+      const style = document.createElement('style');
+      style.textContent = `
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-fade-in {
+          animation: fadeIn 0.6s ease-out forwards;
+        }
+        
+        /* Melhorar visibilidade de foco para acessibilidade */
+        :focus {
+          outline: 2px solid #dc2626;
+          outline-offset: 2px;
+        }
+        
+        /* Scrollbar personalizada */
+        ::-webkit-scrollbar {
+          width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+          background: #1a1a1a;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+          background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+          border-radius: 5px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+          background: linear-gradient(135deg, #b91c1c 0%, #991b1b 100%);
+        }
+      `;
+      document.head.appendChild(style);
     };
   </script>
 </body>
 </html>
+
