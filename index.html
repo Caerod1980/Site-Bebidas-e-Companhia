@@ -212,137 +212,6 @@
       }
     }
     
-    .floating-whatsapp {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      z-index: 1000;
-      background: #25d366;
-      color: white;
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 24px;
-      box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
-      transition: all 0.3s ease;
-      animation: pulse 2s infinite;
-    }
-    
-    .floating-whatsapp:hover {
-      transform: scale(1.1);
-      box-shadow: 0 12px 30px rgba(37, 211, 102, 0.4);
-    }
-    
-    @keyframes pulse {
-      0% {
-        box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
-      }
-      50% {
-        box-shadow: 0 8px 20px rgba(37, 211, 102, 0.6);
-      }
-      100% {
-        box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
-      }
-    }
-    
-    .stats-card {
-      background: rgba(26, 26, 26, 0.85);
-      backdrop-filter: blur(10px);
-      border: 1px solid #333;
-      transition: all 0.3s ease;
-    }
-    
-    .stats-card:hover {
-      border-color: #dc2626;
-      transform: translateY(-5px);
-    }
-    
-    .footer-gradient {
-      background: linear-gradient(135deg, rgba(5, 5, 5, 0.97) 0%, rgba(26, 26, 26, 0.97) 100%);
-      border-top: 2px solid #dc2626;
-      backdrop-filter: blur(10px);
-    }
-    
-    .text-glow {
-      text-shadow: 0 0 10px rgba(220, 38, 38, 0.5);
-    }
-    
-    .logo-container {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-    }
-    
-    .logo-placeholder {
-      width: 60px;
-      height: 60px;
-      background: linear-gradient(135deg, rgba(26, 26, 26, 0.95) 0%, rgba(45, 45, 45, 0.95) 100%);
-      border: 2px solid #333;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #dc2626;
-      font-weight: bold;
-      font-size: 24px;
-    }
-    
-    .lounge-section {
-      background: linear-gradient(135deg, rgba(5, 5, 5, 0.97) 0%, rgba(26, 26, 26, 0.97) 100%);
-      border-top: 2px solid #dc2626;
-      border-bottom: 2px solid #dc2626;
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .lounge-section::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: linear-gradient(135deg, rgba(220, 38, 38, 0.05) 0%, rgba(37, 99, 235, 0.05) 100%);
-      z-index: 1;
-    }
-    
-    .lounge-image {
-      border-radius: 16px;
-      border: 2px solid #333;
-      transition: all 0.3s ease;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    }
-    
-    .lounge-image:hover {
-      transform: translateY(-5px);
-      border-color: #dc2626;
-      box-shadow: 0 15px 40px rgba(220, 38, 38, 0.2);
-    }
-    
-    .feature-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1rem;
-    }
-    
-    .feature-item {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      padding: 0.5rem;
-      background: rgba(26, 26, 26, 0.6);
-      border-radius: 8px;
-      border: 1px solid #333;
-    }
-    
-    .feature-item i {
-      color: #dc2626;
-      font-size: 1.25rem;
-    }
-    
     /* MELHORIAS DE INTERFACE - ADICIONADAS */
     
     /* Scroll suave para toda a página */
@@ -548,14 +417,6 @@
         gap: 0.75rem;
       }
       
-      .floating-whatsapp {
-        width: 50px;
-        height: 50px;
-        font-size: 20px;
-        bottom: 15px;
-        right: 15px;
-      }
-      
       .feature-grid {
         grid-template-columns: 1fr;
       }
@@ -598,15 +459,17 @@
         gap: 10px;
       }
       
+      /* LOGOTIPO REDUZIDO NO MOBILE */
       .logo-placeholder {
-        width: 50px;
-        height: 50px;
-        flex-shrink: 0; /* Evita que a logo diminua */
+        width: 40px;
+        height: 40px;
+        flex-shrink: 0;
+        border-radius: 8px;
       }
       
       /* Ajuste fino do título em telas muito pequenas */
       .logo-container h1 {
-        font-size: 1.2rem !important;
+        font-size: 1.1rem !important;
         max-width: 100% !important;
       }
       
@@ -619,7 +482,7 @@
     /* Ajustes para telas extremamente pequenas */
     @media (max-width: 380px) {
       .logo-container h1 {
-        font-size: 1.1rem !important;
+        font-size: 1rem !important;
         max-width: 100% !important;
       }
       
@@ -656,6 +519,173 @@
         display: none !important;
       }
     }
+    
+    /* NOVO: Estilo para centralizar o título da galeria */
+    .centered-title {
+      text-align: center !important;
+      width: 100%;
+    }
+    
+    .centered-title .section-title {
+      display: inline-block;
+      text-align: center;
+    }
+    
+    .centered-title .section-title::after {
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    
+    /* LOGOTIPO REDUZIDO - TAMANHO PROPORCIONAL */
+    .logo-placeholder {
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, rgba(26, 26, 26, 0.95) 0%, rgba(45, 45, 45, 0.95) 100%);
+      border: 2px solid #333;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #dc2626;
+      font-weight: bold;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+    
+    @media (min-width: 768px) {
+      .logo-placeholder {
+        width: 60px;
+        height: 60px;
+        border-radius: 12px;
+      }
+    }
+    
+    /* MENU HAMBURGUER PARA MOBILE */
+    .mobile-menu-button {
+      display: none;
+      background: transparent;
+      border: none;
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+      padding: 8px;
+      border-radius: 6px;
+      transition: all 0.3s ease;
+    }
+    
+    .mobile-menu-button:hover {
+      background: rgba(220, 38, 38, 0.2);
+    }
+    
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 280px;
+      height: 100vh;
+      background: linear-gradient(135deg, rgba(5, 5, 5, 0.98) 0%, rgba(26, 26, 26, 0.98) 100%);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      transition: right 0.3s ease;
+      border-left: 2px solid #dc2626;
+      box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+    }
+    
+    .mobile-menu.active {
+      right: 0;
+    }
+    
+    .mobile-menu-header {
+      padding: 20px;
+      border-bottom: 1px solid #333;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .mobile-menu-content {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    
+    .mobile-menu-item {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      padding: 12px;
+      border-radius: 8px;
+      color: white;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      border: 1px solid transparent;
+    }
+    
+    .mobile-menu-item:hover {
+      background: rgba(220, 38, 38, 0.1);
+      border-color: #dc2626;
+      transform: translateX(5px);
+    }
+    
+    .mobile-menu-item i {
+      width: 24px;
+      text-align: center;
+      color: #dc2626;
+    }
+    
+    .mobile-menu-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 999;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .mobile-menu-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .close-menu-button {
+      background: transparent;
+      border: none;
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+      padding: 5px;
+      border-radius: 6px;
+      transition: all 0.3s ease;
+    }
+    
+    .close-menu-button:hover {
+      background: rgba(220, 38, 38, 0.2);
+    }
+    
+    @media (max-width: 768px) {
+      .mobile-menu-button {
+        display: block;
+      }
+      
+      .header-right-desktop {
+        display: none;
+      }
+    }
+    
+    @media (min-width: 769px) {
+      .mobile-menu-button {
+        display: none;
+      }
+      
+      .header-right-desktop {
+        display: flex;
+      }
+    }
   </style>
 </head>
 <body class="dark-bg">
@@ -664,7 +694,7 @@
     <div class="container mx-auto px-4 py-4">
       <div class="flex items-center justify-between">
         <div class="logo-container">
-          <!-- Logo da Loja -->
+          <!-- Logo da Loja - TAMANHO AJUSTADO -->
           <div class="logo-placeholder">
             <img src="https://raw.githubusercontent.com/Caerod1980/Imagens-Site-Guardian/bb4b23a92bf0f6ec625b9c34de3f5aa6871d1143/logo%20loja.jpeg" 
                  alt="Bebidas & Companhia" 
@@ -685,15 +715,65 @@
             <p class="mobile-subtitle text-gray-300">Conveniência e Lounge</p>
           </div>
         </div>
-        <div class="hidden md:flex items-center space-x-6">
+        
+        <!-- Menu Desktop -->
+        <div class="header-right-desktop items-center space-x-6">
           <a href="https://www.instagram.com/bebcombauru" class="flex items-center space-x-2 hover:text-red-500 transition-colors" data-tooltip="Abrir Instagram">
             <i class="fab fa-instagram text-xl"></i>
             <span>@bebcombauru</span>
           </a>
+          <!-- NOVO LINK DO CARDÁPIO ATUALIZADO -->
+          <a href="#cardapio-section" class="flex items-center space-x-2 hover:text-red-500 transition-colors px-4 py-2 rounded-lg border border-red-600 bg-red-600/10 hover:bg-red-600/20 btn-tactile" data-tooltip="Ver cardápio completo">
+            <i class="fas fa-book text-xl"></i>
+            <span class="font-bold">Cardápio</span>
+          </a>
         </div>
+        
+        <!-- Botão Hamburguer Mobile -->
+        <button class="mobile-menu-button" onclick="toggleMobileMenu()">
+          <i class="fas fa-bars"></i>
+        </button>
       </div>
     </div>
   </header>
+
+  <!-- Menu Mobile -->
+  <div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="closeMobileMenu()"></div>
+  
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-header">
+      <h3 class="text-xl font-bold">Menu</h3>
+      <button class="close-menu-button" onclick="closeMobileMenu()">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <div class="mobile-menu-content">
+      <a href="https://www.instagram.com/bebcombauru" class="mobile-menu-item" target="_blank">
+        <i class="fab fa-instagram"></i>
+        <span>Instagram</span>
+      </a>
+      <a href="#cardapio-section" class="mobile-menu-item internal-link">
+        <i class="fas fa-book"></i>
+        <span>Cardápio (seção)</span>
+      </a>
+      <a href="https://www.ifood.com.br/delivery/bauru-sp/bebidas-e-companhia-residencial-parque-granja-cecilia-b/aac15ae4-e526-4e8c-b3b6-6627cb7e2001" class="mobile-menu-item" target="_blank">
+        <i class="fas fa-shopping-cart"></i>
+        <span>iFood</span>
+      </a>
+      <a href="https://wa.me/5514996130369" class="mobile-menu-item" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+        <span>WhatsApp</span>
+      </a>
+      <a href="https://www.google.com/maps/search/?api=1&query=Av.+José+Henrique+Ferraz+18-10,+Bauru,+SP" class="mobile-menu-item" target="_blank">
+        <i class="fas fa-map-marker-alt"></i>
+        <span>Como Chegar</span>
+      </a>
+      <a href="sem%20carrinho.html" class="mobile-menu-item external-link" target="_blank">
+        <i class="fas fa-external-link-alt"></i>
+        <span>Cardápio Completo</span>
+      </a>
+    </div>
+  </div>
 
   <!-- NOVA SEÇÃO: CONHEÇA BEBIDAS & COMPANHIA -->
   <section class="darker-bg text-white py-16">
@@ -728,7 +808,7 @@
                 Oferecemos um amplo mix de bebidas e alimentos com a conveniência do delivery via iFood e a 
                 experiência única do <strong>Bebcom Lounge</strong> - um espaço exclusivo para festas, eventos 
                 e confraternizações. O Lounge pode ser alugado por uma taxa acessível, proporcionando a estrutura 
-                completa com churrasqueira, geladeira, sala de jogos e muito mais, aliada à praticidade de ter 
+                completo com churrasqueira, geladeira, sala de jogos e muito mais, aliada à praticidade de ter 
                 uma conveniência completa ao lado.
               </p>
               <p>
@@ -816,7 +896,43 @@
           <span>Peça pelo iFood</span>
         </a>
       </div>
-      
+    </div>
+  </section>
+
+  <!-- NOVA SEÇÃO: CARDÁPIO COMPLETO -->
+  <section id="cardapio-section" class="py-16">
+    <div class="container mx-auto px-4">
+      <div class="card-dark rounded-2xl p-8 text-center border-2 border-red-600 hover-lift">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+          <div class="text-left">
+            <h3 class="text-2xl md:text-3xl font-bold text-white mb-2">
+              <span class="text-red-500">📋 Cardápio Completo</span>
+            </h3>
+            <p class="text-gray-300 mb-4">
+              Explore nossa seleção completa de bebidas e drinks especiais. 
+              Todas as categorias organizadas para facilitar sua escolha.
+            </p>
+            <div class="flex items-center space-x-4 text-sm text-gray-400">
+              <div class="flex items-center">
+                <i class="fas fa-cocktail text-red-500 mr-2"></i>
+                <span>+12 Categorias</span>
+              </div>
+              <div class="flex items-center">
+                <i class="fas fa-beer text-red-500 mr-2"></i>
+                <span>+100 Produtos</span>
+              </div>
+            </div>
+          </div>
+          <!-- ATUALIZADO: Link para o novo cardápio (sem carrinho) -->
+          <a href="sem%20carrinho.html" target="_blank" 
+             class="btn-primary px-8 py-4 rounded-full text-white font-bold text-lg flex items-center space-x-3 btn-tactile whitespace-nowrap external-link" 
+             data-tooltip="Abrir Cardápio Completo">
+            <i class="fas fa-external-link-alt"></i>
+            <span>Abrir Cardápio</span>
+          </a>
+        </div>
+      </div>
+    </div>
   </section>
 
   <!-- NOVA SEÇÃO: ÁREA DE LAZER -->
@@ -1128,10 +1244,13 @@
   <!-- NOVA SEÇÃO: Galeria de Fotos - Nossa História em Imagens -->
   <section class="py-16 bg-black">
     <div class="container mx-auto px-4">
-      <h3 class="section-title text-3xl font-bold text-white mb-8">
-        <span class="text-red-500">✨ Momentos Memoráveis ✨</span><br>
-        <span class="text-xl md:text-2xl font-normal text-gray-300 mt-2">Nossa História em Imagens</span>
-      </h3>
+      <!-- TÍTULO CENTRALIZADO EM DESKTOP E MOBILE -->
+      <div class="centered-title mb-8">
+        <h3 class="section-title text-3xl font-bold text-white">
+          <span class="text-red-500">✨ Momentos Memoráveis ✨</span><br>
+          <span class="text-xl md:text-2xl font-normal text-gray-300 mt-2 block">Nossa História em Imagens</span>
+        </h3>
+      </div>
       
       <div class="card-dark rounded-2xl p-6 border-2 border-red-600">
         <div class="swiper gallerySwiper">
@@ -1210,6 +1329,18 @@
                      class="w-full h-64 md:h-80 object-cover transition-transform duration-500 hover:scale-110">
                 <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 to-transparent p-4">
                   <p class="text-white text-sm font-semibold">Celebrações Especiais</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- NOVA FOTO ADICIONADA - Janeiro 2026 -->
+            <div class="swiper-slide">
+              <div class="relative overflow-hidden rounded-xl">
+                <img src="https://github.com/Caerod1980/Imagens-Site-Bebcom/blob/3b6365af30392578b6379221ba89b3b83f37ae60/WhatsApp%20Image%202026-01-28%20at%2018.15.59.jpeg?raw=true" 
+                     alt="Momento Especial Bebidas & Companhia" 
+                     class="w-full h-64 md:h-80 object-cover transition-transform duration-500 hover:scale-110">
+                <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 to-transparent p-4">
+                  <p class="text-white text-sm font-semibold">Momento Especial - Janeiro 2026</p>
                 </div>
               </div>
             </div>
@@ -1294,6 +1425,63 @@
   <script src="https://www.instagram.com/embed.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
   <script>
+    // Funções para o menu hamburguer
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobileMenu');
+      const overlay = document.getElementById('mobileMenuOverlay');
+      menu.classList.toggle('active');
+      overlay.classList.toggle('active');
+      document.body.style.overflow = menu.classList.contains('active') ? 'hidden' : '';
+    }
+    
+    function closeMobileMenu() {
+      const menu = document.getElementById('mobileMenu');
+      const overlay = document.getElementById('mobileMenuOverlay');
+      menu.classList.remove('active');
+      overlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    // Função para lidar com links no menu mobile
+    function handleMobileMenuLinks() {
+      // Links internos (#) - fechar menu e fazer scroll suave
+      document.querySelectorAll('.mobile-menu-item.internal-link').forEach(link => {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          closeMobileMenu();
+          
+          const targetId = this.getAttribute('href');
+          if (targetId.startsWith('#')) {
+            const target = document.querySelector(targetId);
+            if (target) {
+              // Scroll suave após fechar o menu
+              setTimeout(() => {
+                target.scrollIntoView({
+                  behavior: 'smooth',
+                  block: 'start'
+                });
+              }, 300);
+            }
+          }
+        });
+      });
+      
+      // Links externos - fechar menu e abrir normalmente
+      document.querySelectorAll('.mobile-menu-item.external-link').forEach(link => {
+        link.addEventListener('click', function(e) {
+          closeMobileMenu();
+          // O navegador seguirá o link normalmente (target="_blank")
+        });
+      });
+    }
+    
+    // Fechar menu ao pressionar ESC
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeMobileMenu();
+      }
+    });
+
     window.onload = function() {
       // Initialize Swiper SEM autoplay
       var swiper = new Swiper(".mySwiper", {
@@ -1398,6 +1586,9 @@
       document.querySelectorAll('.btn-primary, .btn-secondary, .card-dark').forEach(btn => {
         btn.classList.add('btn-tactile');
       });
+
+      // Configurar links do menu mobile
+      handleMobileMenuLinks();
 
       // Adicionar animação fade-in
       const style = document.createElement('style');
