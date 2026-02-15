@@ -14,12 +14,13 @@
   <meta name="apple-mobile-web-app-title" content="Beb&Com">
   <meta name="application-name" content="Beb&Com">
   <meta name="msapplication-TileColor" content="#dc2626">
-  <meta name="msapplication-TileImage" content="/icons/ms-icon-144x144.png">
+  <meta name="msapplication-TileImage" content="/icon-144x144.png">
   
   <!-- LINKS PWA -->
   <link rel="manifest" href="/manifest.json">
-  <link rel="apple-touch-icon" href="/icons/icon-152x152.png">
-  <link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192x192.png">
+  <link rel="apple-touch-icon" href="/icon-152x152.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="/icon-512x512.png">
   
   <title>Bebidas & Companhia - Conveniência e Lounge</title>
   
@@ -30,7 +31,6 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   
   <style>
-    /* SEU CSS EXISTENTE AQUI - MANTIDO IGUAL */
     * {
       font-family: 'Inter', sans-serif;
       -webkit-tap-highlight-color: transparent;
@@ -730,14 +730,13 @@
     <div class="container mx-auto px-4 py-4">
       <div class="flex items-center justify-between">
         <div class="logo-container flex items-center space-x-3">
-          <!-- Logo da Loja - TAMANHO AJUSTADO -->
+          <!-- Logo da Loja -->
           <div class="logo-placeholder">
             <img src="https://raw.githubusercontent.com/Caerod1980/Imagens-Site-Guardian/bb4b23a92bf0f6ec625b9c34de3f5aa6871d1143/logo%20loja.jpeg" 
                  alt="Bebidas & Companhia" 
                  class="w-full h-full object-contain rounded-lg">
           </div>
           <div class="flex flex-col">
-            <!-- TÍTULO DIVIDIDO EM DUAS LINHAS APENAS NO MOBILE -->
             <h1 class="text-2xl md:text-3xl font-bold truncate md:whitespace-normal">
               <span class="md:hidden block">
                 <span class="block">Bebidas &</span>
@@ -745,9 +744,7 @@
               </span>
               <span class="hidden md:block">Bebidas & Companhia</span>
             </h1>
-            <!-- Subtítulo visível apenas em desktop -->
             <p class="desktop-subtitle text-sm text-gray-300">Conveniência e Lounge</p>
-            <!-- Subtítulo para mobile (visível apenas no mobile) -->
             <p class="mobile-subtitle text-gray-300">Conveniência e Lounge</p>
           </div>
         </div>
@@ -758,7 +755,6 @@
             <i class="fab fa-instagram text-xl"></i>
             <span>@bebcombauru</span>
           </a>
-          <!-- NOVO LINK DO CARDÁPIO ATUALIZADO -->
           <a href="#cardapio-section" class="flex items-center space-x-2 hover:text-red-500 transition-colors px-4 py-2 rounded-lg border border-red-600 bg-red-600/10 hover:bg-red-600/20 btn-tactile" data-tooltip="Ver cardápio completo">
             <i class="fas fa-book text-xl"></i>
             <span class="font-bold">Cardápio</span>
@@ -816,10 +812,9 @@
     <div class="container mx-auto px-4">
       <div class="flex flex-col lg:flex-row gap-12 items-center">
         
-        <!-- Imagem da Fachada - CORRIGIDA SEM FUNDO BRANCO E COM NOVA IMAGEM -->
+        <!-- Imagem da Fachada -->
         <div class="w-full lg:w-1/2">
           <div class="fachada-container rounded-2xl border-2 border-gray-800 shadow-2xl">
-            <!-- NOVA IMAGEM DA FACHADA -->
             <img src="https://github.com/Caerod1980/Imagens-Site-Bebcom/blob/c9d175f53da36a43b2d21bed4a057c8f7ff5a907/Fachada%20Bebidas%20e%20Companhia%202.jpeg?raw=true" 
                  alt="Fachada Bebidas & Companhia" 
                  class="w-full h-auto transition-transform duration-500 hover:scale-105">
@@ -828,7 +823,7 @@
             </div>
           </div>
           
-          <!-- SEÇÃO "SOBRE NÓS" COM TEXTO MELHORADO -->
+          <!-- SEÇÃO "SOBRE NÓS" -->
           <div class="mt-8 card-dark rounded-2xl p-6">
             <h3 class="text-2xl font-bold mb-4 flex items-center text-red-500">
               <i class="fas fa-store mr-3"></i>
@@ -844,8 +839,7 @@
                 Oferecemos um amplo mix de bebidas e alimentos com a conveniência do delivery via iFood e a 
                 experiência única do <strong>Bebcom Lounge</strong> - um espaço exclusivo para festas, eventos 
                 e confraternizações. O Lounge pode ser alugado por uma taxa acessível, proporcionando a estrutura 
-                completa com churrasqueira, geladeira, sala de jogos e muito mais, aliada à praticidade de ter 
-                uma conveniência completa ao lado.
+                completa com churrasqueira, geladeira, sala de jogos e muito mais.
               </p>
               <p>
                 Nossa missão é transformar momentos comuns em experiências extraordinárias, oferecendo produtos 
@@ -935,7 +929,7 @@
     </div>
   </section>
 
-  <!-- NOVA SEÇÃO: CARDÁPIO COMPLETO -->
+  <!-- SEÇÃO: CARDÁPIO COMPLETO -->
   <section id="cardapio-section" class="py-16">
     <div class="container mx-auto px-4">
       <div class="card-dark rounded-2xl p-8 text-center border-2 border-red-600 hover-lift">
@@ -959,7 +953,6 @@
               </div>
             </div>
           </div>
-          <!-- ATUALIZADO: Link para o novo cardápio (sem carrinho) -->
           <a href="https://caerod1980.github.io/Cardapiosemcarrinho/" target="_blank" 
              class="btn-primary px-8 py-4 rounded-full text-white font-bold text-lg flex items-center space-x-3 btn-tactile whitespace-nowrap external-link" 
              data-tooltip="Abrir Cardápio Completo">
@@ -971,7 +964,7 @@
     </div>
   </section>
 
-  <!-- NOVA SEÇÃO: ÁREA DE LAZER -->
+  <!-- SEÇÃO: ÁREA DE LAZER -->
   <section class="lounge-section text-white py-16 relative">
     <div class="container mx-auto px-4 relative z-10">
       <div class="flex flex-col lg:flex-row gap-12 items-center">
@@ -1006,34 +999,13 @@
               O que está incluso:
             </h4>
             <div class="feature-grid mb-6">
-              <div class="feature-item">
-                <i class="fas fa-chair"></i>
-                <span>Mesas e cadeiras</span>
-              </div>
-              <div class="feature-item">
-                <i class="fas fa-fire"></i>
-                <span>Churrasqueira</span>
-              </div>
-              <div class="feature-item">
-                <i class="fas fa-snowflake"></i>
-                <span>Geladeira</span>
-              </div>
-              <div class="feature-item">
-                <i class="fas fa-fire"></i>
-                <span>Fogão</span>
-              </div>
-              <div class="feature-item">
-                <i class="fas fa-gamepad"></i>
-                <span>Sala de jogos</span>
-              </div>
-              <div class="feature-item">
-                <i class="fas fa-utensils"></i>
-                <span>Comida liberada*</span>
-              </div>
-              <div class="feature-item">
-                <i class="fas fa-wine-bottle"></i>
-                <span>Bebidas variadas</span>
-              </div>
+              <div class="feature-item"><i class="fas fa-chair"></i><span>Mesas e cadeiras</span></div>
+              <div class="feature-item"><i class="fas fa-fire"></i><span>Churrasqueira</span></div>
+              <div class="feature-item"><i class="fas fa-snowflake"></i><span>Geladeira</span></div>
+              <div class="feature-item"><i class="fas fa-fire"></i><span>Fogão</span></div>
+              <div class="feature-item"><i class="fas fa-gamepad"></i><span>Sala de jogos</span></div>
+              <div class="feature-item"><i class="fas fa-utensils"></i><span>Comida liberada*</span></div>
+              <div class="feature-item"><i class="fas fa-wine-bottle"></i><span>Bebidas variadas</span></div>
             </div>
             <p class="text-sm text-gray-400 italic">
               *Comida liberada: Traga sua comida à vontade! Nós fornecemos a estrutura, você traz o que preferir.
@@ -1046,22 +1018,10 @@
               Como funciona:
             </h4>
             <ul class="space-y-3">
-              <li class="flex items-start">
-                <i class="fas fa-cookie-bite text-red-500 mr-3 mt-1"></i>
-                <span>Aluguel: <strong>R$ 100,00</strong> (valor fixo pelo espaço)</span>
-              </li>
-              <li class="flex items-start">
-                <i class="fas fa-beer text-red-500 mr-3 mt-1"></i>
-                <span>Consumo obrigatório de bebidas da nossa loja</span>
-              </li>
-              <li class="flex items-start">
-                <i class="fas fa-users text-red-500 mr-3 mt-1"></i>
-                <span>Ideal para grupos de amigos e familiares</span>
-              </li>
-              <li class="flex items-start">
-                <i class="fas fa-clock text-red-500 mr-3 mt-1"></i>
-                <span>Horários flexíveis (agendar com antecedência)</span>
-              </li>
+              <li class="flex items-start"><i class="fas fa-cookie-bite text-red-500 mr-3 mt-1"></i><span>Aluguel: <strong>R$ 100,00</strong> (valor fixo pelo espaço)</span></li>
+              <li class="flex items-start"><i class="fas fa-beer text-red-500 mr-3 mt-1"></i><span>Consumo obrigatório de bebidas da nossa loja</span></li>
+              <li class="flex items-start"><i class="fas fa-users text-red-500 mr-3 mt-1"></i><span>Ideal para grupos de amigos e familiares</span></li>
+              <li class="flex items-start"><i class="fas fa-clock text-red-500 mr-3 mt-1"></i><span>Horários flexíveis (agendar com antecedência)</span></li>
             </ul>
           </div>
           
@@ -1075,11 +1035,9 @@
     </div>
   </section>
 
-  <!-- Main Content - SEM CATEGORIAS -->
+  <!-- Main Content - Instagram Feed -->
   <main class="container mx-auto px-4 py-12">
     <div class="flex flex-col lg:flex-row gap-12 justify-center">
-      
-      <!-- Instagram Feed Section - OCUPANDO ESPAÇO TOTAL -->
       <section class="w-full">
         <h3 class="section-title text-3xl font-bold text-white mb-8">Novidades no Instagram</h3>
         <div class="card-dark rounded-2xl p-6">
@@ -1115,10 +1073,9 @@
     </div>
   </main>
 
-  <!-- NOVA SEÇÃO: Galeria de Fotos - Nossa História em Imagens -->
+  <!-- Galeria de Fotos -->
   <section class="py-16 bg-black">
     <div class="container mx-auto px-4">
-      <!-- TÍTULO CENTRALIZADO EM DESKTOP E MOBILE -->
       <div class="centered-title mb-8">
         <h3 class="section-title text-3xl font-bold text-white">
           <span class="text-red-500">✨ Momentos Memoráveis ✨</span><br>
@@ -1129,12 +1086,9 @@
       <div class="card-dark rounded-2xl p-6 border-2 border-red-600">
         <div class="swiper gallerySwiper">
           <div class="swiper-wrapper">
-            <!-- Fotos do carrossel.txt serão inseridas aqui -->
             <div class="swiper-slide">
               <div class="relative overflow-hidden rounded-xl">
-                <img src="https://github.com/Caerod1980/Imagens-Site-Bebcom/blob/00dabb21cd79d9fc9554f568f5afbb0937e23c08/WhatsApp%20Image%202021-03-27%20at%2014.10.54%20(1).jpeg?raw=true" 
-                     alt="Momento Bebidas & Companhia" 
-                     class="w-full h-64 md:h-80 object-cover transition-transform duration-500 hover:scale-110">
+                <img src="https://github.com/Caerod1980/Imagens-Site-Bebcom/blob/00dabb21cd79d9fc9554f568f5afbb0937e23c08/WhatsApp%20Image%202021-03-27%20at%2014.10.54%20(1).jpeg?raw=true" alt="Momento Bebidas & Companhia" class="w-full h-64 md:h-80 object-cover transition-transform duration-500 hover:scale-110">
                 <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 to-transparent p-4">
                   <p class="text-white text-sm font-semibold">Inauguração - Março 2021</p>
                 </div>
@@ -1143,9 +1097,7 @@
             
             <div class="swiper-slide">
               <div class="relative overflow-hidden rounded-xl">
-                <img src="https://github.com/Caerod1980/Imagens-Site-Bebcom/blob/00dabb21cd79d9fc9554f568f5afbb0937e23c08/WhatsApp%20Image%202021-03-27%20at%2014.10.56%20(2).jpeg?raw=true" 
-                     alt="Evento Bebidas & Companhia" 
-                     class="w-full h-64 md:h-80 object-cover transition-transform duration-500 hover:scale-110">
+                <img src="https://github.com/Caerod1980/Imagens-Site-Bebcom/blob/00dabb21cd79d9fc9554f568f5afbb0937e23c08/WhatsApp%20Image%202021-03-27%20at%2014.10.56%20(2).jpeg?raw=true" alt="Evento Bebidas & Companhia" class="w-full h-64 md:h-80 object-cover transition-transform duration-500 hover:scale-110">
                 <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 to-transparent p-4">
                   <p class="text-white text-sm font-semibold">Primeira Festa no Lounge</p>
                 </div>
@@ -1154,9 +1106,7 @@
             
             <div class="swiper-slide">
               <div class="relative overflow-hidden rounded-xl">
-                <img src="https://github.com/Caerod1980/Imagens-Site-Bebcom/blob/00dabb21cd79d9fc9554f568f5afbb0937e23c08/WhatsApp%20Image%202021-03-27%20at%2014.10.56%20(3).jpeg?raw=true" 
-                     alt="Cliente Bebidas & Companhia" 
-                     class="w-full h-64 md:h-80 object-cover transition-transform duration-500 hover:scale-110">
+                <img src="https://github.com/Caerod1980/Imagens-Site-Bebcom/blob/00dabb21cd79d9fc9554f568f5afbb0937e23c08/WhatsApp%20Image%202021-03-27%20at%2014.10.56%20(3).jpeg?raw=true" alt="Cliente Bebidas & Companhia" class="w-full h-64 md:h-80 object-cover transition-transform duration-500 hover:scale-110">
                 <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 to-transparent p-4">
                   <p class="text-white text-sm font-semibold">Clientes Satisfeitos</p>
                 </div>
@@ -1165,9 +1115,7 @@
             
             <div class="swiper-slide">
               <div class="relative overflow-hidden rounded-xl">
-                <img src="https://github.com/Caerod1980/Imagens-Site-Bebcom/blob/00dabb21cd79d9fc9554f568f5afbb0937e23c08/WhatsApp%20Image%202021-03-29%20at%2013.00.09.jpeg?raw=true" 
-                     alt="Ambiente Bebidas & Companhia" 
-                     class="w-full h-64 md:h-80 object-cover transition-transform duration-500 hover:scale-110">
+                <img src="https://github.com/Caerod1980/Imagens-Site-Bebcom/blob/00dabb21cd79d9fc9554f568f5afbb0937e23c08/WhatsApp%20Image%202021-03-29%20at%2013.00.09.jpeg?raw=true" alt="Ambiente Bebidas & Companhia" class="w-full h-64 md:h-80 object-cover transition-transform duration-500 hover:scale-110">
                 <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 to-transparent p-4">
                   <p class="text-white text-sm font-semibold">Nossa Variedade</p>
                 </div>
@@ -1176,9 +1124,7 @@
             
             <div class="swiper-slide">
               <div class="relative overflow-hidden rounded-xl">
-                <img src="https://github.com/Caerod1980/Imagens-Site-Bebcom/blob/00dabb21cd79d9fc9554f568f5afbb0937e23c08/WhatsApp%20Image%202021-03-29%20at%2013.00.12%20(2).jpeg?raw=true" 
-                     alt="Produtos Bebidas & Companhia" 
-                     class="w-full h-64 md:h-80 object-cover transition-transform duration-500 hover:scale-110">
+                <img src="https://github.com/Caerod1980/Imagens-Site-Bebcom/blob/00dabb21cd79d9fc9554f568f5afbb0937e23c08/WhatsApp%20Image%202021-03-29%20at%2013.00.12%20(2).jpeg?raw=true" alt="Produtos Bebidas & Companhia" class="w-full h-64 md:h-80 object-cover transition-transform duration-500 hover:scale-110">
                 <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 to-transparent p-4">
                   <p class="text-white text-sm font-semibold">Bebidas Geladas</p>
                 </div>
@@ -1187,9 +1133,7 @@
             
             <div class="swiper-slide">
               <div class="relative overflow-hidden rounded-xl">
-                <img src="https://github.com/Caerod1980/Imagens-Site-Bebcom/blob/00dabb21cd79d9fc9554f568f5afbb0937e23c08/WhatsApp%20Image%202021-03-27%20at%2014.10.55%20(3).jpeg?raw=true" 
-                     alt="Espaço Bebidas & Companhia" 
-                     class="w-full h-64 md:h-80 object-cover transition-transform duration-500 hover:scale-110">
+                <img src="https://github.com/Caerod1980/Imagens-Site-Bebcom/blob/00dabb21cd79d9fc9554f568f5afbb0937e23c08/WhatsApp%20Image%202021-03-27%20at%2014.10.55%20(3).jpeg?raw=true" alt="Espaço Bebidas & Companhia" class="w-full h-64 md:h-80 object-cover transition-transform duration-500 hover:scale-110">
                 <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 to-transparent p-4">
                   <p class="text-white text-sm font-semibold">Ambiente Aconchegante</p>
                 </div>
@@ -1198,21 +1142,16 @@
             
             <div class="swiper-slide">
               <div class="relative overflow-hidden rounded-xl">
-                <img src="https://github.com/Caerod1980/Imagens-Site-Bebcom/blob/00dabb21cd79d9fc9554f568f5afbb0937e23c08/WhatsApp%20Image%202021-03-27%20at%2014.10.56%20(1).jpeg?raw=true" 
-                     alt="Celebração Bebidas & Companhia" 
-                     class="w-full h-64 md:h-80 object-cover transition-transform duration-500 hover:scale-110">
+                <img src="https://github.com/Caerod1980/Imagens-Site-Bebcom/blob/00dabb21cd79d9fc9554f568f5afbb0937e23c08/WhatsApp%20Image%202021-03-27%20at%2014.10.56%20(1).jpeg?raw=true" alt="Celebração Bebidas & Companhia" class="w-full h-64 md:h-80 object-cover transition-transform duration-500 hover:scale-110">
                 <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 to-transparent p-4">
                   <p class="text-white text-sm font-semibold">Celebrações Especiais</p>
                 </div>
               </div>
             </div>
 
-            <!-- NOVA FOTO ADICIONADA - Janeiro 2026 -->
             <div class="swiper-slide">
               <div class="relative overflow-hidden rounded-xl">
-                <img src="https://github.com/Caerod1980/Imagens-Site-Bebcom/blob/3b6365af30392578b6379221ba89b3b83f37ae60/WhatsApp%20Image%202026-01-28%20at%2018.15.59.jpeg?raw=true" 
-                     alt="Momento Especial Bebidas & Companhia" 
-                     class="w-full h-64 md:h-80 object-cover transition-transform duration-500 hover:scale-110">
+                <img src="https://github.com/Caerod1980/Imagens-Site-Bebcom/blob/3b6365af30392578b6379221ba89b3b83f37ae60/WhatsApp%20Image%202026-01-28%20at%2018.15.59.jpeg?raw=true" alt="Momento Especial Bebidas & Companhia" class="w-full h-64 md:h-80 object-cover transition-transform duration-500 hover:scale-110">
                 <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 to-transparent p-4">
                   <p class="text-white text-sm font-semibold">Momento Especial - Janeiro 2026</p>
                 </div>
@@ -1238,7 +1177,6 @@
   <footer class="footer-gradient text-white py-12 mt-16">
     <div class="container mx-auto px-4">
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <!-- Localização -->
         <div>
           <h4 class="text-xl font-bold mb-4 flex items-center">
             <i class="fas fa-map-marker-alt mr-3 text-red-500"></i>
@@ -1252,7 +1190,6 @@
           </p>
         </div>
         
-        <!-- Contato -->
         <div>
           <h4 class="text-xl font-bold mb-4 flex items-center">
             <i class="fas fa-phone mr-3 text-blue-500"></i>
@@ -1272,7 +1209,6 @@
           </p>
         </div>
         
-        <!-- Redes Sociais -->
         <div>
           <h4 class="text-xl font-bold mb-4 flex items-center">
             <i class="fas fa-share-alt mr-3 text-red-500"></i>
@@ -1316,7 +1252,6 @@
       document.body.style.overflow = '';
     }
 
-    // Função para lidar com links no menu mobile
     function handleMobileMenuLinks() {
       document.querySelectorAll('.mobile-menu-item.internal-link').forEach(link => {
         link.addEventListener('click', function(e) {
@@ -1328,10 +1263,7 @@
             const target = document.querySelector(targetId);
             if (target) {
               setTimeout(() => {
-                target.scrollIntoView({
-                  behavior: 'smooth',
-                  block: 'start'
-                });
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
               }, 300);
             }
           }
@@ -1356,184 +1288,65 @@
     const installButton = document.getElementById('installButton');
 
     window.addEventListener('beforeinstallprompt', (e) => {
-      // Previne que o mini-infobar apareça no mobile
       e.preventDefault();
-      // Armazena o evento para usar depois
       deferredPrompt = e;
-      // Mostra o botão de instalação
       installButton.classList.remove('hidden');
     });
 
     installButton.addEventListener('click', async () => {
       if (!deferredPrompt) return;
-      
-      // Mostra o prompt de instalação
       deferredPrompt.prompt();
-      
-      // Aguarda a resposta do usuário
       const { outcome } = await deferredPrompt.userChoice;
       console.log(`User response to the install prompt: ${outcome}`);
-      
-      // Limpa a variável
       deferredPrompt = null;
-      
-      // Esconde o botão
       installButton.classList.add('hidden');
     });
 
     window.addEventListener('appinstalled', () => {
-      // Esconde o botão
       installButton.classList.add('hidden');
       console.log('PWA was installed');
     });
 
-    // Detectar se já está instalado (esconder botão)
     if (window.matchMedia('(display-mode: standalone)').matches) {
       installButton.classList.add('hidden');
     }
 
     window.onload = function() {
-      // Initialize Swiper SEM autoplay
       var swiper = new Swiper(".mySwiper", {
         slidesPerView: 1,
         spaceBetween: 30,
         loop: true,
-        pagination: {
-          el: ".swiper-pagination",
-          clickable: true,
-        },
-        navigation: {
-          nextEl: ".swiper-button-next",
-          prevEl: ".swiper-button-prev",
-        },
-        breakpoints: {
-          640: {
-            slidesPerView: 1,
-            spaceBetween: 20,
-          },
-          1024: {
-            slidesPerView: 1,
-            spaceBetween: 30,
-          },
-        }
+        pagination: { el: ".swiper-pagination", clickable: true },
+        navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" },
+        breakpoints: { 640: { slidesPerView: 1 }, 1024: { slidesPerView: 1 } }
       });
 
-      // Inicializar Swiper do carrossel de fotos com autoplay de 2 segundos
       var gallerySwiper = new Swiper(".gallerySwiper", {
         slidesPerView: 1,
         spaceBetween: 30,
         loop: true,
-        autoplay: {
-          delay: 2000,
-          disableOnInteraction: false,
-        },
-        pagination: {
-          el: ".swiper-pagination",
-          clickable: true,
-        },
-        navigation: {
-          nextEl: ".swiper-button-next",
-          prevEl: ".swiper-button-prev",
-        },
-        breakpoints: {
-          640: {
-            slidesPerView: 2,
-            spaceBetween: 20,
-          },
-          1024: {
-            slidesPerView: 3,
-            spaceBetween: 30,
-          },
-        }
+        autoplay: { delay: 2000, disableOnInteraction: false },
+        pagination: { el: ".swiper-pagination", clickable: true },
+        navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" },
+        breakpoints: { 640: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } }
       });
 
-      // Otimização simples do Instagram
-      const instagramEmbeds = document.querySelectorAll('.instagram-media');
-      instagramEmbeds.forEach((embed) => {
-        embed.style.opacity = '0';
-        embed.style.transition = 'opacity 0.5s ease';
-        
-        setTimeout(() => {
-          if (window.instgrm) {
-            window.instgrm.Embeds.process();
-          }
-          
-          setTimeout(() => {
-            embed.style.opacity = '1';
-          }, 1000);
-        }, 500);
-      });
-
-      // Smooth scroll for anchor links
       document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
           e.preventDefault();
           const target = document.querySelector(this.getAttribute('href'));
           if (target) {
-            target.scrollIntoView({
-              behavior: 'smooth',
-              block: 'start'
-            });
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
           }
         });
       });
 
-      // Adicionar tooltips para elementos interativos
-      document.querySelectorAll('a[href]').forEach(link => {
-        if (link.href.includes('ifood')) {
-          link.setAttribute('data-tooltip', 'Abrir iFood');
-        } else if (link.href.includes('wa.me')) {
-          link.setAttribute('data-tooltip', 'Abrir WhatsApp');
-        } else if (link.href.includes('instagram.com')) {
-          link.setAttribute('data-tooltip', 'Abrir Instagram');
-        }
-      });
-
-      // Feedback tátil para botões
       document.querySelectorAll('.btn-primary, .btn-secondary, .card-dark').forEach(btn => {
         btn.classList.add('btn-tactile');
       });
 
-      // Configurar links do menu mobile
       handleMobileMenuLinks();
 
-      // Adicionar animação fade-in
-      const style = document.createElement('style');
-      style.textContent = `
-        @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(20px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .animate-fade-in {
-          animation: fadeIn 0.6s ease-out forwards;
-        }
-        
-        :focus {
-          outline: 2px solid #dc2626;
-          outline-offset: 2px;
-        }
-        
-        ::-webkit-scrollbar {
-          width: 10px;
-        }
-        
-        ::-webkit-scrollbar-track {
-          background: #1a1a1a;
-        }
-        
-        ::-webkit-scrollbar-thumb {
-          background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
-          border-radius: 5px;
-        }
-        
-        ::-webkit-scrollbar-thumb:hover {
-          background: linear-gradient(135deg, #b91c1c 0%, #991b1b 100%);
-        }
-      `;
-      document.head.appendChild(style);
-
-      // Registrar Service Worker
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', function() {
           navigator.serviceWorker.register('/sw.js').then(function(registration) {
