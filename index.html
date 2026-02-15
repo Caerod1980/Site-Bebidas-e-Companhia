@@ -7,40 +7,55 @@
   <meta name="handheldfriendly" content="true">
   <meta name="mobileoptimized" content="width">
   
+  <!-- META TAGS PWA -->
+  <meta name="theme-color" content="#dc2626">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Beb&Com">
+  <meta name="application-name" content="Beb&Com">
+  <meta name="msapplication-TileColor" content="#dc2626">
+  <meta name="msapplication-TileImage" content="/icons/ms-icon-144x144.png">
+  
+  <!-- LINKS PWA -->
+  <link rel="manifest" href="/manifest.json">
+  <link rel="apple-touch-icon" href="/icons/icon-152x152.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192x192.png">
+  
   <title>Bebidas & Companhia - Conveniência e Lounge</title>
+  
+  <!-- CSS EXTERNO -->
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  
   <style>
+    /* SEU CSS EXISTENTE AQUI - MANTIDO IGUAL */
     * {
       font-family: 'Inter', sans-serif;
       -webkit-tap-highlight-color: transparent;
     }
     
-    /* PREVENIR COMPORTAMENTOS DE ZOOM NO MOBILE */
     html {
       touch-action: manipulation;
       -webkit-text-size-adjust: 100%;
       -ms-text-size-adjust: 100%;
+      scroll-behavior: smooth;
     }
     
     body {
       background-color: #0a0a0a;
       color: #f5f5f5;
-      /* MARCA D'ÁGUA AJUSTADA - OCUPA TELA INTEIRA */
       background-image: url('https://raw.githubusercontent.com/Caerod1980/Imagens-Site-Guardian/bb4b23a92bf0f6ec625b9c34de3f5aa6871d1143/logo%20loja.jpeg');
-      background-size: contain; /* Mantém proporção sem cortar */
+      background-size: contain;
       background-position: center center;
       background-repeat: no-repeat;
       background-attachment: fixed;
-      /* EFEITO SUTIL DE MARCA D'ÁGUA */
       position: relative;
       overflow-x: hidden;
       min-height: 100vh;
     }
     
-    /* CAMADA ESCURA SOBRE A MARCA D'ÁGUA PARA MANTE-LA MAIS ESMAECIDA */
     body::before {
       content: '';
       position: fixed;
@@ -48,23 +63,17 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(5, 5, 5, 0.92); /* Aumentado para 0.92 para ficar mais esmaecido */
+      background-color: rgba(5, 5, 5, 0.92);
       z-index: -1;
     }
     
-    /* Garantir que todo conteúdo fique acima da marca d'água */
     body > * {
       position: relative;
       z-index: 1;
     }
     
-    .dark-bg {
-      background-color: transparent;
-    }
-    
-    .darker-bg {
-      background-color: transparent;
-    }
+    .dark-bg { background-color: transparent; }
+    .darker-bg { background-color: transparent; }
     
     .card-dark {
       background: linear-gradient(135deg, rgba(26, 26, 26, 0.9) 0%, rgba(45, 45, 45, 0.9) 100%);
@@ -212,14 +221,6 @@
       }
     }
     
-    /* MELHORIAS DE INTERFACE - ADICIONADAS */
-    
-    /* Scroll suave para toda a página */
-    html {
-      scroll-behavior: smooth;
-    }
-    
-    /* Melhorias nas animações */
     .hover-lift {
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
@@ -228,7 +229,6 @@
       transform: translateY(-8px);
     }
     
-    /* Tooltips para elementos interativos */
     [data-tooltip] {
       position: relative;
     }
@@ -259,7 +259,6 @@
       bottom: calc(100% + 10px);
     }
     
-    /* Melhorias nos botões */
     .btn-primary, .btn-secondary {
       position: relative;
       overflow: hidden;
@@ -283,7 +282,6 @@
       height: 300px;
     }
     
-    /* Progress bar para carregamento */
     .loading-bar {
       height: 3px;
       background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
@@ -300,14 +298,12 @@
       100% { width: 100%; left: 100%; }
     }
     
-    /* Cards com efeito de vidro */
     .glass-effect {
       background: rgba(26, 26, 26, 0.85);
       backdrop-filter: blur(10px);
       border: 1px solid rgba(255, 255, 255, 0.1);
     }
     
-    /* Botões com feedback tátil */
     .btn-tactile {
       transition: all 0.2s ease;
     }
@@ -316,7 +312,6 @@
       transform: scale(0.95);
     }
     
-    /* Indicador de rolagem */
     .scroll-indicator {
       position: absolute;
       bottom: 20px;
@@ -326,18 +321,11 @@
     }
     
     @keyframes bounce {
-      0%, 20%, 50%, 80%, 100% {
-        transform: translateX(-50%) translateY(0);
-      }
-      40% {
-        transform: translateX(-50%) translateY(-10px);
-      }
-      60% {
-        transform: translateX(-50%) translateY(-5px);
-      }
+      0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+      40% { transform: translateX(-50%) translateY(-10px); }
+      60% { transform: translateX(-50%) translateY(-5px); }
     }
     
-    /* Melhorias nos formulários e inputs */
     .input-enhanced {
       background: rgba(26, 26, 26, 0.9);
       border: 2px solid #333;
@@ -353,7 +341,6 @@
       box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.2);
     }
     
-    /* ESTILOS PARA A IMAGEM DA FACHADA SEM FUNDO BRANCO */
     .fachada-container {
       position: relative;
       overflow: hidden;
@@ -372,22 +359,19 @@
     /* ADAPTAÇÕES ESPECÍFICAS PARA MOBILE */
     @media (max-width: 768px) {
       body {
-        /* MARCA D'ÁGUA OCUPA TELA INTEIRA NO MOBILE TAMBÉM */
         background-size: contain;
         overflow-x: hidden;
       }
       
-      /* AJUSTE DO NOME DA LOJA NO MOBILE - DIVIDIDO EM DUAS LINHAS */
       .logo-container > div:last-child {
         flex: 1;
         min-width: 0;
       }
       
-      /* TÍTULO DIVIDIDO EM DUAS LINHAS NO MOBILE */
       .logo-container h1 {
         font-size: 1.3rem !important;
         line-height: 1.2;
-        white-space: normal !important; /* Permite quebra de linha */
+        white-space: normal !important;
         overflow: visible !important;
         text-overflow: clip !important;
         max-width: 100% !important;
@@ -395,7 +379,6 @@
         flex-direction: column;
       }
       
-      /* SUBTÍTULO VISÍVEL APENAS NO MOBILE, FONTE PEQUENA */
       .logo-container .mobile-subtitle {
         display: block !important;
         font-size: 0.7rem !important;
@@ -412,16 +395,10 @@
         padding: 2rem 1rem;
       }
       
-      .category-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 0.75rem;
-      }
-      
       .feature-grid {
         grid-template-columns: 1fr;
       }
       
-      /* Ajuste de fontes para mobile */
       h1 { font-size: 1.75rem !important; }
       h2 { font-size: 1.5rem !important; }
       h3 { font-size: 1.25rem !important; }
@@ -431,35 +408,26 @@
         font-size: 16px;
       }
       
-      /* Aumentar área de toque em mobile */
       a, button, .card-dark {
         min-height: 44px;
         min-width: 44px;
       }
       
-      /* Prevenir zoom em inputs */
       input, select, textarea {
         font-size: 16px !important;
       }
     }
     
-    /* Ajustes para telas muito pequenas */
     @media (max-width: 480px) {
-      /* MARCA D'ÁGUA AJUSTADA PARA TELAS PEQUENAS */
-      body {
-        background-size: contain;
-      }
+      body { background-size: contain; }
       
       .container {
         padding-left: 1rem;
         padding-right: 1rem;
       }
       
-      .logo-container {
-        gap: 10px;
-      }
+      .logo-container { gap: 10px; }
       
-      /* LOGOTIPO REDUZIDO NO MOBILE */
       .logo-placeholder {
         width: 40px;
         height: 40px;
@@ -467,7 +435,6 @@
         border-radius: 8px;
       }
       
-      /* Ajuste fino do título em telas muito pequenas */
       .logo-container h1 {
         font-size: 1.1rem !important;
         max-width: 100% !important;
@@ -479,7 +446,6 @@
       }
     }
     
-    /* Ajustes para telas extremamente pequenas */
     @media (max-width: 380px) {
       .logo-container h1 {
         font-size: 1rem !important;
@@ -492,7 +458,6 @@
       }
     }
     
-    /* Estilo para mostrar subtítulo apenas em desktop */
     @media (min-width: 769px) {
       .logo-container .mobile-subtitle {
         display: none !important;
@@ -503,24 +468,15 @@
       }
     }
     
-    /* Esconder subtítulo mobile no desktop por padrão */
-    .logo-container .mobile-subtitle {
-      display: none;
-    }
+    .logo-container .mobile-subtitle { display: none; }
+    .logo-container .desktop-subtitle { display: block; }
     
-    /* Mostrar subtítulo desktop por padrão */
-    .logo-container .desktop-subtitle {
-      display: block;
-    }
-    
-    /* Esconder subtítulo desktop no mobile */
     @media (max-width: 768px) {
       .logo-container .desktop-subtitle {
         display: none !important;
       }
     }
     
-    /* NOVO: Estilo para centralizar o título da galeria */
     .centered-title {
       text-align: center !important;
       width: 100%;
@@ -536,7 +492,6 @@
       transform: translateX(-50%);
     }
     
-    /* LOGOTIPO REDUZIDO - TAMANHO PROPORCIONAL */
     .logo-placeholder {
       width: 50px;
       height: 50px;
@@ -560,7 +515,6 @@
       }
     }
     
-    /* MENU HAMBURGUER PARA MOBILE */
     .mobile-menu-button {
       display: none;
       background: transparent;
@@ -591,9 +545,7 @@
       box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
     }
     
-    .mobile-menu.active {
-      right: 0;
-    }
+    .mobile-menu.active { right: 0; }
     
     .mobile-menu-header {
       padding: 20px;
@@ -668,32 +620,116 @@
     }
     
     @media (max-width: 768px) {
-      .mobile-menu-button {
-        display: block;
-      }
-      
-      .header-right-desktop {
-        display: none;
-      }
+      .mobile-menu-button { display: block; }
+      .header-right-desktop { display: none; }
     }
     
     @media (min-width: 769px) {
-      .mobile-menu-button {
-        display: none;
-      }
-      
-      .header-right-desktop {
-        display: flex;
+      .mobile-menu-button { display: none; }
+      .header-right-desktop { display: flex; }
+    }
+    
+    .feature-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px;
+      background: rgba(26, 26, 26, 0.5);
+      border-radius: 12px;
+      border: 1px solid #333;
+      transition: all 0.3s ease;
+    }
+    
+    .feature-item:hover {
+      border-color: #dc2626;
+      background: rgba(26, 26, 26, 0.8);
+      transform: translateX(5px);
+    }
+    
+    .feature-item i {
+      font-size: 24px;
+      color: #dc2626;
+      width: 32px;
+      text-align: center;
+    }
+    
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+    }
+    
+    .lounge-section {
+      background: linear-gradient(rgba(5, 5, 5, 0.95), rgba(5, 5, 5, 0.95)), 
+                  url('https://raw.githubusercontent.com/Caerod1980/Imagens-Site-Bebcom/40852c79a2b6483d5cab7f6fc6886e3b7cb11b28/lounge%201.png');
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+    
+    .lounge-image {
+      border-radius: 24px;
+      border: 3px solid #dc2626;
+      box-shadow: 0 20px 40px rgba(220, 38, 38, 0.3);
+    }
+    
+    .footer-gradient {
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+      border-top: 2px solid #dc2626;
+    }
+
+    /* ESTILO PARA O BOTÃO DE INSTALAÇÃO PWA */
+    .install-pwa-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+      color: white;
+      border: none;
+      border-radius: 50px;
+      padding: 12px 24px;
+      font-weight: bold;
+      box-shadow: 0 4px 15px rgba(220, 38, 38, 0.5);
+      cursor: pointer;
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    
+    .install-pwa-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 20px rgba(220, 38, 38, 0.7);
+    }
+    
+    .install-pwa-btn.hidden {
+      display: none;
+    }
+    
+    @media (max-width: 768px) {
+      .install-pwa-btn {
+        bottom: 15px;
+        right: 15px;
+        padding: 10px 18px;
+        font-size: 14px;
       }
     }
   </style>
 </head>
 <body class="dark-bg">
+  <!-- BOTÃO DE INSTALAÇÃO PWA -->
+  <button id="installButton" class="install-pwa-btn hidden">
+    <i class="fas fa-download"></i>
+    Instalar App
+  </button>
+
   <!-- Header -->
   <header class="header-gradient text-white shadow-2xl relative z-10">
     <div class="container mx-auto px-4 py-4">
       <div class="flex items-center justify-between">
-        <div class="logo-container">
+        <div class="logo-container flex items-center space-x-3">
           <!-- Logo da Loja - TAMANHO AJUSTADO -->
           <div class="logo-placeholder">
             <img src="https://raw.githubusercontent.com/Caerod1980/Imagens-Site-Guardian/bb4b23a92bf0f6ec625b9c34de3f5aa6871d1143/logo%20loja.jpeg" 
@@ -808,7 +844,7 @@
                 Oferecemos um amplo mix de bebidas e alimentos com a conveniência do delivery via iFood e a 
                 experiência única do <strong>Bebcom Lounge</strong> - um espaço exclusivo para festas, eventos 
                 e confraternizações. O Lounge pode ser alugado por uma taxa acessível, proporcionando a estrutura 
-                completo com churrasqueira, geladeira, sala de jogos e muito mais, aliada à praticidade de ter 
+                completa com churrasqueira, geladeira, sala de jogos e muito mais, aliada à praticidade de ter 
                 uma conveniência completa ao lado.
               </p>
               <p>
@@ -1039,174 +1075,12 @@
     </div>
   </section>
 
-  <!-- Main Content -->
+  <!-- Main Content - SEM CATEGORIAS -->
   <main class="container mx-auto px-4 py-12">
-    <div class="flex flex-col lg:flex-row gap-12">
+    <div class="flex flex-col lg:flex-row gap-12 justify-center">
       
-      <!-- Categories Section -->
-      <section class="w-full lg:w-1/3">
-        <h3 class="section-title text-3xl font-bold text-white mb-8">Categorias</h3>
-        
-        <!-- Bebidas -->
-        <div class="mb-8">
-          <h4 class="text-xl font-semibold text-gray-300 mb-4 flex items-center">
-            <i class="fas fa-wine-bottle text-red-500 mr-3"></i>
-            Bebidas Delivery
-          </h4>
-          <div class="category-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4">
-            <a href="https://www.ifood.com.br/delivery/bauru-sp/bebidas-e-companhia-residencial-parque-granja-cecilia-b/aac15ae4-e526-4e8c-b3b6-6627cb7e2001?corredor=c4a71510-5232-41e1-94b3-782382c6966b&originArea=aisleMenu" class="card-dark rounded-xl p-4 flex items-center space-x-3 btn-tactile" data-tooltip="Ver cervejas">
-              <div class="category-icon beer-color">
-                🍺
-              </div>
-              <div>
-                <div class="font-semibold text-white">Cervejas</div>
-                <div class="text-sm text-gray-400">Geladas e variadas</div>
-              </div>
-            </a>
-            
-            <a href="https://www.ifood.com.br/delivery/bauru-sp/bebidas-e-companhia-residencial-parque-granja-cecilia-b/aac15ae4-e526-4e8c-b3b6-6627cb7e2001?corredor=285d4369-9503-47ec-af79-80159c4f4735&originArea=aisleMenu" class="card-dark rounded-xl p-4 flex items-center space-x-3 btn-tactile" data-tooltip="Ver copões">
-              <div class="category-icon soda-color">
-                🥤
-              </div>
-              <div>
-                <div class="font-semibold text-white">Copões</div>
-                <div class="text-sm text-gray-400">Tamanho família</div>
-              </div>
-            </a>
-            
-            <a href="https://www.ifood.com.br/delivery/bauru-sp/bebidas-e-companhia-residencial-parque-granja-cecilia-b/aac15ae4-e526-4e8c-b3b6-6627cb7e2001?corredor=1cd1f58a-3215-482a-9fbd-b298c3693f9e&originArea=aisleMenu" class="card-dark rounded-xl p-4 flex items-center space-x-3 btn-tactile" data-tooltip="Ver refrigerantes">
-              <div class="category-icon soda-color">
-                🥤
-              </div>
-              <div>
-                <div class="font-semibold text-white">Refrigerantes</div>
-                <div class="text-sm text-gray-400">Todas as marcas</div>
-              </div>
-            </a>
-            
-            <a href="https://www.ifood.com.br/delivery/bauru-sp/bebidas-e-companhia-residencial-parque-granja-cecilia-b/aac15ae4-e526-4e8c-b3b6-6627cb7e2001?corredor=48f7f33f-6b44-4374-9698-ae1041b6d39d&originArea=aisleMenu" class="card-dark rounded-xl p-4 flex items-center space-x-3 btn-tactile" data-tooltip="Ver energéticos">
-              <div class="category-icon energy-color">
-                ⚡
-              </div>
-              <div>
-                <div class="font-semibold text-white">Energéticos</div>
-                <div class="text-sm text-gray-400">Para dar energia</div>
-              </div>
-            </a>
-            
-            <a href="https://www.ifood.com.br/delivery/bauru-sp/bebidas-e-companhia-residencial-parque-granja-cecilia-b/aac15ae4-e526-4e8c-b3b6-6627cb7e2001?corredor=1839a922-7fed-4392-aadd-c93ab3a3eba5&originArea=aisleMenu" class="card-dark rounded-xl p-4 flex items-center space-x-3 btn-tactile" data-tooltip="Ver isotônicos">
-              <div class="category-icon water-color">
-                🏃
-              </div>
-              <div>
-                <div class="font-semibold text-white">Isotônicos</div>
-                <div class="text-sm text-gray-400">Hidratação esportiva</div>
-              </div>
-            </a>
-            
-            <a href="https://www.ifood.com.br/delivery/bauru-sp/bebidas-e-companhia-residencial-parque-granja-cecilia-b/aac15ae4-e526-4e8c-b3b6-6627cb7e2001?corredor=32a37ad0-ad5b-4c2b-9405-1beefc06a9d1&originArea=aisleMenu" class="card-dark rounded-xl p-4 flex items-center space-x-3 btn-tactile" data-tooltip="Ver sucos">
-              <div class="category-icon water-color">
-                🥤
-              </div>
-              <div>
-                <div class="font-semibold text-white">Sucos</div>
-                <div class="text-sm text-gray-400">Naturais e artificiais</div>
-              </div>
-            </a>
-            
-            <a href="https://www.ifood.com.br/delivery/bauru-sp/bebidas-e-companhia-residencial-parque-granja-cecilia-b/aac15ae4-e526-4e8c-b3b6-6627cb7e2001?corredor=844ec7ae-3741-43e4-9a1c-aeb02601721b&originArea=aisleMenu" class="card-dark rounded-xl p-4 flex items-center space-x-3 btn-tactile" data-tooltip="Ver águas">
-              <div class="category-icon water-color">
-                💧
-              </div>
-              <div>
-                <div class="font-semibold text-white">Águas</div>
-                <div class="text-sm text-gray-400">Mineral e com gás</div>
-              </div>
-            </a>
-            
-            <a href="https://www.ifood.com.br/delivery/bauru-sp/bebidas-e-companhia-residencial-parque-granja-cecilia-b/aac15ae4-e526-4e8c-b3b6-6627cb7e2001?corredor=66cc2af9-48cb-4897-9f35-887f800277a1&originArea=aisleMenu" class="card-dark rounded-xl p-4 flex items-center space-x-3 btn-tactile" data-tooltip="Ver destilados">
-              <div class="category-icon wine-color">
-                🥃
-              </div>
-              <div>
-                <div class="font-semibold text-white">Destilados</div>
-                <div class="text-sm text-gray-400">Seleção especial</div>
-              </div>
-            </a>
-          </div>
-        </div>
-        
-        <!-- Comidas -->
-        <div class="mb-8">
-          <h4 class="text-xl font-semibold text-gray-300 mb-4 flex items-center">
-            <i class="fas fa-utensils text-orange-500 mr-3"></i>
-            Comidas Delivery
-          </h4>
-          <div class="category-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4">
-            <a href="https://www.ifood.com.br/delivery/bauru-sp/bebidas-e-companhia-residencial-parque-granja-cecilia-b/aac15ae4-e526-4e8c-b3b6-6627cb7e2001?corredor=c87909e3-c580-4658-ad95-ec4832f7b492&originArea=aisleMenu" class="card-dark rounded-xl p-4 flex items-center space-x-3 btn-tactile" data-tooltip="Ver salgadinhos">
-              <div class="category-icon food-color">
-                🍟
-              </div>
-              <div>
-                <div class="font-semibold text-white">Salgadinhos</div>
-                <div class="text-sm text-gray-400">Crocantes e saborosos</div>
-              </div>
-            </a>
-            
-            <a href="https://www.ifood.com.br/delivery/bauru-sp/bebidas-e-companhia-residencial-parque-granja-cecilia-b/aac15ae4-e526-4e8c-b3b6-6627cb7e2001?corredor=08809668-2bb1-423a-aced-22c97e0fff47&originArea=aisleMenu" class="card-dark rounded-xl p-4 flex items-center space-x-3 btn-tactile" data-tooltip="Ver doces">
-              <div class="category-icon food-color">
-                🍬
-              </div>
-              <div>
-                <div class="font-semibold text-white">Doces</div>
-                <div class="text-sm text-gray-400">Para adoçar o dia</div>
-              </div>
-            </a>
-            
-            <a href="https://www.ifood.com.br/delivery/bauru-sp/bebidas-e-companhia-residencial-parque-granja-cecilia-b/aac15ae4-e526-4e8c-b3b6-6627cb7e2001?corredor=66cc2af9-48cb-4897-9f35-887f800277a1&originArea=aisleMenu" class="card-dark rounded-xl p-4 flex items-center space-x-3 btn-tactile" data-tooltip="Ver sorvetes">
-              <div class="category-icon other-color">
-                🍦
-              </div>
-              <div>
-                <div class="font-semibold text-white">Sorvetes</div>
-                <div class="text-sm text-gray-400">Refrescantes</div>
-              </div>
-            </a>
-          </div>
-        </div>
-        
-        <!-- Outros -->
-        <div>
-          <h4 class="text-xl font-semibold text-gray-300 mb-4 flex items-center">
-            <i class="fas fa-plus-circle text-green-500 mr-3"></i>
-            Outros Delivery
-          </h4>
-          <div class="category-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4">
-            <a href="https://www.ifood.com.br/delivery/bauru-sp/bebidas-e-companhia-residencial-parque-granja-cecilia-b/aac15ae4-e526-4e8c-b3b6-6627cb7e2001?corredor=e304fc27-64f8-4512-a37e-99b261f52286&originArea=aisleMenu" class="card-dark rounded-xl p-4 flex items-center space-x-3 btn-tactile" data-tooltip="Ver gelo saborizado">
-              <div class="category-icon other-color">
-                ❄️
-              </div>
-              <div>
-                <div class="font-semibold text-white">Gelos Saborizados</div>
-                <div class="text-sm text-gray-400">Sabores especiais</div>
-              </div>
-            </a>
-            
-            <a href="https://www.ifood.com.br/delivery/bauru-sp/bebidas-e-companhia-residencial-parque-granja-cecilia-b/aac15ae4-e526-4e8c-b3b6-6627cb7e2001?corredor=ed9976c5-e584-4c80-a8e5-21a2d3cc25f7&originArea=aisleMenu" class="card-dark rounded-xl p-4 flex items-center space-x-3 btn-tactile" data-tooltip="Ver mercearia">
-              <div class="category-icon other-color">
-                🏪
-              </div>
-              <div>
-                <div class="font-semibold text-white">Mercearia</div>
-                <div class="text-sm text-gray-400">Itens essenciais</div>
-              </div>
-            </a>
-          </div>
-        </div>
-      </section>
-      
-      <!-- Instagram Feed Section - CORRIGIDA -->
-      <section class="w-full lg:w-2/3">
+      <!-- Instagram Feed Section - OCUPANDO ESPAÇO TOTAL -->
+      <section class="w-full">
         <h3 class="section-title text-3xl font-bold text-white mb-8">Novidades no Instagram</h3>
         <div class="card-dark rounded-2xl p-6">
           <div class="swiper mySwiper">
@@ -1364,7 +1238,7 @@
   <footer class="footer-gradient text-white py-12 mt-16">
     <div class="container mx-auto px-4">
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <!-- Contato -->
+        <!-- Localização -->
         <div>
           <h4 class="text-xl font-bold mb-4 flex items-center">
             <i class="fas fa-map-marker-alt mr-3 text-red-500"></i>
@@ -1444,7 +1318,6 @@
 
     // Função para lidar com links no menu mobile
     function handleMobileMenuLinks() {
-      // Links internos (#) - fechar menu e fazer scroll suave
       document.querySelectorAll('.mobile-menu-item.internal-link').forEach(link => {
         link.addEventListener('click', function(e) {
           e.preventDefault();
@@ -1454,7 +1327,6 @@
           if (targetId.startsWith('#')) {
             const target = document.querySelector(targetId);
             if (target) {
-              // Scroll suave após fechar o menu
               setTimeout(() => {
                 target.scrollIntoView({
                   behavior: 'smooth',
@@ -1466,21 +1338,59 @@
         });
       });
       
-      // Links externos - fechar menu e abrir normalmente
       document.querySelectorAll('.mobile-menu-item.external-link').forEach(link => {
         link.addEventListener('click', function(e) {
           closeMobileMenu();
-          // O navegador seguirá o link normalmente (target="_blank")
         });
       });
     }
     
-    // Fechar menu ao pressionar ESC
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
         closeMobileMenu();
       }
     });
+
+    // PWA Installation
+    let deferredPrompt;
+    const installButton = document.getElementById('installButton');
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+      // Previne que o mini-infobar apareça no mobile
+      e.preventDefault();
+      // Armazena o evento para usar depois
+      deferredPrompt = e;
+      // Mostra o botão de instalação
+      installButton.classList.remove('hidden');
+    });
+
+    installButton.addEventListener('click', async () => {
+      if (!deferredPrompt) return;
+      
+      // Mostra o prompt de instalação
+      deferredPrompt.prompt();
+      
+      // Aguarda a resposta do usuário
+      const { outcome } = await deferredPrompt.userChoice;
+      console.log(`User response to the install prompt: ${outcome}`);
+      
+      // Limpa a variável
+      deferredPrompt = null;
+      
+      // Esconde o botão
+      installButton.classList.add('hidden');
+    });
+
+    window.addEventListener('appinstalled', () => {
+      // Esconde o botão
+      installButton.classList.add('hidden');
+      console.log('PWA was installed');
+    });
+
+    // Detectar se já está instalado (esconder botão)
+    if (window.matchMedia('(display-mode: standalone)').matches) {
+      installButton.classList.add('hidden');
+    }
 
     window.onload = function() {
       // Initialize Swiper SEM autoplay
@@ -1488,7 +1398,6 @@
         slidesPerView: 1,
         spaceBetween: 30,
         loop: true,
-        // AUTOPLAY REMOVIDO conforme solicitado
         pagination: {
           el: ".swiper-pagination",
           clickable: true,
@@ -1515,7 +1424,7 @@
         spaceBetween: 30,
         loop: true,
         autoplay: {
-          delay: 2000, // 2 segundos como solicitado
+          delay: 2000,
           disableOnInteraction: false,
         },
         pagination: {
@@ -1544,13 +1453,11 @@
         embed.style.opacity = '0';
         embed.style.transition = 'opacity 0.5s ease';
         
-        // Carregar embed após um pequeno delay
         setTimeout(() => {
           if (window.instgrm) {
             window.instgrm.Embeds.process();
           }
           
-          // Mostrar embed após carregamento
           setTimeout(() => {
             embed.style.opacity = '1';
           }, 1000);
@@ -1602,13 +1509,11 @@
           animation: fadeIn 0.6s ease-out forwards;
         }
         
-        /* Melhorar visibilidade de foco para acessibilidade */
         :focus {
           outline: 2px solid #dc2626;
           outline-offset: 2px;
         }
         
-        /* Scrollbar personalizada */
         ::-webkit-scrollbar {
           width: 10px;
         }
@@ -1627,6 +1532,17 @@
         }
       `;
       document.head.appendChild(style);
+
+      // Registrar Service Worker
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('/sw.js').then(function(registration) {
+            console.log('ServiceWorker registration successful with scope: ', registration.scope);
+          }, function(err) {
+            console.log('ServiceWorker registration failed: ', err);
+          });
+        });
+      }
     };
   </script>
 </body>
