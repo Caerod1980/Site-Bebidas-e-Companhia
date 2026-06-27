@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <title>Clube Bebcom — Passaporte Gamer</title>
+
+  <meta name="theme-color" content="#dc2626">
+  <link rel="manifest" href="/manifest.json">
+
+  <link rel="stylesheet" href="./css/base.css">
+  <link rel="stylesheet" href="./css/intro.css">
+  <link rel="stylesheet" href="./css/ai.css">
+  <link rel="stylesheet" href="./css/avatar.css">
+  <link rel="stylesheet" href="./css/dashboard.css">
+</head>
+
+<body>
+
+  <!-- INTRO CINEMATOGRÁFICA PREMIUM -->
+  <div id="clubIntro" class="club-intro">
+    <div class="intro-stars"></div>
+    <div class="intro-stars intro-stars-2"></div>
+    <div class="intro-grid"></div>
+    <div class="intro-vignette"></div>
+    <div class="intro-orb"></div>
+
+    <div class="intro-content">
+      <div class="intro-badge">Bebidas & Companhia apresenta</div>
+
+      <div class="intro-logo-premium">
+        <div class="intro-logo-core">🎮</div>
+      </div>
+
+      <h1>Universo Bebcom</h1>
+      <h2>Passaporte Gamer</h2>
+
+      <p id="introText">Inicializando portal...</p>
+
+      <div class="intro-loader">
+        <div class="intro-loader-fill"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- IA HOLOGRÁFICA -->
+  <section id="aiGuide" class="ai-guide hidden">
+    <div class="ai-hologram">
+      <div class="ai-orbit"></div>
+      <div class="ai-face">
+        <div class="ai-eye"></div>
+        <div class="ai-eye"></div>
+      </div>
+    </div>
+
+    <div class="ai-dialog">
+      <div class="ai-name">IA Bebcom</div>
+      <p id="aiText">Bem-vindo ao Universo Bebcom.</p>
+
+      <button id="aiNextBtn" class="btn-primary" onclick="nextAiStep()">
+        Continuar
+      </button>
+    </div>
+  </section>
+
+  <!-- HANGAR DE AVATARES -->
+  <section id="avatarStage" class="avatar-stage hidden">
+    <div class="avatar-bg-grid"></div>
+    <div class="avatar-fog"></div>
+
+    <div class="avatar-stage-header">
+      <div class="stage-kicker">Hangar Central</div>
+      <h2>Escolha sua identidade</h2>
+      <p>A IA Bebcom preparou personagens oficiais para iniciar sua jornada no Universo Bebcom.</p>
+    </div>
+
+    <div id="avatarCards" class="avatar-cards"></div>
+
+    <div class="avatar-confirm-box">
+      <div id="selectedAvatarInfo" class="selected-avatar-info">
+        Toque em um personagem para visualizar.
+      </div>
+
+      <button id="confirmAvatarBtn" class="btn-primary" onclick="confirmAvatarSelection()" disabled>
+        Confirmar Avatar
+      </button>
+    </div>
+  </section>
+
+  <header>
+    <h1>🎮 Clube Bebcom</h1>
+    <p>Passaporte Gamer da Bebidas & Companhia</p>
+  </header>
+
+  <main class="container">
+
+    <section class="card hero">
+      <h2>Bem-vindo ao Universo Bebcom</h2>
+      <p>Compre, escaneie, ganhe XP, evolua seu avatar e desbloqueie recompensas reais.</p>
+    </section>
+
+    <section id="loginCard" class="card">
+      <h3>Entrar no Clube</h3>
+
+      <div class="form-group">
+        <label>Seu nome</label>
+        <input id="nameInput" placeholder="Ex: Rodrigo">
+      </div>
+
+      <div class="form-group">
+        <label>WhatsApp</label>
+        <input id="phoneInput" placeholder="Ex: 14999999999" inputmode="tel">
+      </div>
+
+      <button class="btn-primary" onclick="loginClube()">Entrar no Passaporte</button>
+    </section>
+
+    <section id="dashboardCard" class="hidden">
+
+      <div class="card avatar-box">
+        <div id="dashboardAvatar" class="avatar">🧑‍🚀</div>
+        <h2 id="playerName">Jogador Bebcom</h2>
+        <p id="avatarName" class="small">Explorador Bebcom</p>
+
+        <div class="player-actions">
+          <button class="btn-secondary btn-small" onclick="openAvatarStage(true)">
+            🧬 Trocar Avatar
+          </button>
+
+          <button class="btn-secondary btn-small" onclick="logoutClube()">
+            🚪 Sair do Clube
+          </button>
+        </div>
+
+        <div class="xp-bar">
+          <div id="xpFill" class="xp-fill"></div>
+        </div>
+
+        <p id="xpText">0 XP</p>
+
+        <div class="grid">
+          <div class="stat">
+            <strong id="levelText">1</strong>
+            Nível
+          </div>
+          <div class="stat">
+            <strong id="scanText">0</strong>
+            Leituras
+          </div>
+          <div class="stat">
+            <strong id="rewardText">0</strong>
+            Recompensas
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Escanear código da campanha</h3>
+        <p class="small">Nesta primeira versão, cole o código do QR. Depois ativamos leitura pela câmera.</p>
+
+        <div class="form-group">
+          <label>Código QR</label>
+          <input id="qrInput" placeholder="Ex: BEBCOM-ABC123">
+        </div>
+
+        <button class="btn-success" onclick="scanQr()">Validar QR e ganhar XP</button>
+
+        <div id="scanResult"></div>
+      </div>
+
+      <div class="card">
+        <h3>Missões ativas</h3>
+        <div id="missionsList">
+          <p class="small">Carregando missões...</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Recompensas</h3>
+        <div id="rewardsList">
+          <p class="small">Nenhuma recompensa ainda.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Histórico recente</h3>
+        <div id="scansList">
+          <p class="small">Nenhum código escaneado ainda.</p>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <script src="./js/config.js"></script>
+  <script src="./js/utils.js"></script>
+  <script src="./js/intro.js"></script>
+  <script src="./js/ai.js"></script>
+  <script src="./js/avatar.js"></script>
+  <script src="./js/dashboard.js"></script>
+  <script src="./js/app.js"></script>
+</body>
+</html>
