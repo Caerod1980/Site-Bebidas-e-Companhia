@@ -1,7 +1,8 @@
-const CACHE_NAME = 'bebcom-v1';
+const CACHE_NAME = 'bebcom-v2';
 const urlsToCache = [
   '/',
   '/index.html',
+  '/clube.html',
   '/manifest.json',
   '/icon-72x72.png',
   '/icon-96x96.png',
