@@ -671,7 +671,17 @@
       <div class="card avatar-box">
         <div class="avatar">🧑‍🚀</div>
         <h2 id="playerName">Jogador Bebcom</h2>
-        <p id="avatarName" class="small">Explorador Bebcom</p>
+        <p id="avatarName" class="small">Explorador Bebcom</p><div style="display:flex;justify-content:flex-end;margin-top:12px;">
+    <button
+        class="btn-secondary"
+        style="width:auto;padding:10px 18px;"
+        onclick="logoutClube()">
+
+        🚪 Sair do Clube
+
+    </button>
+</div>
+        
 
         <div class="xp-bar">
           <div id="xpFill" class="xp-fill"></div>
@@ -754,6 +764,20 @@
         return null;
       }
     }
+
+    function logoutClube() {
+
+    if (!confirm('Deseja realmente sair do Clube Bebcom?')) {
+        return;
+    }
+
+    localStorage.removeItem('clube_bebcom_user');
+
+    currentUser = null;
+
+    location.reload();
+
+}
 
     function showNotice(targetId, message, type = 'success') {
       const target = document.getElementById(targetId);
