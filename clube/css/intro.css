@@ -1,0 +1,212 @@
+.club-intro {
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(circle at center, rgba(220,38,38,0.30), transparent 28%),
+    radial-gradient(circle at top, rgba(37,99,235,0.22), transparent 35%),
+    linear-gradient(135deg, #020202 0%, #090d18 55%, #000000 100%);
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: opacity 1s ease, visibility 1s ease, transform 1s ease;
+}
+
+.club-intro.hidden-intro {
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(1.05);
+}
+
+.intro-stars,
+.intro-stars-2 {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(#ffffff 1px, transparent 1px),
+    radial-gradient(rgba(255,255,255,0.6) 1px, transparent 1px);
+  background-size: 80px 80px, 140px 140px;
+  background-position: 0 0, 40px 60px;
+  opacity: 0.35;
+  animation: starsMove 18s linear infinite;
+}
+
+.intro-stars-2 {
+  opacity: 0.18;
+  animation-duration: 28s;
+  transform: scale(1.4);
+}
+
+.intro-grid {
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 45%;
+  background:
+    linear-gradient(rgba(220,38,38,0.22) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(220,38,38,0.22) 1px, transparent 1px);
+  background-size: 42px 42px;
+  transform: perspective(480px) rotateX(62deg);
+  transform-origin: bottom;
+  opacity: 0.28;
+  animation: gridMove 5s linear infinite;
+}
+
+.intro-vignette {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.25) 45%, rgba(0,0,0,0.9) 100%);
+  pointer-events: none;
+}
+
+.intro-orb {
+  position: absolute;
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 35% 25%, rgba(255,255,255,0.85), transparent 8%),
+    radial-gradient(circle, rgba(220,38,38,0.35), rgba(37,99,235,0.18) 45%, transparent 70%);
+  box-shadow:
+    0 0 90px rgba(220,38,38,0.55),
+    inset 0 0 70px rgba(255,255,255,0.08);
+  animation: orbPulse 3.2s ease-in-out infinite;
+}
+
+.intro-content {
+  position: relative;
+  text-align: center;
+  padding: 34px;
+  max-width: 520px;
+  width: 92%;
+  z-index: 3;
+  animation: introEnter 1.2s ease both;
+}
+
+.intro-badge {
+  display: inline-block;
+  padding: 8px 14px;
+  margin-bottom: 18px;
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 999px;
+  background: rgba(0,0,0,0.35);
+  color: #d1d5db;
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.intro-logo-premium {
+  width: 140px;
+  height: 140px;
+  margin: 0 auto 22px;
+  border-radius: 50%;
+  padding: 4px;
+  background:
+    conic-gradient(from 0deg, #dc2626, #f59e0b, #2563eb, #dc2626);
+  animation: logoSpin 5s linear infinite;
+  box-shadow:
+    0 0 40px rgba(220,38,38,0.7),
+    0 0 90px rgba(37,99,235,0.35);
+}
+
+.intro-logo-core {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 35% 25%, rgba(255,255,255,0.9), transparent 18%),
+    linear-gradient(135deg, #111827, #020202);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 62px;
+  animation: logoFloat 2.4s ease-in-out infinite;
+}
+
+.intro-content h1 {
+  font-size: clamp(36px, 8vw, 58px);
+  margin: 0;
+  color: white;
+  font-weight: 950;
+  letter-spacing: -1px;
+  text-shadow:
+    0 0 20px rgba(220,38,38,0.8),
+    0 0 50px rgba(37,99,235,0.35);
+}
+
+.intro-content h2 {
+  margin: 4px 0 18px;
+  color: #f59e0b;
+  font-size: clamp(17px, 4vw, 24px);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+
+.intro-content p {
+  color: #e5e7eb;
+  font-size: 16px;
+  margin-bottom: 24px;
+}
+
+.intro-loader {
+  width: 100%;
+  height: 11px;
+  background: rgba(255,255,255,0.12);
+  border-radius: 999px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.12);
+}
+
+.intro-loader-fill {
+  height: 100%;
+  width: 0%;
+  background:
+    linear-gradient(90deg, #2563eb, #f59e0b, #dc2626);
+  border-radius: 999px;
+  box-shadow: 0 0 20px rgba(220,38,38,0.9);
+  animation: loadIntro 4.2s forwards ease-in-out;
+}
+
+@keyframes loadIntro {
+  from { width: 0%; }
+  to { width: 100%; }
+}
+
+@keyframes introEnter {
+  from { opacity: 0; transform: translateY(25px) scale(0.94); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes starsMove {
+  from { transform: translateY(0); }
+  to { transform: translateY(160px); }
+}
+
+@keyframes gridMove {
+  from { background-position: 0 0; }
+  to { background-position: 0 42px; }
+}
+
+@keyframes orbPulse {
+  0%, 100% { transform: scale(1); opacity: 0.72; }
+  50% { transform: scale(1.15); opacity: 1; }
+}
+
+@keyframes logoSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes logoFloat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.06); }
+}
+
+@media (max-width: 480px) {
+  .intro-orb { width: 310px; height: 310px; }
+  .intro-logo-premium { width: 118px; height: 118px; }
+  .intro-logo-core { font-size: 52px; }
+  .intro-content { padding: 22px; }
+}
