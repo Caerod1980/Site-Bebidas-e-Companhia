@@ -56,5 +56,20 @@
       "type": "image/png",
       "purpose": "any maskable"
     }
+  ],
+  "shortcuts": [
+    {
+      "name": "Clube Bebcom",
+      "short_name": "Clube",
+      "description": "Passaporte Gamer da Bebidas & Companhia",
+      "url": "/clube.html",
+      "icons": [
+        {
+          "src": "icon-192x192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    }
   ]
 }
