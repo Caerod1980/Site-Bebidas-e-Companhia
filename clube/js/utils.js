@@ -28,7 +28,9 @@ function getSavedAvatar() {
 
 function showNotice(targetId, message, type = 'success') {
   const target = document.getElementById(targetId);
+
   if (!target) return;
+
   target.innerHTML = `<div class="notice ${type}">${message}</div>`;
 }
 
