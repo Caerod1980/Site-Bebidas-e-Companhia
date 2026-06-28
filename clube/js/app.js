@@ -18,6 +18,7 @@ window.addEventListener('load', async () => {
     document.getElementById('dashboardCard')?.classList.remove('hidden');
 
     await loadProfile();
+    await loadUniverse();
     await loadMissions();
   }
 });
