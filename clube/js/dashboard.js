@@ -40,6 +40,7 @@ async function loginClube() {
   document.getElementById('dashboardCard').classList.remove('hidden');
 
   await loadProfile();
+  await loadUniverse();
   await loadMissions();
 }
 
@@ -63,10 +64,11 @@ async function loadProfile() {
 
   const xp = Number(currentUser.xp || 0);
   const level = Number(currentUser.level || 1);
+  const rank = currentUser.rank || 'Explorador';
   const xpPercent = Math.min(xp % 100, 100);
 
   document.getElementById('xpFill').style.width = `${xpPercent}%`;
-  document.getElementById('xpText').innerText = `${xp} XP`;
+  document.getElementById('xpText').innerText = `${xp} XP • ${rank}`;
   document.getElementById('levelText').innerText = level;
   document.getElementById('scanText').innerText = currentUser.stats?.scans || 0;
   document.getElementById('rewardText').innerText =
@@ -138,7 +140,8 @@ async function scanQr() {
   let message = `
     ✅ ${data.message}<br>
     Produto: <strong>${data.product}</strong><br>
-    Nível atual: <strong>${data.newLevel}</strong>
+    Nível atual: <strong>${data.newLevel}</strong><br>
+    Patente: <strong>${data.rank || 'Explorador'}</strong>
   `;
 
   if (data.reward) {
@@ -150,6 +153,11 @@ async function scanQr() {
   document.getElementById('qrInput').value = '';
 
   await loadProfile();
+  await loadUniverse();
+
+  if (typeof animateUniverseAdvance === 'function') {
+    animateUniverseAdvance(data);
+  }
 }
 
 function renderRewards(rewards) {
@@ -164,12 +172,8 @@ function renderRewards(rewards) {
     <div class="reward">
       <h4>🎁 ${reward.title}</h4>
       <p class="small">${reward.description || ''}</p>
-      <p class="small">Cupom: <strong>${reward.code}</strong></p>
-      ${
-        reward.deliveryUrl
-          ? `<a class="button-link btn-secondary" href="${reward.deliveryUrl}">Usar no Delivery</a>`
-          : ''
-      }
+      <p class="small">Código: <strong>${reward.code}</strong></p>
+      <p class="small">Retirada: <strong>Bebidas & Companhia</strong></p>
     </div>
   `).join('');
 }
