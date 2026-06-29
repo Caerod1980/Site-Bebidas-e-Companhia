@@ -19,6 +19,5 @@ window.addEventListener('load', async () => {
 
     await loadProfile();
     await loadUniverse();
-    await loadMissions();
-  }
+      }
 });
