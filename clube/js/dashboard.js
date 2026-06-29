@@ -41,8 +41,7 @@ async function loginClube() {
 
   await loadProfile();
   await loadUniverse();
-  await loadMissions();
-}
+  }
 
 async function loadProfile() {
   if (!currentUser?.phone) {
