@@ -267,3 +267,16 @@
     margin-right: 12px;
   }
 }
+
+.universe-node[data-node="0"] { left: 18%; top: 15%; }
+.universe-node[data-node="1"] { left: 52%; top: 18%; }
+.universe-node[data-node="2"] { left: 82%; top: 28%; }
+.universe-node[data-node="3"] { left: 24%; top: 38%; }
+.universe-node[data-node="4"] { left: 68%; top: 45%; }
+.universe-node[data-node="5"] { left: 36%; top: 58%; }
+.universe-node[data-node="6"] { left: 82%; top: 62%; }
+.universe-node[data-node="7"] { left: 18%; top: 72%; }
+.universe-node[data-node="8"] { left: 52%; top: 75%; }
+.universe-node[data-node="9"] { left: 76%; top: 82%; }
+.universe-node[data-node="10"] { left: 34%; top: 90%; }
+.universe-node[data-node="11"] { left: 55%; top: 97%; }
