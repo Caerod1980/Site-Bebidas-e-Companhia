@@ -1,22 +1,36 @@
 const UNIVERSE_PLANETS = [
-  { key: 'ENERGETICOS', title: 'Planeta Energy', subtitle: 'Energéticos e combos de energia', emoji: '⚡', color: '#f59e0b', x: 20, y: 18 },
-  { key: 'CERVEJAS', title: 'Órbita das Cervejas', subtitle: 'Long necks, latas e especiais', emoji: '🍺', color: '#22c55e', x: 72, y: 30 },
-  { key: 'REFRIGERANTES', title: 'Galáxia Refri', subtitle: 'Coca, Guaraná, Sprite e sabores', emoji: '🥤', color: '#38bdf8', x: 28, y: 54 },
-  { key: 'DRINKS', title: 'Nebulosa dos Drinks', subtitle: 'Copões, gin e misturas', emoji: '🍹', color: '#ec4899', x: 72, y: 72 },
-  { key: 'DESTILADOS', title: 'Constelação Destilados', subtitle: 'Whisky, vodka, gin e especiais', emoji: '🥃', color: '#a855f7', x: 50, y: 91 },
-  { key: 'SALGADINHOS', title: 'Campo dos Snacks', subtitle: 'Salgadinhos e acompanhamentos', emoji: '🥜', color: '#fb923c', x: 18, y: 76 },
-  { key: 'SUCOS', title: 'Vale dos Sucos', subtitle: 'Sucos e bebidas leves', emoji: '🍊', color: '#f97316', x: 82, y: 54 },
-  { key: 'DOCES', title: 'Mundo dos Doces', subtitle: 'Chocolate, balas e sobremesas', emoji: '🍬', color: '#f472b6', x: 40, y: 32 },
-  { key: 'MERCEARIA', title: 'Cidade Mercearia', subtitle: 'Itens variados da conveniência', emoji: '🛒', color: '#14b8a6', x: 60, y: 46 },
-  { key: 'CARVAO', title: 'Vulcão do Carvão', subtitle: 'Carvão e itens para churrasco', emoji: '🔥', color: '#ef4444', x: 36, y: 88 },
-  { key: 'GELOS', title: 'Base Gelo', subtitle: 'Gelos para completar a missão', emoji: '🧊', color: '#60a5fa', x: 82, y: 86 },
-  { key: 'RECOMPENSAS', title: 'Base Bebcom', subtitle: 'Lounge, conveniência e retirada de prêmios', emoji: '🏢', color: '#dc2626', x: 50, y: 96 }
+  { key: 'ENERGETICOS', title: 'Energia', emoji: '⚡', color: '#f59e0b' },
+  { key: 'CERVEJAS', title: 'Cervejas', emoji: '🍺', color: '#22c55e' },
+  { key: 'REFRIGERANTES', title: 'Refri', emoji: '🥤', color: '#38bdf8' },
+  { key: 'SALGADINHOS', title: 'Snacks', emoji: '🥜', color: '#fb923c' },
+  { key: 'DRINKS', title: 'Drinks', emoji: '🍹', color: '#ec4899' },
+  { key: 'DESTILADOS', title: 'Destilados', emoji: '🥃', color: '#a855f7' },
+  { key: 'SUCOS', title: 'Sucos', emoji: '🍊', color: '#f97316' },
+  { key: 'DOCES', title: 'Doces', emoji: '🍬', color: '#f472b6' },
+  { key: 'MERCEARIA', title: 'Mercearia', emoji: '🛒', color: '#14b8a6' },
+  { key: 'CARVAO', title: 'Carvão', emoji: '🔥', color: '#ef4444' },
+  { key: 'GELOS', title: 'Gelos', emoji: '🧊', color: '#60a5fa' },
+  { key: 'RECOMPENSAS', title: 'Base Bebcom', emoji: '🏢', color: '#dc2626' }
 ];
 
-let universeState = { expeditions: [], progress: [], redeems: [], lastPercent: 0, activePlanetIndex: 0, selectedExpeditionId: null };
+let universeState = {
+  expeditions: [],
+  progress: [],
+  redeems: [],
+  selectedExpeditionId: null,
+  selectedPlanetKey: 'TODOS',
+  lastPercent: 0,
+  activePlanetIndex: 0
+};
 
 function normalizeUniverseKey(value = '') {
-  return String(value).trim().toUpperCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^A-Z0-9]+/g, '_').replace(/^_+|_+$/g, '');
+  return String(value)
+    .trim()
+    .toUpperCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^A-Z0-9]+/g, '_')
+    .replace(/^_+|_+$/g, '');
 }
 
 function findPlanet(key) {
@@ -49,7 +63,7 @@ async function loadUniverse() {
     universeState.progress = data.progress || [];
     universeState.redeems = data.redeems || [];
     const selectedStillExists = universeState.expeditions.some(exp => String(exp._id) === String(universeState.selectedExpeditionId));
-    if (!selectedStillExists) universeState.selectedExpeditionId = chooseCurrentExpedition()?._id || null;
+    if (!selectedStillExists) universeState.selectedExpeditionId = chooseBestCampaign()?._id || null;
     renderUniverse();
   } catch (error) {
     console.error('Erro ao carregar Universo Bebcom:', error);
@@ -60,7 +74,7 @@ async function loadUniverse() {
 function renderUniverseEmpty(message) {
   const box = document.getElementById('universeCard');
   if (!box) return;
-  box.innerHTML = `<div class="universe-header"><div class="universe-kicker">Central de navegação</div><h3>🌌 Universo Bebcom</h3><p>Suas campanhas aparecerão aqui.</p></div><div class="universe-empty">${message}</div>`;
+  box.innerHTML = `<div class="universe-clean-header"><div class="universe-clean-kicker">🌌 Clube Bebcom</div><h3>Universo Bebcom</h3><p>Suas campanhas aparecerão aqui.</p></div><div class="universe-empty">${message}</div>`;
 }
 
 function renderUniverse() {
@@ -72,34 +86,20 @@ function renderUniverse() {
   const selectedProgress = findProgressForExpedition(selectedExpedition);
   const percent = calculateExpeditionPercent(selectedExpedition, selectedProgress);
   universeState.lastPercent = percent;
-
-  const activePlanet = getPlanetForExpedition(selectedExpedition);
-  let activePlanetIndex = UNIVERSE_PLANETS.findIndex(p => p.key === activePlanet.key);
-  if (percent >= 100) activePlanetIndex = UNIVERSE_PLANETS.length - 1;
-  universeState.activePlanetIndex = activePlanetIndex;
-  const routeOffset = calculateRouteOffset(activePlanetIndex, percent);
+  const planet = getPlanetForExpedition(selectedExpedition);
+  universeState.activePlanetIndex = UNIVERSE_PLANETS.findIndex(p => p.key === planet.key);
 
   box.innerHTML = `
-    <div class="universe-header">
-      <div class="universe-kicker">🌌 Central de navegação</div>
-      <h3>Universo Bebcom</h3>
-      <p>Participe de várias campanhas ao mesmo tempo. Cada produto pode avançar mais de uma rota.</p>
-    </div>
-    ${renderUniverseHud()}
-    <div class="universe-cinema">
-      <div class="universe-stars"></div><div class="universe-nebula"></div><div class="universe-grid"></div><div class="universe-comets"></div>
-      <div class="universe-route" style="--route-offset:${routeOffset}">
-        ${renderRouteSvg()}
-        <div id="universeShip" class="universe-ship"><div class="universe-ship-emoji">${getUniverseAvatarEmoji()}</div></div>
-        <div id="universeArrival" class="universe-arrival"></div>
-        ${UNIVERSE_PLANETS.map((planet, index) => renderPlanetNode(planet, index, activePlanetIndex)).join('')}
-      </div>
-    </div>
-    ${renderSelectedCampaignPanel(selectedExpedition, selectedProgress, percent)}
-    ${renderCampaignsPanel()}
-    <div id="universeToast" class="universe-toast"></div>
-  `;
-  positionUniverseShip(activePlanetIndex, percent, false);
+    <div class="universe-clean-shell">
+      <div class="universe-stars"></div>
+      <div class="universe-nebula"></div>
+      <div class="universe-clean-header"><div class="universe-clean-kicker">🌌 Central de campanhas</div><h3>Universo Bebcom</h3><p>Escolha uma categoria, acompanhe campanhas e veja exatamente o que falta comprar.</p></div>
+      ${renderUniverseHud()}
+      ${renderFeaturedCampaign(selectedExpedition, selectedProgress, percent)}
+      ${renderPlanetMap()}
+      ${renderFilteredCampaigns()}
+      <div id="universeToast" class="universe-toast"></div>
+    </div>`;
 }
 
 function renderUniverseHud() {
@@ -112,31 +112,36 @@ function renderUniverseHud() {
   const scans = currentUser?.stats?.scans || 0;
   const rewards = currentUser?.stats?.rewardsUnlocked || 0;
   const activeCampaigns = universeState.expeditions.filter(exp => !findProgressForExpedition(exp)?.completed).length;
-  return `<div class="universe-hud"><div class="universe-hud-avatar">${getUniverseAvatarEmoji()}</div><div class="universe-hud-main"><strong>${avatarName}</strong><span>${avatarRole} • ${rank}</span></div><div class="universe-hud-stats"><div class="universe-hud-pill">⭐ Nível ${level}</div><div class="universe-hud-pill">⚡ ${xp} XP</div><div class="universe-hud-pill">🎯 ${activeCampaigns} campanhas</div><div class="universe-hud-pill">📷 ${scans}</div><div class="universe-hud-pill">🎁 ${rewards}</div></div></div>`;
+  return `<div class="universe-hud clean-hud"><div class="universe-hud-avatar">${getUniverseAvatarEmoji()}</div><div class="universe-hud-main"><strong>${avatarName}</strong><span>${avatarRole} • ${rank}</span></div><div class="universe-hud-stats"><div class="universe-hud-pill">⭐ Nível ${level}</div><div class="universe-hud-pill">⚡ ${xp} XP</div><div class="universe-hud-pill">🎯 ${activeCampaigns} campanhas</div><div class="universe-hud-pill">📷 ${scans}</div><div class="universe-hud-pill">🎁 ${rewards}</div></div></div>`;
 }
 
-function renderRouteSvg() {
-  return `<svg class="universe-path-svg" viewBox="0 0 100 100" preserveAspectRatio="none"><defs><linearGradient id="bebcomRouteGradient" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#2563eb"/><stop offset="48%" stop-color="#f59e0b"/><stop offset="100%" stop-color="#dc2626"/></linearGradient></defs><path class="universe-path-line" d="M20 18 C42 18, 53 27, 72 30 C55 37, 45 44, 28 54 C46 59, 58 66, 72 72 C65 80, 57 88, 50 96" /><path class="universe-path-line-active" d="M20 18 C42 18, 53 27, 72 30 C55 37, 45 44, 28 54 C46 59, 58 66, 72 72 C65 80, 57 88, 50 96" /></svg>`;
-}
-
-function renderPlanetNode(planet, index, activeIndex) {
-  const isActive = index === activeIndex;
-  const isVisited = index < activeIndex;
-  const relatedCount = universeState.expeditions.filter(exp => getPlanetForExpedition(exp).key === planet.key).length;
-  return `<div class="universe-node ${isActive ? 'active' : ''} ${isVisited ? 'visited' : ''}" data-node="${index}"><div class="planet-wrap" style="--planet-color:${planet.color}"><div class="planet-glow"></div><div class="planet-ring"></div><div class="planet">${planet.emoji}</div></div><div class="planet-info"><strong>${planet.title}</strong><span>${planet.subtitle}${relatedCount ? `<br>${relatedCount} campanha(s)` : ''}</span></div></div>`;
-}
-
-function renderSelectedCampaignPanel(expedition, progress, percent) {
+function renderFeaturedCampaign(expedition, progress, percent) {
   const planet = getPlanetForExpedition(expedition);
-  const completed = percent >= 100;
-  const availableRedeems = universeState.redeems?.filter(r => r.status === 'available').length || 0;
   const color = expedition.color || planet.color;
-  return `<div class="campaign-detail" style="--campaign-color:${color}; --campaign-color-soft:${hexToRgba(color, .22)}"><div class="campaign-detail-header"><div class="campaign-detail-icon">${planet.emoji}</div><div><h4>${expedition.title}</h4><p>${expedition.description || 'Campanha ativa no Universo Bebcom.'}</p><div class="campaign-meta"><span class="campaign-pill">🪐 ${planet.title}</span><span class="campaign-pill">🏆 ${formatRarity(expedition.rarity)}</span><span class="campaign-pill">🏢 ${expedition.sponsor || 'Bebcom'}</span><span class="campaign-pill">🎁 ${availableRedeems} resgate(s)</span></div></div></div><div class="universe-progress-track"><div class="universe-progress-fill" style="width:${percent}%"></div></div><div class="universe-progress-text">${percent}% concluído • ${getNextProductText(expedition, progress)}</div><div class="campaign-steps">${renderCampaignSteps(expedition, progress)}</div>${completed ? `<div class="universe-action-row"><div class="universe-action-chip">🏢 Missão concluída. Vá até a Base Bebcom para retirar sua recompensa.</div></div>` : ''}</div>`;
+  const completed = percent >= 100;
+  const nextText = getNextProductText(expedition, progress);
+  const rewardTitle = expedition?.reward?.title || 'Recompensa Bebcom';
+  const remaining = getCampaignTimeLabel(expedition);
+  return `<section class="featured-campaign" style="--campaign-color:${color}; --campaign-color-soft:${hexToRgba(color, .20)}"><div class="featured-orbit"><div id="universeShip" class="featured-avatar ${completed ? 'landed' : ''}"><span>${completed ? '🏢' : getUniverseAvatarEmoji()}</span></div><div id="universeArrival" class="universe-arrival"></div></div><div class="featured-content"><div class="featured-topline"><span>${planet.emoji} ${planet.title}</span><span>${formatRarity(expedition.rarity)}</span></div><h4>${expedition.title}</h4><p>${expedition.description || 'Campanha ativa no Clube Bebcom.'}</p><div class="featured-progress-row"><strong>${percent}%</strong><div class="universe-progress-track"><div class="universe-progress-fill" style="width:${percent}%"></div></div></div><div class="featured-next ${completed ? 'completed' : ''}"><div><small>${completed ? 'Status da campanha' : 'Próximo produto'}</small><strong>${completed ? 'Concluída — vá até a Base Bebcom' : nextText.replace('próximo produto: ', '')}</strong></div></div><div class="featured-reward"><span>🎁 Recompensa</span><strong>${rewardTitle}</strong></div><div class="featured-meta"><span>🏢 ${expedition.sponsor || 'Bebcom'}</span><span>${remaining}</span></div></div></section>`;
 }
 
-function renderCampaignsPanel() {
-  const completed = universeState.expeditions.filter(exp => calculateExpeditionPercent(exp, findProgressForExpedition(exp)) >= 100).length;
-  return `<div class="campaigns-panel"><div class="campaigns-panel-title"><strong>🎯 Campanhas ativas</strong><span>${universeState.expeditions.length} campanha(s) • ${completed} concluída(s)</span></div><div class="campaigns-grid">${universeState.expeditions.map(exp => renderCampaignCard(exp)).join('')}</div></div>`;
+function renderPlanetMap() {
+  const allSelected = universeState.selectedPlanetKey === 'TODOS';
+  return `<section class="planet-filter-panel"><div class="section-title-row"><div><strong>🪐 Categorias</strong><span>Toque para filtrar campanhas</span></div><button class="planet-filter-chip ${allSelected ? 'active' : ''}" onclick="selectUniversePlanet('TODOS')">Todas</button></div><div class="planet-clean-grid">${UNIVERSE_PLANETS.filter(p => p.key !== 'RECOMPENSAS').map(planet => renderPlanetChip(planet)).join('')}</div></section>`;
+}
+
+function renderPlanetChip(planet) {
+  const campaigns = getCampaignsByPlanet(planet.key);
+  const selected = universeState.selectedPlanetKey === planet.key;
+  const completed = campaigns.filter(exp => calculateExpeditionPercent(exp, findProgressForExpedition(exp)) >= 100).length;
+  const almost = campaigns.filter(exp => { const percent = calculateExpeditionPercent(exp, findProgressForExpedition(exp)); return percent >= 60 && percent < 100; }).length;
+  return `<button class="planet-clean-chip ${selected ? 'active' : ''}" style="--planet-color:${planet.color}" onclick="selectUniversePlanet('${planet.key}')"><span class="planet-clean-emoji">${planet.emoji}</span><span class="planet-clean-name">${planet.title}</span><span class="planet-clean-count">${campaigns.length || 0}</span>${almost ? `<small>${almost} quase lá</small>` : completed ? `<small>${completed} concluída</small>` : `<small>${campaigns.length ? 'campanhas' : 'sem rota'}</small>`}</button>`;
+}
+
+function renderFilteredCampaigns() {
+  const campaigns = getFilteredCampaigns();
+  const title = universeState.selectedPlanetKey === 'TODOS' ? 'Campanhas disponíveis' : `${findPlanet(universeState.selectedPlanetKey).emoji} ${findPlanet(universeState.selectedPlanetKey).title}`;
+  return `<section class="campaigns-panel clean-campaigns"><div class="campaigns-panel-title"><strong>🎯 ${title}</strong><span>${campaigns.length} campanha(s)</span></div>${campaigns.length ? `<div class="campaigns-grid">${campaigns.map(exp => renderCampaignCard(exp)).join('')}</div>` : `<div class="campaign-empty-note">Nenhuma campanha ativa nessa categoria agora.</div>`}</section>`;
 }
 
 function renderCampaignCard(expedition) {
@@ -147,149 +152,42 @@ function renderCampaignCard(expedition) {
   const completed = percent >= 100;
   const nextText = getNextProductText(expedition, progress).replace('próximo produto: ', '');
   const color = expedition.color || planet.color;
-  return `<div class="campaign-card ${selected ? 'selected' : ''} ${completed ? 'completed' : ''}" style="--campaign-color:${color}; --campaign-color-soft:${hexToRgba(color, .22)}" onclick="selectUniverseCampaign('${expedition._id}')"><div class="campaign-card-top"><div class="campaign-icon">${completed ? '🏢' : planet.emoji}</div><div class="campaign-main"><strong>${expedition.title}</strong><div class="campaign-meta"><span class="campaign-pill">${formatRarity(expedition.rarity)}</span><span class="campaign-pill">${planet.title}</span><span class="campaign-pill">${expedition.sponsor || 'Bebcom'}</span></div></div></div><div class="campaign-progress"><div class="campaign-progress-track"><div class="campaign-progress-fill" style="width:${percent}%"></div></div><div class="campaign-progress-text">${percent}% • ${completed ? 'Concluída' : nextText}</div></div></div>`;
+  const rewardTitle = expedition?.reward?.title || 'Recompensa Bebcom';
+  return `<article class="campaign-card clean-card ${selected ? 'selected' : ''} ${completed ? 'completed' : ''}" style="--campaign-color:${color}; --campaign-color-soft:${hexToRgba(color, .22)}" onclick="selectUniverseCampaign('${expedition._id}')"><div class="campaign-card-top"><div class="campaign-icon">${completed ? '🏢' : planet.emoji}</div><div class="campaign-main"><strong>${expedition.title}</strong><div class="campaign-meta"><span class="campaign-pill">${formatRarity(expedition.rarity)}</span><span class="campaign-pill">${planet.title}</span><span class="campaign-pill">${getCampaignTimeLabel(expedition)}</span></div></div></div><div class="campaign-progress"><div class="campaign-progress-track"><div class="campaign-progress-fill" style="width:${percent}%"></div></div><div class="campaign-progress-text">${percent}% • ${completed ? 'Concluída' : nextText}</div></div><div class="campaign-card-reward"><span>🎁 ${rewardTitle}</span></div></article>`;
 }
 
-function renderCampaignSteps(expedition, progress) {
-  const steps = Array.isArray(expedition?.steps) ? expedition.steps : [];
-  const completed = new Set(progress?.completedSteps || []);
-  if (!steps.length) return '<div class="campaign-empty-note">Nenhum produto cadastrado nesta campanha.</div>';
-  return steps.map(step => {
-    const done = completed.has(step.index);
-    return `<div class="campaign-step ${done ? 'done' : ''}"><span>${step.title}</span><span class="campaign-step-status">${done ? '✓ Encontrado' : '○ Pendente'}</span></div>`;
-  }).join('');
+function selectUniversePlanet(planetKey) {
+  universeState.selectedPlanetKey = planetKey;
+  const campaigns = getFilteredCampaigns();
+  if (campaigns.length) {
+    const selectedInFilter = campaigns.some(exp => String(exp._id) === String(universeState.selectedExpeditionId));
+    if (!selectedInFilter) universeState.selectedExpeditionId = chooseBestCampaign(campaigns)?._id || campaigns[0]._id;
+  }
+  renderUniverse();
 }
 
 function selectUniverseCampaign(expeditionId) {
   universeState.selectedExpeditionId = expeditionId;
+  const exp = universeState.expeditions.find(item => String(item._id) === String(expeditionId));
+  if (exp) universeState.selectedPlanetKey = getPlanetForExpedition(exp).key;
   renderUniverse();
 }
 
-function chooseCurrentExpedition() {
-  return universeState.expeditions.find(expedition => !findProgressForExpedition(expedition)?.completed) || universeState.expeditions[0];
-}
-
-function getSelectedExpedition() {
-  return universeState.expeditions.find(expedition => String(expedition._id) === String(universeState.selectedExpeditionId)) || chooseCurrentExpedition();
-}
-
-function findProgressForExpedition(expedition) {
-  if (!expedition?._id) return null;
-  return universeState.progress.find(item => String(item.expeditionId || '') === String(expedition._id || ''));
-}
-
-function calculateExpeditionPercent(expedition, progress) {
-  const total = Array.isArray(expedition?.steps) ? expedition.steps.length : 0;
-  if (!total) return 0;
-  const completed = Array.isArray(progress?.completedSteps) ? progress.completedSteps.length : 0;
-  return Math.min(100, Math.round((completed / total) * 100));
-}
-
-function getNextProductText(expedition, progress) {
-  const steps = Array.isArray(expedition?.steps) ? expedition.steps : [];
-  const completed = new Set(progress?.completedSteps || []);
-  const nextStep = steps.find(step => !completed.has(step.index));
-  if (!nextStep) return expedition?.completionMessage || 'Expedição concluída. Retire sua recompensa na Base Bebcom.';
-  return `próximo produto: ${nextStep.title}`;
-}
-
-function getUniverseAvatarEmoji() {
-  const saved = getSavedAvatar?.();
-  return saved?.emoji || '🧑‍🚀';
-}
-
-function calculateRouteOffset(activePlanetIndex, percent = 0) {
-  const total = 620;
-  const planetCount = UNIVERSE_PLANETS.length - 1;
-  const planetProgress = Math.min(1, Math.max(0, activePlanetIndex / planetCount));
-  const stepBonus = Math.min(0.18, Math.max(0, percent / 100) * 0.18);
-  const revealed = Math.min(1, planetProgress + stepBonus);
-  return Math.round(total - (total * revealed));
-}
-
-function getShipCoordinates(activePlanetIndex, percent = 0) {
-  const target = UNIVERSE_PLANETS[activePlanetIndex] || UNIVERSE_PLANETS[0];
-  if (activePlanetIndex === UNIVERSE_PLANETS.length - 1) return { x: target.x, y: target.y };
-  const next = UNIVERSE_PLANETS[Math.min(activePlanetIndex + 1, UNIVERSE_PLANETS.length - 1)];
-  const progressTowardNext = Math.min(0.28, Math.max(0, percent / 100) * 0.28);
-  return { x: target.x + ((next.x - target.x) * progressTowardNext), y: target.y + ((next.y - target.y) * progressTowardNext) };
-}
-
-function positionUniverseShip(activePlanetIndex, percent = 0, animate = true) {
-  const ship = document.getElementById('universeShip');
-  if (!ship) return;
-  const coords = getShipCoordinates(activePlanetIndex, percent);
-  if (!animate) {
-    ship.style.transition = 'none';
-    ship.style.left = `${coords.x}%`;
-    ship.style.top = `${coords.y}%`;
-    requestAnimationFrame(() => { ship.style.transition = ''; });
-    return;
-  }
-  ship.style.left = `${coords.x}%`;
-  ship.style.top = `${coords.y}%`;
-}
-
-function animateUniverseAdvance(scanData) {
-  const ship = document.getElementById('universeShip');
-  showUniverseToast(scanData);
-  if (ship) ship.classList.add('moving');
-  setTimeout(() => positionUniverseShip(universeState.activePlanetIndex, universeState.lastPercent, true), 80);
-  setTimeout(() => {
-    if (ship) ship.classList.remove('moving');
-    triggerArrivalEffect();
-  }, 1450);
-  if (scanData?.reward) setTimeout(() => showUniverseReward(scanData.reward), 1850);
-}
-
-function triggerArrivalEffect() {
-  const arrival = document.getElementById('universeArrival');
-  const ship = document.getElementById('universeShip');
-  if (!arrival || !ship) return;
-  arrival.style.left = ship.style.left;
-  arrival.style.top = ship.style.top;
-  arrival.classList.remove('active');
-  void arrival.offsetWidth;
-  arrival.classList.add('active');
-}
-
-function showUniverseToast(scanData = {}) {
-  const toast = document.getElementById('universeToast');
-  if (!toast) return;
-  const product = scanData.product || 'Produto encontrado';
-  const xp = scanData.xpGained ? `+${scanData.xpGained} XP` : 'Campanha atualizada';
-  const campaigns = Array.isArray(scanData.expeditionResults)
-    ? scanData.expeditionResults.filter(item => ['advanced', 'completed'].includes(item.status)).length
-    : 0;
-  toast.innerHTML = `<strong>🚀 ${product}</strong><span>${xp} • ${campaigns ? `Avançou em ${campaigns} campanha(s).` : (scanData.message || 'Seu avatar avançou no Universo Bebcom.')}</span>`;
-  toast.classList.add('active');
-  setTimeout(() => toast.classList.remove('active'), 3600);
-}
-
-function showUniverseReward(reward) {
-  const overlay = document.getElementById('universeRewardOverlay');
-  if (!overlay) return;
-  overlay.innerHTML = `<div class="reward-cinematic-box"><div class="reward-icon">🎁</div><h2>Missão concluída</h2><p><strong>${reward.title || 'Recompensa Bebcom'}</strong></p><p>${reward.description || 'Sua recompensa está pronta para retirada na Bebidas & Companhia.'}</p><div class="reward-location">🏢 Base Bebcom • Retirada na loja física</div><button class="btn-primary" onclick="closeUniverseReward()">Continuar Jornada</button></div>`;
-  overlay.classList.add('active');
-}
-
-function closeUniverseReward() {
-  document.getElementById('universeRewardOverlay')?.classList.remove('active');
-}
-
-function formatRarity(rarity = 'comum') {
-  const value = normalizeUniverseKey(rarity);
-  if (value.includes('LENDAR')) return '🟡 Lendária';
-  if (value.includes('EPIC')) return '🟣 Épica';
-  if (value.includes('RARA')) return '🔵 Rara';
-  return '🟢 Comum';
-}
-
-function hexToRgba(hex = '#f59e0b', alpha = 0.22) {
-  const clean = String(hex).replace('#', '').trim();
-  if (clean.length !== 6) return `rgba(245,158,11,${alpha})`;
-  const r = parseInt(clean.substring(0, 2), 16);
-  const g = parseInt(clean.substring(2, 4), 16);
-  const b = parseInt(clean.substring(4, 6), 16);
-  return `rgba(${r},${g},${b},${alpha})`;
-}
+function getCampaignsByPlanet(planetKey) { return universeState.expeditions.filter(exp => getPlanetForExpedition(exp).key === planetKey); }
+function getFilteredCampaigns() { return universeState.selectedPlanetKey === 'TODOS' ? sortCampaigns(universeState.expeditions) : sortCampaigns(getCampaignsByPlanet(universeState.selectedPlanetKey)); }
+function sortCampaigns(campaigns = []) { return [...campaigns].sort((a,b)=>{ const pa=calculateExpeditionPercent(a,findProgressForExpedition(a)); const pb=calculateExpeditionPercent(b,findProgressForExpedition(b)); if(pa===100&&pb!==100)return 1; if(pb===100&&pa!==100)return -1; return pb-pa; }); }
+function chooseBestCampaign(campaigns = universeState.expeditions) { const sorted = sortCampaigns(campaigns); return sorted.find(exp => calculateExpeditionPercent(exp, findProgressForExpedition(exp)) < 100) || sorted[0]; }
+function getSelectedExpedition() { return universeState.expeditions.find(exp => String(exp._id) === String(universeState.selectedExpeditionId)) || chooseBestCampaign(); }
+function chooseCurrentExpedition() { return chooseBestCampaign(); }
+function findProgressForExpedition(expedition) { if (!expedition?._id) return null; return universeState.progress.find(item => String(item.expeditionId || '') === String(expedition._id || '')); }
+function calculateExpeditionPercent(expedition, progress) { const total = Array.isArray(expedition?.steps) ? expedition.steps.length : 0; if (!total) return 0; const completed = Array.isArray(progress?.completedSteps) ? progress.completedSteps.length : 0; return Math.min(100, Math.round((completed / total) * 100)); }
+function getNextProductText(expedition, progress) { const steps = Array.isArray(expedition?.steps) ? expedition.steps : []; const completed = new Set(progress?.completedSteps || []); const nextStep = steps.find(step => !completed.has(step.index)); if (!nextStep) return expedition?.completionMessage || 'Expedição concluída. Retire sua recompensa na Base Bebcom.'; return `próximo produto: ${nextStep.title}`; }
+function getCampaignTimeLabel(expedition) { if (expedition?.permanent || !expedition?.endsAt) return '♾️ permanente'; const end = new Date(expedition.endsAt); const diff = end.getTime() - Date.now(); if (Number.isNaN(end.getTime())) return '⏳ ativa'; if (diff <= 0) return '⏳ encerrando'; const days = Math.ceil(diff / (1000*60*60*24)); if (days <= 1) return '🔥 termina hoje'; if (days <= 3) return `⏳ ${days} dias`; return `📅 ${end.toLocaleDateString('pt-BR')}`; }
+function getUniverseAvatarEmoji() { const saved = getSavedAvatar?.(); return saved?.emoji || '🧑‍🚀'; }
+function animateUniverseAdvance(scanData = {}) { showUniverseToast(scanData); const featured=document.querySelector('.featured-campaign'); const avatar=document.getElementById('universeShip'); if(featured){featured.classList.add('scan-pulse'); setTimeout(()=>featured.classList.remove('scan-pulse'),1400);} if(avatar){avatar.classList.add('moving'); setTimeout(()=>avatar.classList.remove('moving'),1200);} setTimeout(()=>triggerArrivalEffect(),900); if(scanData?.reward) setTimeout(()=>showUniverseReward(scanData.reward),1500); }
+function triggerArrivalEffect() { const arrival=document.getElementById('universeArrival'); if(!arrival)return; arrival.classList.remove('active'); void arrival.offsetWidth; arrival.classList.add('active'); }
+function showUniverseToast(scanData = {}) { const toast=document.getElementById('universeToast'); if(!toast)return; const product=scanData.product||'Produto encontrado'; const xp=scanData.xpGained?`+${scanData.xpGained} XP`:'Campanha atualizada'; const campaigns=Array.isArray(scanData.expeditionResults)?scanData.expeditionResults.filter(item=>['advanced','completed'].includes(item.status)).length:0; toast.innerHTML=`<strong>🚀 ${product}</strong><span>${xp} • ${campaigns ? `Avançou em ${campaigns} campanha(s).` : (scanData.message || 'Universo atualizado.')}</span>`; toast.classList.add('active'); setTimeout(()=>toast.classList.remove('active'),3600); }
+function showUniverseReward(reward) { const overlay=document.getElementById('universeRewardOverlay'); if(!overlay)return; overlay.innerHTML=`<div class="reward-cinematic-box"><div class="reward-icon">🎁</div><h2>Missão concluída</h2><p><strong>${reward.title || 'Recompensa Bebcom'}</strong></p><p>${reward.description || 'Sua recompensa está pronta para retirada na Bebidas & Companhia.'}</p><div class="reward-location">🏢 Base Bebcom • Retirada na loja física</div><button class="btn-primary" onclick="closeUniverseReward()">Continuar Jornada</button></div>`; overlay.classList.add('active'); }
+function closeUniverseReward() { document.getElementById('universeRewardOverlay')?.classList.remove('active'); }
+function formatRarity(rarity='comum') { const value=normalizeUniverseKey(rarity); if(value.includes('LENDAR'))return '🟡 Lendária'; if(value.includes('EPIC'))return '🟣 Épica'; if(value.includes('RARA'))return '🔵 Rara'; return '🟢 Comum'; }
+function hexToRgba(hex='#f59e0b', alpha=.22) { const clean=String(hex).replace('#','').trim(); if(clean.length!==6)return `rgba(245,158,11,${alpha})`; const r=parseInt(clean.substring(0,2),16); const g=parseInt(clean.substring(2,4),16); const b=parseInt(clean.substring(4,6),16); return `rgba(${r},${g},${b},${alpha})`; }
