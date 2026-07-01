@@ -108,6 +108,7 @@ async function scanQr() {
   let message = `
     ✅ ${data.message}<br>
     Produto: <strong>${data.product}</strong><br>
+    XP ganho: <strong>+${data.xpGained || 0} XP</strong><br>
     Nível atual: <strong>${data.newLevel}</strong><br>
     Patente: <strong>${data.rank || 'Explorador'}</strong>
   `;
