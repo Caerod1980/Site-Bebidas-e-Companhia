@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="/clube/css/dashboard.css">
   <link rel="stylesheet" href="/clube/css/universe.css">
   <link rel="stylesheet" href="/clube/css/mobile-app.css">
+  <link rel="stylesheet" href="/clube/css/qr-scanner.css">
 </head>
 <body>
   <div id="clubIntro" class="club-intro"><div class="intro-stars"></div><div class="intro-stars intro-stars-2"></div><div class="intro-grid"></div><div class="intro-vignette"></div><div class="intro-orb"></div><div class="intro-content"><div class="intro-badge">Bebidas & Companhia apresenta</div><div class="intro-logo-premium"><div class="intro-logo-core">🎮</div></div><h1>Universo Bebcom</h1><h2>Passaporte Gamer</h2><p id="introText">Inicializando portal...</p><div class="intro-loader"><div class="intro-loader-fill"></div></div></div></div>
@@ -31,8 +32,48 @@
       <details id="historyCard" class="card app-view app-view-profile app-view-history"><summary>Histórico recente</summary><div id="scansList"><p class="small">Nenhum código escaneado ainda.</p></div></details>
     </section>
   </main>
-  <button id="mobileScanFab" class="mobile-scan-fab hidden" onclick="openMobileScanner()"><span>📷</span><strong>Escanear</strong></button>
+  <div id="qrCameraModal" class="qr-camera-modal">
+  <div class="qr-camera-box">
+    <div class="qr-camera-header">
+      <div>
+        <h3>📷 Escanear QR</h3>
+        <p>Aponte a câmera para o QR Code colado no produto participante.</p>
+      </div>
+      <button class="qr-camera-close" onclick="closeQrCameraScanner()">×</button>
+    </div>
+    <div class="qr-reader-wrap">
+      <div id="qrCameraReader"></div>
+      <div class="qr-scan-frame"></div>
+    </div>
+    <div id="qrCameraStatus" class="qr-camera-status">Preparando câmera...</div>
+    <div id="qrManualFallback" class="qr-manual-fallback hidden">
+      <button class="btn-secondary" onclick="useManualQrInput()">Digitar código manualmente</button>
+    </div>
+    <div class="qr-camera-actions">
+      <button class="btn-secondary" onclick="useManualQrInput()">Digitar código</button>
+      <button class="btn-primary" onclick="closeQrCameraScanner()">Fechar câmera</button>
+    </div>
+  </div>
+</div>
+  <button id="mobileScanFab"
+        class="mobile-scan-fab hidden"
+        onclick="openQrCameraScanner()">
+    <span>📷</span>
+    <strong>Escanear</strong>
+</button>
   <nav id="mobileBottomNav" class="mobile-bottom-nav hidden"><button class="active" data-app-tab="home" onclick="setMobileView('home')"><span>🏠</span>Home</button><button data-app-tab="universe" onclick="setMobileView('universe')"><span>🪐</span>Universo</button><button data-app-tab="inventory" onclick="setMobileView('inventory')"><span>🎒</span>Inventário</button><button data-app-tab="profile" onclick="setMobileView('profile')"><span>👤</span>Perfil</button></nav>
-  <script src="/clube/js/config.js"></script><script src="/clube/js/utils.js"></script><script src="/clube/js/intro.js"></script><script src="/clube/js/ai.js"></script><script src="/clube/js/avatar.js"></script><script src="/clube/js/universe.js"></script><script src="/clube/js/dashboard.js"></script><script src="/clube/js/mobile-app.js"></script><script src="/clube/js/app.js"></script>
+ <script src="/clube/js/config.js"></script>
+<script src="/clube/js/utils.js"></script>
+<script src="/clube/js/intro.js"></script>
+<script src="/clube/js/ai.js"></script>
+<script src="/clube/js/avatar.js"></script>
+<script src="/clube/js/universe.js"></script>
+<script src="/clube/js/dashboard.js"></script>
+
+<script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+
+<script src="/clube/js/mobile-app.js"></script>
+<script src="/clube/js/qr-scanner.js"></script>
+<script src="/clube/js/app.js"></script>
 </body>
 </html>
