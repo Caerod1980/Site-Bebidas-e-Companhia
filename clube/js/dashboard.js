@@ -62,6 +62,15 @@ async function loadProfile() {
   const level = Number(currentUser.level || 1);
   const rank = currentUser.rank || 'Explorador';
   const xpPercent = Math.min(xp % 100, 100);
+  renderPlayerLobby({
+  name: currentUser.name || 'Jogador Bebcom',
+  xp,
+  level,
+  rank,
+  scans: currentUser.stats?.scans || 0,
+  rewards: currentUser.stats?.rewardsUnlocked || 0,
+  character: currentUser.character
+});
 
   document.getElementById('xpFill').style.width = `${xpPercent}%`;
   document.getElementById('xpText').innerText = `${xp} XP • ${rank}`;
@@ -395,4 +404,82 @@ function renderScans(scans) {
       <p class="small">+${scan.xp} XP • ${new Date(scan.createdAt).toLocaleString('pt-BR')}</p>
     </div>
   `).join('');
+}
+
+function renderPlayerLobby(player) {
+  const card = document.getElementById('profileCard');
+  if (!card) return;
+
+  const characterName =
+    player.character?.archetype?.name ||
+    'Explorador Neon';
+
+  const stage =
+    player.character?.progression?.stageLabel ||
+    player.rank ||
+    'Explorador';
+
+  const xpPercent = Math.min(Number(player.xp || 0) % 100, 100);
+
+  card.innerHTML = `
+    <div class="player-lobby-shell">
+      <div class="player-lobby-kicker">🌌 PERSONAGEM BEBCOM</div>
+
+      <div id="dashboardAvatar" class="player-lobby-avatar">
+        ${
+          typeof renderBebcomCharacter === 'function'
+            ? renderBebcomCharacter(player.character, { compact: true })
+            : '🧑‍🚀'
+        }
+      </div>
+
+      <div class="player-lobby-stage">${stage}</div>
+
+      <h2 id="playerName">${player.name}</h2>
+
+      <p id="avatarName" class="player-lobby-class">
+        ${characterName}
+      </p>
+
+      <div class="player-lobby-xp-row">
+        <span>${player.xp} XP</span>
+        <strong>${player.rank}</strong>
+      </div>
+
+      <div class="xp-bar player-lobby-xp">
+        <div id="xpFill" class="xp-fill" style="width:${xpPercent}%"></div>
+      </div>
+
+      <div id="xpText" class="player-lobby-xp-text">
+        Próxima evolução em progresso
+      </div>
+
+      <div class="grid player-lobby-stats">
+        <div class="stat">
+          <strong id="levelText">${player.level}</strong>
+          Nível
+        </div>
+
+        <div class="stat">
+          <strong id="scanText">${player.scans}</strong>
+          Leituras
+        </div>
+
+        <div class="stat">
+          <strong id="rewardText">${player.rewards}</strong>
+          Artefatos
+        </div>
+      </div>
+
+      <div class="player-actions player-lobby-actions">
+        <button class="btn-secondary btn-small" onclick="openAvatarStage(true)">
+          🧬 Trocar Personagem
+        </button>
+
+        <button class="btn-secondary btn-small" onclick="logoutClube()">
+          🚪 Sair
+        </button>
+      </div>
+    </div>
+  `;
 }
