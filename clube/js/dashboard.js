@@ -181,6 +181,35 @@ function renderRewards(rewards) {
   window.__bebcomRewards = rewards;
 }
 
+const BEBCOM_BASE_MAPS_URL = 'https://www.google.com/maps/search/?api=1&query=R.+Jos%C3%A9+Henrique+Ferraz,+18-10,+Centro,+Bauru+-+SP';
+
+function getArtifactRarityLabel(reward = {}) {
+  const key = String(reward.rarity || reward.expeditionRarity || '').toLowerCase();
+
+  if (key.includes('lend')) return '🟡 LENDÁRIA';
+  if (key.includes('epic') || key.includes('épica') || key.includes('epica')) return '🟣 ÉPICA';
+  if (key.includes('rara')) return '🔵 RARA';
+
+  return '🟢 COMUM';
+}
+
+function getArtifactStars(reward = {}) {
+  const key = String(reward.rarity || reward.expeditionRarity || '').toLowerCase();
+
+  if (key.includes('lend')) return '⭐⭐⭐⭐⭐';
+  if (key.includes('epic') || key.includes('épica') || key.includes('epica')) return '⭐⭐⭐⭐';
+  if (key.includes('rara')) return '⭐⭐⭐';
+
+  return '⭐⭐';
+}
+
+function openBaseBebcomMap() {
+  window.open(BEBCOM_BASE_MAPS_URL, '_blank');
+}
+
+window.openBaseBebcomMap = openBaseBebcomMap;
+
+
 function renderInventoryItems(items) {
   if (!items.length) {
     return `
@@ -193,43 +222,76 @@ function renderInventoryItems(items) {
   return items.map(reward => {
     const status = reward.status || 'available';
     const isAvailable = status === 'available';
-    const createdAt = reward.createdAt ? new Date(reward.createdAt).toLocaleDateString('pt-BR') : 'Hoje';
+
+    const createdAt = reward.createdAt
+      ? new Date(reward.createdAt).toLocaleDateString('pt-BR')
+      : 'Hoje';
+
+    const redeemedAt = reward.redeemedAt
+      ? new Date(reward.redeemedAt).toLocaleDateString('pt-BR')
+      : '';
+
     const title = reward.title || 'Artefato Bebcom';
-    const description = reward.description || 'Retire sua recompensa na Bebidas & Companhia.';
+    const description = reward.description || 'Retire sua recompensa na Base Bebcom.';
     const code = reward.code || 'SEM-CODIGO';
+    const campaign = reward.expeditionTitle || reward.campaignTitle || 'Missão Bebcom';
+    const rarity = getArtifactRarityLabel(reward);
+    const stars = getArtifactStars(reward);
 
     return `
-      <article class="artifact-card ${isAvailable ? 'available' : 'used'}">
+      <article class="artifact-card artifact-premium ${isAvailable ? 'available' : 'used'}">
         <div class="artifact-glow"></div>
+        <div class="artifact-rarity-badge">${rarity}</div>
 
-        <div class="artifact-top">
-          <div class="artifact-icon">${getArtifactIcon(title)}</div>
+        <div class="artifact-top premium">
+          <div class="artifact-icon artifact-icon-xl">${getArtifactIcon(title)}</div>
           <div>
+            <span class="artifact-type">🎁 ARTEFATO ${isAvailable ? 'DESBLOQUEADO' : 'RESGATADO'}</span>
             <strong>${title}</strong>
-            <span>${isAvailable ? 'Disponível para retirada' : 'Histórico do inventário'}</span>
+            <em>${stars}</em>
           </div>
+        </div>
+
+        <div class="artifact-campaign-box">
+          <span>Conquistado em</span>
+          <strong>${campaign}</strong>
         </div>
 
         <p>${description}</p>
 
-        <div class="artifact-code-box">
-          <span>Código de retirada</span>
+        <div class="artifact-base-box">
+          <span>🏢 Local de retirada</span>
+          <strong>Base Bebcom</strong>
+          <small>Bebidas & Companhia</small>
+        </div>
+
+        <div class="artifact-code-box premium-code">
+          <span>Código Oficial</span>
           <strong>${code}</strong>
         </div>
 
         <div class="artifact-meta">
-          <span>🏢 Base Bebcom</span>
-          <span>📅 ${createdAt}</span>
+          <span>📅 Conquistado: ${createdAt}</span>
+          ${redeemedAt ? `<span>✅ Entregue: ${redeemedAt}</span>` : ''}
         </div>
 
         <div class="artifact-status ${isAvailable ? 'status-available' : 'status-used'}">
-          ${isAvailable ? '🎁 Retirar na loja física' : '✅ Já utilizado / histórico'}
+          ${isAvailable ? '🟢 AGUARDANDO RETIRADA' : '✅ PRÊMIO ENTREGUE'}
         </div>
+
+        ${isAvailable ? `
+          <button class="artifact-map-btn" onclick="openBaseBebcomMap()">
+            📍 Navegar até a Base Bebcom
+          </button>
+        ` : `
+          <div class="artifact-history-note">
+            Este artefato já foi entregue e agora faz parte do seu histórico.
+          </div>
+        `}
       </article>
     `;
   }).join('');
 }
-
 function filterInventory(filter) {
   const rewards = window.__bebcomRewards || [];
   const box = document.getElementById('inventoryItems');
@@ -291,7 +353,7 @@ function showArtifactUnlock(reward) {
       </div>
 
       <div class="reward-location">🏢 Base Bebcom • Retirada na loja física</div>
-      <button class="btn-primary" onclick="closeUniverseReward()">Guardar no Inventário</button>
+    <button class="btn-primary" onclick="closeUniverseReward(); setMobileView?.('inventory');">Guardar no Inventário</button>
     </div>
   `;
 
