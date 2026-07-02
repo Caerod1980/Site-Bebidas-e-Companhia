@@ -14,6 +14,80 @@
   <link rel="stylesheet" href="/clube/css/universe.css">
   <link rel="stylesheet" href="/clube/css/mobile-app.css">
   <link rel="stylesheet" href="/clube/css/qr-scanner.css">
+  <style>
+@media (max-width:720px){
+  #profileCard,
+  #profileCard.avatar-box{
+    display:block!important;
+    width:100%!important;
+    padding:0!important;
+    overflow:hidden!important;
+    text-align:center!important;
+  }
+
+  #profileCard .player-lobby-shell{
+    width:100%!important;
+    max-width:100%!important;
+    box-sizing:border-box!important;
+    padding:22px 16px 120px!important;
+    display:flex!important;
+    flex-direction:column!important;
+    align-items:center!important;
+    justify-content:flex-start!important;
+    text-align:center!important;
+  }
+
+  #profileCard .player-lobby-kicker,
+  #profileCard .player-lobby-stage,
+  #profileCard h2,
+  #profileCard .player-lobby-class,
+  #profileCard .player-lobby-xp-row,
+  #profileCard .player-lobby-xp,
+  #profileCard .player-lobby-xp-text,
+  #profileCard .player-lobby-stats,
+  #profileCard .player-lobby-actions{
+    width:100%!important;
+    max-width:100%!important;
+    text-align:center!important;
+    margin-left:auto!important;
+    margin-right:auto!important;
+  }
+
+  #profileCard .player-lobby-avatar{
+    width:100%!important;
+    height:235px!important;
+    display:flex!important;
+    justify-content:center!important;
+    align-items:center!important;
+    margin:0 auto 8px!important;
+    overflow:visible!important;
+  }
+
+  #profileCard .player-lobby-avatar .bebcom-character.compact{
+    transform:scale(1)!important;
+    transform-origin:center!important;
+  }
+
+  #profileCard .player-lobby-xp-row{
+    display:flex!important;
+    justify-content:space-between!important;
+  }
+
+  #profileCard .player-lobby-stats{
+    display:grid!important;
+    grid-template-columns:repeat(3,1fr)!important;
+    gap:8px!important;
+  }
+
+  #profileCard .player-lobby-actions{
+    display:flex!important;
+    justify-content:center!important;
+    gap:10px!important;
+    flex-wrap:wrap!important;
+    margin-top:18px!important;
+  }
+}
+</style>
 </head>
 <body>
   <div id="clubIntro" class="club-intro"><div class="intro-stars"></div><div class="intro-stars intro-stars-2"></div><div class="intro-grid"></div><div class="intro-vignette"></div><div class="intro-orb"></div><div class="intro-content"><div class="intro-badge">Bebidas & Companhia apresenta</div><div class="intro-logo-premium"><div class="intro-logo-core">🎮</div></div><h1>Universo Bebcom</h1><h2>Passaporte Gamer</h2><p id="introText">Inicializando portal...</p><div class="intro-loader"><div class="intro-loader-fill"></div></div></div></div>
