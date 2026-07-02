@@ -51,45 +51,22 @@ async function loadProfile() {
   currentUser = data.user;
   saveSession(currentUser);
 
-  if (typeof applyAvatarToDashboard === 'function') {
-  applyAvatarToDashboard();
-}
-
-
-  document.getElementById('playerName').innerText = currentUser.name || 'Jogador Bebcom';
-
   const xp = Number(currentUser.xp || 0);
   const level = Number(currentUser.level || 1);
   const rank = currentUser.rank || 'Explorador';
-  const xpPercent = Math.min(xp % 100, 100);
+
   renderPlayerLobby({
-  name: currentUser.name || 'Jogador Bebcom',
-  xp,
-  level,
-  rank,
-  scans: currentUser.stats?.scans || 0,
-  rewards: currentUser.stats?.rewardsUnlocked || 0,
-  character: currentUser.character
-});
-
-  renderRewards(data.rewards || []);
-renderScans(data.scans || []);
-return;
-
-  document.getElementById('xpFill').style.width = `${xpPercent}%`;
-  document.getElementById('xpText').innerText = `${xp} XP • ${rank}`;
-  document.getElementById('levelText').innerText = level;
-  document.getElementById('scanText').innerText = currentUser.stats?.scans || 0;
-  document.getElementById('rewardText').innerText = currentUser.stats?.rewardsUnlocked || 0;
-
-  applyAvatarToDashboard();
+    name: currentUser.name || 'Jogador Bebcom',
+    xp,
+    level,
+    rank,
+    scans: currentUser.stats?.scans || 0,
+    rewards: currentUser.stats?.rewardsUnlocked || 0,
+    character: currentUser.character
+  });
 
   renderRewards(data.rewards || []);
   renderScans(data.scans || []);
-}
-
-async function loadMissions() {
-  return;
 }
 
 async function scanQr() {
