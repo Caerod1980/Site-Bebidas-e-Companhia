@@ -72,6 +72,10 @@ async function loadProfile() {
   character: currentUser.character
 });
 
+  renderRewards(data.rewards || []);
+renderScans(data.scans || []);
+return;
+
   document.getElementById('xpFill').style.width = `${xpPercent}%`;
   document.getElementById('xpText').innerText = `${xp} XP • ${rank}`;
   document.getElementById('levelText').innerText = level;
