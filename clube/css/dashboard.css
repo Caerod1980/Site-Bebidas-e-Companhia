@@ -990,3 +990,52 @@
     padding: 12px 6px;
   }
 }
+
+/* CORREÇÃO FINAL — LOBBY CENTRALIZADO */
+
+.avatar-box {
+  display: block !important;
+  width: 100% !important;
+  padding: 0 !important;
+  text-align: center !important;
+}
+
+.player-lobby-shell {
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+.player-lobby-avatar {
+  width: 100% !important;
+  height: 250px !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+.player-lobby-avatar .bebcom-character.compact {
+  transform: scale(1.08) !important;
+  transform-origin: center !important;
+}
+
+.player-lobby-shell h2,
+.player-lobby-class,
+.player-lobby-stage,
+.player-lobby-xp-row,
+.player-lobby-xp-text {
+  text-align: center !important;
+}
+
+.player-lobby-xp-row {
+  width: 100% !important;
+  justify-content: space-between !important;
+}
+
+.player-lobby-stats {
+  width: 100% !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+}
+
+.avatar-character-shell {
+  order: unset !important;
+}
