@@ -452,7 +452,7 @@ function renderPlayerLobby(player) {
         </div>
       </div>
 
-      <div class="player-actions player-lobby-actions">
+      <div class="player-actions player-lobby-actions app-view app-view-home app-view-profile">
         <button class="btn-secondary btn-small" onclick="openAvatarStage(true)">
           🧬 Trocar Personagem
         </button>
