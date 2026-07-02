@@ -51,6 +51,11 @@ async function loadProfile() {
   currentUser = data.user;
   saveSession(currentUser);
 
+  if (typeof applyAvatarToDashboard === 'function') {
+  applyAvatarToDashboard();
+}
+
+
   document.getElementById('playerName').innerText = currentUser.name || 'Jogador Bebcom';
 
   const xp = Number(currentUser.xp || 0);
@@ -124,13 +129,28 @@ async function scanQr() {
   await loadProfile();
   await loadUniverse();
 
+  if (data.character) {
+  currentUser.character = data.character;
+  currentUser.level = data.newLevel;
+  currentUser.xp = data.newXp;
+  currentUser.rank = data.rank;
+  saveSession(currentUser);
+  applyAvatarToDashboard?.();
+}
+
+if (data.characterEvolved && typeof showCharacterEvolutionOverlay === 'function') {
+  setTimeout(() => {
+    showCharacterEvolutionOverlay(data.characterEvolution, data.character);
+  }, 1250);
+}
+
   if (typeof animateUniverseAdvance === 'function') {
     animateUniverseAdvance(data);
   }
 
   if (data.reward && typeof showArtifactUnlock === 'function') {
-    setTimeout(() => showArtifactUnlock(data.reward), 950);
-  }
+  setTimeout(() => showArtifactUnlock(data.reward), data.characterEvolved ? 3200 : 950);
+}
 }
 
 function renderRewards(rewards) {
