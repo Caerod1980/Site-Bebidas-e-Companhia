@@ -172,6 +172,11 @@
   50% { transform: scale(1.055); }
 }
 
+/* =====================================================
+   MÓDULO 13.1 — PERSONAGEM PERSISTENTE BEBCOM
+   Cole no final de clube/css/avatar.css
+===================================================== */
+
 .character-card { min-height: 405px; }
 .character-origin { color: #94a3b8; font-size: 12px; font-weight: 800; margin: -2px 0 10px; }
 .avatar-character-shell { width: 160px !important; height: 190px !important; border-radius: 28px !important; overflow: visible !important; }
@@ -246,10 +251,3 @@
 @keyframes charFloat { 0%,100% { transform: translateY(0) rotate(-1deg); } 50% { transform: translateY(-8px) rotate(1deg); } }
 @keyframes charAuraPulse { 0%,100% { transform: scale(.94); opacity: .13; } 50% { transform: scale(1.08); opacity: .24; } }
 @keyframes droneFloat { 0%,100% { transform: translateY(0) translateX(0); } 50% { transform: translateY(-10px) translateX(5px); } }
-
-
-@media (max-width: 520px) {
-  .avatar-cards {
-    grid-template-columns: 1fr;
-  }
-}
