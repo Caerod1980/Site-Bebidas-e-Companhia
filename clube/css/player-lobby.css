@@ -112,3 +112,92 @@
 #profileCard .player-lobby-actions button {
   min-width: 145px !important;
 }
+
+/* =====================================================
+   PLAYER LOBBY — FORÇAR HOME MOBILE
+===================================================== */
+
+@media (max-width:720px){
+  #dashboardCard .app-view-home#profileCard,
+  #dashboardCard #profileCard.app-view-home,
+  #profileCard.app-view-home {
+    display:block!important;
+    width:100%!important;
+    max-width:100%!important;
+    left:auto!important;
+    right:auto!important;
+    transform:none!important;
+    margin:0 auto 18px!important;
+    padding:0!important;
+    overflow:hidden!important;
+  }
+
+  #dashboardCard .app-view-home#profileCard .player-lobby-shell,
+  #dashboardCard #profileCard.app-view-home .player-lobby-shell,
+  #profileCard.app-view-home .player-lobby-shell {
+    width:100%!important;
+    max-width:100%!important;
+    min-width:0!important;
+    box-sizing:border-box!important;
+    margin:0 auto!important;
+    padding:22px 16px 120px!important;
+    display:flex!important;
+    flex-direction:column!important;
+    align-items:center!important;
+    justify-content:flex-start!important;
+    text-align:center!important;
+  }
+
+  #profileCard.app-view-home .player-lobby-avatar,
+  #profileCard.app-view-home .player-lobby-kicker,
+  #profileCard.app-view-home .player-lobby-stage,
+  #profileCard.app-view-home h2,
+  #profileCard.app-view-home .player-lobby-class,
+  #profileCard.app-view-home .player-lobby-xp-row,
+  #profileCard.app-view-home .player-lobby-xp,
+  #profileCard.app-view-home .player-lobby-xp-text,
+  #profileCard.app-view-home .player-lobby-stats,
+  #profileCard.app-view-home .player-lobby-actions {
+    align-self:center!important;
+    margin-left:auto!important;
+    margin-right:auto!important;
+  }
+
+  #profileCard.app-view-home .player-lobby-avatar {
+    width:100%!important;
+    height:235px!important;
+    display:flex!important;
+    justify-content:center!important;
+    align-items:center!important;
+  }
+
+  #profileCard.app-view-home .player-lobby-avatar .bebcom-character.compact{
+    transform:scale(1.02)!important;
+    transform-origin:center!important;
+  }
+
+  #profileCard.app-view-home .player-lobby-stage {
+    display:inline-flex!important;
+    width:auto!important;
+  }
+
+  #profileCard.app-view-home h2,
+  #profileCard.app-view-home .player-lobby-class,
+  #profileCard.app-view-home .player-lobby-xp-text {
+    width:100%!important;
+    text-align:center!important;
+  }
+
+  #profileCard.app-view-home .player-lobby-xp-row {
+    width:100%!important;
+    display:flex!important;
+    justify-content:space-between!important;
+  }
+
+  #profileCard.app-view-home .player-lobby-stats {
+    width:100%!important;
+    display:grid!important;
+    grid-template-columns:repeat(3,minmax(0,1fr))!important;
+    gap:8px!important;
+  }
+}
