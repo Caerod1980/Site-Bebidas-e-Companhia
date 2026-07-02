@@ -755,3 +755,81 @@
     font-size: 26px;
   }
 }
+
+/* =====================================================
+   MÓDULO 13.1C — AJUSTE FINO HUD PERSONAGEM MOBILE
+===================================================== */
+
+.avatar-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 26px 18px 24px;
+}
+
+.avatar-box::before {
+  align-self: center;
+  margin-bottom: 10px;
+}
+
+.avatar-character-shell {
+  order: 1;
+  height: 230px !important;
+  margin: 0 auto 6px !important;
+}
+
+.avatar-character-shell .bebcom-character.compact {
+  transform: scale(1.02);
+}
+
+.avatar-box h2 {
+  order: 2;
+  width: 100%;
+  text-align: center;
+  margin: 4px 0 8px;
+}
+
+#avatarName {
+  order: 3;
+  max-width: 92%;
+  text-align: center;
+  line-height: 1.25;
+  white-space: normal;
+}
+
+.player-actions {
+  order: 4;
+}
+
+.xp-bar {
+  order: 5;
+  width: 100%;
+  margin-top: 16px;
+}
+
+#xpText {
+  order: 6;
+  width: 100%;
+  text-align: center;
+  margin: 4px 0 12px;
+}
+
+.avatar-box .grid {
+  order: 7;
+  width: 100%;
+}
+
+@media (max-width: 720px) {
+  .avatar-character-shell {
+    height: 215px !important;
+  }
+
+  .avatar-character-shell .bebcom-character.compact {
+    transform: scale(.96);
+  }
+
+  #avatarName {
+    font-size: 14px;
+    padding: 8px 13px;
+  }
+}
