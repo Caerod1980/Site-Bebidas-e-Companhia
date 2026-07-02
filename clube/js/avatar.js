@@ -1,85 +1,94 @@
-const BEBCOM_AVATARS = [
-  {
-    id: 'ranger-neon',
-    name: 'Ranger Neon',
-    emoji: '🧑‍🚀',
-    role: 'Explorador de Missões',
-    color: '#dc2626',
-    description: 'Corajoso, intenso e movido por desafios. Ideal para quem quer completar missões e evoluir rápido.'
-  },
-  {
-    id: 'capita-aurora',
-    name: 'Capitã Aurora',
-    emoji: '👩‍✈️',
-    role: 'Líder de Campanhas',
-    color: '#2563eb',
-    description: 'Estratégica e carismática. Uma personagem preparada para eventos, temporadas e conquistas especiais.'
-  },
-  {
-    id: 'forge',
-    name: 'Forge',
-    emoji: '🛠️',
-    role: 'Mestre dos Equipamentos',
-    color: '#f59e0b',
-    description: 'Criativo e técnico. Representa evolução, itens, melhorias e desbloqueios dentro do Universo Bebcom.'
-  },
-  {
-    id: 'nyx',
-    name: 'Nyx',
-    emoji: '🥷',
-    role: 'Caçador de Códigos',
-    color: '#8b5cf6',
-    description: 'Silencioso e misterioso. Especialista em códigos secretos, QR Codes raros e missões ocultas.'
-  },
-  {
-    id: 'titan',
-    name: 'Titan',
-    emoji: '🛡️',
-    role: 'Guardião Bebcom',
-    color: '#10b981',
-    description: 'Forte e leal. Representa constância, presença e participação em desafios longos.'
-  },
-  {
-    id: 'pulse',
-    name: 'Pulse',
-    emoji: '⚡',
-    role: 'Mensageiro da Velocidade',
-    color: '#06b6d4',
-    description: 'Ágil e energético. Combina com clientes que participam sempre e gostam de novidades rápidas.'
-  }
+// =====================================================
+// MÓDULO 13.1 — SISTEMA DE PERSONAGEM PERSISTENTE
+// Substitui clube/js/avatar.js
+// =====================================================
+
+const BEBCOM_CHARACTERS = [
+  { id: 'explorer_neon', name: 'Explorador Neon', origin: 'Base Bebcom', role: 'Explorador de Missões', color: '#dc2626', accent: '#f59e0b', planetAffinity: 'geral', symbol: '🚀', description: 'Equilibrado, corajoso e preparado para iniciar qualquer jornada no Universo Bebcom.' },
+  { id: 'energy_guardian', name: 'Guardião da Energia', origin: 'Planeta Energia', role: 'Especialista em Energéticos', color: '#06b6d4', accent: '#fbbf24', planetAffinity: 'energéticos', symbol: '⚡', description: 'Ágil, elétrico e ideal para jogadores que buscam campanhas intensas e evolução rápida.' },
+  { id: 'fire_forge', name: 'Forjado no Fogo', origin: 'Planeta Fogo', role: 'Mestre das Expedições de Churrasco', color: '#f97316', accent: '#ef4444', planetAffinity: 'carvão', symbol: '🔥', description: 'Resistente, forte e criado para missões longas, eventos especiais e grandes conquistas.' },
+  { id: 'cosmic_runner', name: 'Corredor Cósmico', origin: 'Rotas da Velocidade', role: 'Caçador de Códigos', color: '#8b5cf6', accent: '#22d3ee', planetAffinity: 'drinks', symbol: '🌌', description: 'Misterioso, rápido e perfeito para quem gosta de QR Codes raros e missões surpresa.' },
+  { id: 'base_titan', name: 'Titã da Base', origin: 'Base Bebcom', role: 'Guardião das Recompensas', color: '#10b981', accent: '#fbbf24', planetAffinity: 'geral', symbol: '🛡️', description: 'Leal, constante e feito para jogadores que querem construir uma grande história no Clube.' },
+  { id: 'neon_captain', name: 'Capitão Neon', origin: 'Comando Orbital', role: 'Líder de Temporadas', color: '#2563eb', accent: '#ec4899', planetAffinity: 'geral', symbol: '👑', description: 'Carismático, estratégico e preparado para eventos, rankings e futuras missões cooperativas.' }
 ];
 
 let avatarSelection = null;
 let avatarOpenedFromDashboard = false;
 
+function getCharacterStage(level = 1) {
+  const lvl = Number(level || 1);
+  if (lvl >= 50) return { id: 'cosmic_legend', label: 'Lenda Cósmica', tier: 6, next: null };
+  if (lvl >= 30) return { id: 'commander', label: 'Comandante', tier: 5, next: 50 };
+  if (lvl >= 20) return { id: 'guardian', label: 'Guardião', tier: 4, next: 30 };
+  if (lvl >= 10) return { id: 'cadet_plus', label: 'Cadete Avançado', tier: 3, next: 20 };
+  if (lvl >= 5) return { id: 'cadet', label: 'Cadete', tier: 2, next: 10 };
+  return { id: 'explorer', label: 'Explorador', tier: 1, next: 5 };
+}
+
+function getLocalCharacterFromAvatar(avatar) {
+  if (!avatar) return BEBCOM_CHARACTERS[0];
+  return BEBCOM_CHARACTERS.find(c => c.id === avatar.id || c.id === avatar.skin) || BEBCOM_CHARACTERS[0];
+}
+
+function renderBebcomCharacter(characterData = {}, options = {}) {
+  const level = Number(characterData?.progression?.level || currentUser?.level || 1);
+  const stage = characterData?.progression || getCharacterStage(level);
+  const archetype = characterData?.archetype || getLocalCharacterFromAvatar(getSavedAvatar());
+  const appearance = characterData?.appearance || {};
+  const tier = Number(stage.tier || getCharacterStage(level).tier || 1);
+
+  const primary = appearance?.palette?.primary || archetype.color;
+  const accent = appearance?.palette?.accent || archetype.accent;
+  const aura = appearance?.aura && appearance.aura !== 'none';
+  const companion = appearance?.companion && appearance.companion !== 'none';
+
+  return `
+    <div class="bebcom-character ${options.compact ? 'compact' : ''}" style="--char-primary:${primary};--char-accent:${accent};">
+      <div class="char-aura ${aura ? 'active' : ''}"></div>
+      <div class="char-platform"></div>
+      ${companion ? `<div class="char-drone">◆</div>` : ''}
+      <div class="char-body tier-${tier}">
+        <div class="char-head"><div class="char-visor"></div><div class="char-symbol">${archetype.symbol || '🚀'}</div></div>
+        <div class="char-neck"></div>
+        <div class="char-torso"><div class="char-core"></div><div class="char-armor left"></div><div class="char-armor right"></div></div>
+        <div class="char-arms"><span></span><span></span></div>
+        <div class="char-legs"><span></span><span></span></div>
+      </div>
+      <div class="char-stage-badge">${stage.stageLabel || stage.label || getCharacterStage(level).label}</div>
+    </div>
+  `;
+}
+
 function renderAvatarCards() {
   const box = document.getElementById('avatarCards');
   if (!box) return;
 
-  box.innerHTML = BEBCOM_AVATARS.map(avatar => `
-    <article
-      class="avatar-card"
-      data-avatar-id="${avatar.id}"
-      style="--avatar-color:${avatar.color}"
-      onclick="selectAvatar('${avatar.id}')">
+  box.innerHTML = BEBCOM_CHARACTERS.map(character => {
+    const previewCharacter = {
+      archetype: character,
+      progression: { level: 1, tier: 1, stageLabel: 'Explorador' },
+      appearance: { palette: { primary: character.color, accent: character.accent } }
+    };
 
-      <div class="avatar-pod">${avatar.emoji}</div>
-      <h3>${avatar.name}</h3>
-      <div class="avatar-role">${avatar.role}</div>
-      <p>${avatar.description}</p>
-    </article>
-  `).join('');
+    return `
+      <article class="avatar-card character-card" data-avatar-id="${character.id}" style="--avatar-color:${character.color};--avatar-accent:${character.accent};" onclick="selectAvatar('${character.id}')">
+        ${renderBebcomCharacter(previewCharacter, { compact: true })}
+        <h3>${character.name}</h3>
+        <div class="avatar-role">${character.role}</div>
+        <div class="character-origin">Origem: ${character.origin}</div>
+        <p>${character.description}</p>
+      </article>
+    `;
+  }).join('');
 }
 
 function openAvatarStage(fromDashboard = false) {
   avatarOpenedFromDashboard = fromDashboard;
   avatarSelection = null;
-
   renderAvatarCards();
-
   document.getElementById('avatarStage')?.classList.remove('hidden');
   document.getElementById('confirmAvatarBtn').disabled = true;
-  document.getElementById('selectedAvatarInfo').innerText = 'Toque em um personagem para visualizar.';
+  document.getElementById('selectedAvatarInfo').innerText = 'Escolha a origem do seu personagem no Universo Bebcom.';
 }
 
 function closeAvatarStage() {
@@ -87,63 +96,115 @@ function closeAvatarStage() {
 }
 
 function selectAvatar(avatarId) {
-  avatarSelection = BEBCOM_AVATARS.find(a => a.id === avatarId);
+  avatarSelection = BEBCOM_CHARACTERS.find(a => a.id === avatarId);
 
   document.querySelectorAll('.avatar-card').forEach(card => {
     card.classList.toggle('selected', card.dataset.avatarId === avatarId);
   });
 
-  const info = document.getElementById('selectedAvatarInfo');
-  const btn = document.getElementById('confirmAvatarBtn');
-
-  info.innerHTML = `
-    <strong>${avatarSelection.emoji} ${avatarSelection.name}</strong><br>
+  document.getElementById('selectedAvatarInfo').innerHTML = `
+    <strong>${avatarSelection.symbol} ${avatarSelection.name}</strong><br>
     ${avatarSelection.role}<br>
+    <span class="small">Origem: ${avatarSelection.origin}</span><br>
     <span class="small">${avatarSelection.description}</span>
   `;
 
-  btn.disabled = false;
+  document.getElementById('confirmAvatarBtn').disabled = false;
 }
 
-function confirmAvatarSelection() {
+async function confirmAvatarSelection() {
   if (!avatarSelection) return;
 
-  saveAvatar(avatarSelection);
+  saveAvatar({
+    id: avatarSelection.id,
+    name: avatarSelection.name,
+    role: avatarSelection.role,
+    color: avatarSelection.color,
+    accent: avatarSelection.accent,
+    symbol: avatarSelection.symbol,
+    origin: avatarSelection.origin
+  });
+
   selectedAvatar = avatarSelection;
+
+  if (currentUser?.phone) {
+    try {
+      const response = await fetch(`${API_BASE}/api/clube/personagem/selecionar`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ phone: currentUser.phone, archetypeId: avatarSelection.id })
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        currentUser.character = data.character;
+        saveSession(currentUser);
+      }
+    } catch (error) {
+      console.warn('Personagem salvo apenas localmente por enquanto:', error);
+    }
+  }
 
   closeAvatarStage();
   applyAvatarToDashboard();
 
-  if (!avatarOpenedFromDashboard) {
-    showDashboardAfterAvatar();
-  }
+  if (!avatarOpenedFromDashboard) showDashboardAfterAvatar();
 }
 
 function applyAvatarToDashboard() {
   const avatar = getSavedAvatar() || selectedAvatar;
-  if (!avatar) return;
+  const character = currentUser?.character || null;
 
   const dashAvatar = document.getElementById('dashboardAvatar');
   const avatarName = document.getElementById('avatarName');
 
   if (dashAvatar) {
-    dashAvatar.innerText = avatar.emoji;
-    dashAvatar.style.background = `
-      radial-gradient(circle at 35% 25%, #fff, transparent 18%),
-      linear-gradient(135deg, ${avatar.color}, #111827)
-    `;
-    dashAvatar.style.boxShadow = `0 0 44px ${avatar.color}66`;
+    dashAvatar.innerHTML = renderBebcomCharacter(character, { compact: true });
+    dashAvatar.classList.add('avatar-character-shell');
+    dashAvatar.style.background = 'transparent';
+    dashAvatar.style.boxShadow = 'none';
   }
 
   if (avatarName) {
-    avatarName.innerText = `${avatar.name} • ${avatar.role}`;
+    const archetype = character?.archetype || getLocalCharacterFromAvatar(avatar);
+    const progression = character?.progression || getCharacterStage(currentUser?.level || 1);
+    avatarName.innerText = `${archetype.name} • ${progression.stageLabel || progression.label || 'Explorador'}`;
   }
 }
 
 function showDashboardAfterAvatar() {
   document.getElementById('loginCard')?.classList.add('hidden');
   document.getElementById('dashboardCard')?.classList.remove('hidden');
-
   loadProfile();
   loadMissions();
 }
+
+function showCharacterEvolutionOverlay(evolution = {}, character = null) {
+  const overlay = document.getElementById('universeRewardOverlay');
+  if (!overlay) return;
+
+  const char = character || currentUser?.character;
+  const title = evolution?.title || char?.progression?.stageLabel || 'Nova evolução';
+
+  overlay.innerHTML = `
+    <div class="character-evolution-box">
+      <div class="character-evolution-aura"></div>
+      <div class="character-evolution-kicker">🌌 EVOLUÇÃO DO PERSONAGEM</div>
+      ${renderBebcomCharacter(char)}
+      <h2>${title}</h2>
+      <p>Seu personagem evoluiu dentro do Universo Bebcom.</p>
+      <div class="character-unlocks">${(evolution?.unlocked || []).slice(-4).map(item => `<span>✨ ${formatEquipmentName(item)}</span>`).join('')}</div>
+      <button class="btn-primary" onclick="closeUniverseReward()">Continuar Jornada</button>
+    </div>
+  `;
+
+  overlay.classList.add('active');
+}
+
+function formatEquipmentName(item = '') {
+  return String(item).replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+}
+
+window.renderBebcomCharacter = renderBebcomCharacter;
+window.showCharacterEvolutionOverlay = showCharacterEvolutionOverlay;
