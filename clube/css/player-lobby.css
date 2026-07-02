@@ -1,0 +1,114 @@
+/* =====================================================
+   PLAYER LOBBY — CSS FINAL CARREGADO POR ÚLTIMO
+===================================================== */
+
+#profileCard.avatar-box {
+  display: block !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  text-align: center !important;
+}
+
+#profileCard.avatar-box::before {
+  display: none !important;
+  content: none !important;
+}
+
+#profileCard .player-lobby-shell {
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  padding: 24px 18px 120px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  text-align: center !important;
+}
+
+#profileCard .player-lobby-kicker {
+  width: auto !important;
+  max-width: 92% !important;
+  margin: 0 auto 12px !important;
+  align-self: center !important;
+}
+
+#profileCard .player-lobby-avatar {
+  width: 100% !important;
+  height: 245px !important;
+  min-height: 245px !important;
+  margin: 0 auto 8px !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  overflow: visible !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+#profileCard .player-lobby-avatar .bebcom-character.compact {
+  transform: scale(1.03) !important;
+  transform-origin: center !important;
+}
+
+#profileCard .player-lobby-stage {
+  display: inline-flex !important;
+  width: auto !important;
+  max-width: 92% !important;
+  margin: 6px auto 10px !important;
+  align-self: center !important;
+}
+
+#profileCard .player-lobby-shell h2 {
+  width: 100% !important;
+  margin: 6px 0 4px !important;
+  text-align: center !important;
+}
+
+#profileCard .player-lobby-class {
+  width: 100% !important;
+  margin: 0 0 16px !important;
+  padding: 0 !important;
+  text-align: center !important;
+  background: transparent !important;
+  border: none !important;
+}
+
+#profileCard .player-lobby-xp-row {
+  width: 100% !important;
+  max-width: 100% !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  gap: 12px !important;
+  text-align: left !important;
+}
+
+#profileCard .player-lobby-xp {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+#profileCard .player-lobby-xp-text {
+  width: 100% !important;
+  text-align: center !important;
+}
+
+#profileCard .player-lobby-stats {
+  width: 100% !important;
+  max-width: 100% !important;
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 8px !important;
+}
+
+#profileCard .player-lobby-actions {
+  width: 100% !important;
+  display: flex !important;
+  justify-content: center !important;
+  gap: 10px !important;
+  flex-wrap: wrap !important;
+  margin-top: 18px !important;
+}
+
+#profileCard .player-lobby-actions button {
+  min-width: 145px !important;
+}
