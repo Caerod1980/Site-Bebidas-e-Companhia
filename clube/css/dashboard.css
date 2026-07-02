@@ -640,3 +640,118 @@
     font-size: 19px;
   }
 }
+
+/* =====================================================
+   MÓDULO 13.1B — HUD OFICIAL DO PERSONAGEM
+===================================================== */
+
+.avatar-box {
+  position: relative;
+  overflow: hidden;
+  padding-top: 26px;
+}
+
+.avatar-box::before {
+  content: "🌌 JOGADOR";
+  display: inline-flex;
+  margin-bottom: 12px;
+  padding: 7px 13px;
+  border-radius: 999px;
+  color: #fbbf24;
+  font-size: 11px;
+  font-weight: 950;
+  letter-spacing: 1.4px;
+  background: rgba(0,0,0,.36);
+  border: 1px solid rgba(245,158,11,.35);
+}
+
+.avatar-character-shell {
+  width: 100% !important;
+  height: 185px !important;
+  margin: 0 auto 10px !important;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  overflow: visible !important;
+}
+
+.avatar-character-shell .bebcom-character.compact {
+  transform: scale(.82);
+  transform-origin: center;
+}
+
+.avatar-box h2 {
+  position: relative;
+  z-index: 3;
+  margin: 4px 0 4px;
+  font-size: clamp(28px, 7vw, 42px);
+  line-height: 1;
+}
+
+#avatarName {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 14px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  color: #fbbf24;
+  font-size: 13px;
+  font-weight: 900;
+  background: rgba(0,0,0,.32);
+  border: 1px solid rgba(245,158,11,.28);
+}
+
+.xp-bar {
+  margin: 14px 0 8px;
+}
+
+#xpText {
+  margin: 0 0 16px;
+  color: #fbbf24;
+  font-weight: 900;
+}
+
+.avatar-box .grid {
+  margin-top: 16px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.avatar-box .stat {
+  min-height: 86px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.player-actions {
+  margin-top: 14px;
+}
+
+@media (max-width: 720px) {
+  .avatar-box {
+    padding: 24px 18px 22px;
+  }
+
+  .avatar-character-shell {
+    height: 170px !important;
+  }
+
+  .avatar-character-shell .bebcom-character.compact {
+    transform: scale(.76);
+  }
+
+  .avatar-box .grid {
+    gap: 8px;
+  }
+
+  .avatar-box .stat {
+    padding: 12px 8px;
+  }
+
+  .avatar-box .stat strong {
+    font-size: 26px;
+  }
+}
