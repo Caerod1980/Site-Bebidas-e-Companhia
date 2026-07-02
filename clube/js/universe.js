@@ -180,7 +180,14 @@ function chooseBestCampaign(campaigns = universeState.expeditions) { const sorte
 function getSelectedExpedition() { return universeState.expeditions.find(exp => String(exp._id) === String(universeState.selectedExpeditionId)) || chooseBestCampaign(); }
 function chooseCurrentExpedition() { return chooseBestCampaign(); }
 function findProgressForExpedition(expedition) { if (!expedition?._id) return null; return universeState.progress.find(item => String(item.expeditionId || '') === String(expedition._id || '')); }
-function calculateExpeditionPercent(expedition, progress) { const total = Array.isArray(expedition?.steps) ? expedition.steps.length : 0; if (!total) return 0; const completed = Array.isArray(progress?.completedSteps) ? progress.completedSteps.length : 0; return Math.min(100, Math.round((completed / total) * 100)); }
+function calculateExpeditionPercent(expedition, progress) {
+  const targetXp = Number(progress?.targetXp || expedition?.targetXp || expedition?.xp || 100);
+  const progressXp = Number(progress?.progressXp || 0);
+
+  if (!targetXp) return 0;
+
+  return Math.min(100, Math.round((progressXp / targetXp) * 100));
+}
 function getNextProductText(expedition, progress) { const steps = Array.isArray(expedition?.steps) ? expedition.steps : []; const completed = new Set(progress?.completedSteps || []); const nextStep = steps.find(step => !completed.has(step.index)); if (!nextStep) return expedition?.completionMessage || 'Expedição concluída. Retire sua recompensa na Base Bebcom.'; return `próximo produto: ${nextStep.title}`; }
 function getCampaignTimeLabel(expedition) { if (expedition?.permanent || !expedition?.endsAt) return '♾️ permanente'; const end = new Date(expedition.endsAt); const diff = end.getTime() - Date.now(); if (Number.isNaN(end.getTime())) return '⏳ ativa'; if (diff <= 0) return '⏳ encerrando'; const days = Math.ceil(diff / (1000*60*60*24)); if (days <= 1) return '🔥 termina hoje'; if (days <= 3) return `⏳ ${days} dias`; return `📅 ${end.toLocaleDateString('pt-BR')}`; }
 function getUniverseAvatarEmoji() { const saved = getSavedAvatar?.(); return saved?.emoji || '🧑‍🚀'; }
