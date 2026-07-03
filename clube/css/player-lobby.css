@@ -1,256 +1,132 @@
-/* =====================================================
-   PLAYER LOBBY — CSS FINAL CARREGADO POR ÚLTIMO
-===================================================== */
+/* PLAYER LOBBY — PERFIL FINAL */
 
-#profileCard.avatar-box {
-  display: block !important;
+#profileCard {
   padding: 0 !important;
   overflow: hidden !important;
-  text-align: center !important;
-}
-
-#profileCard.avatar-box::before {
-  display: none !important;
-  content: none !important;
 }
 
 #profileCard .player-lobby-shell {
-  width: 100% !important;
-  max-width: 100% !important;
-  box-sizing: border-box !important;
-  padding: 24px 18px 120px !important;
+  padding: 22px 16px 28px !important;
   display: flex !important;
   flex-direction: column !important;
   align-items: center !important;
   text-align: center !important;
+  gap: 10px !important;
 }
 
 #profileCard .player-lobby-kicker {
-  width: auto !important;
-  max-width: 92% !important;
-  margin: 0 auto 12px !important;
-  align-self: center !important;
+  width: 100% !important;
+  margin: 0 auto 8px !important;
+  padding: 10px 12px !important;
+  border-radius: 999px;
+  color: #fbbf24;
+  font-size: 12px;
+  font-weight: 950;
+  letter-spacing: 1.5px;
+  background: rgba(0,0,0,.38);
+  border: 1px solid rgba(245,158,11,.35);
 }
 
 #profileCard .player-lobby-avatar {
   width: 100% !important;
-  height: 245px !important;
-  min-height: 245px !important;
-  margin: 0 auto 8px !important;
+  height: 190px !important;
   display: flex !important;
   justify-content: center !important;
   align-items: center !important;
-  overflow: visible !important;
-  background: transparent !important;
-  box-shadow: none !important;
+  margin: 0 auto !important;
 }
 
 #profileCard .player-lobby-avatar .bebcom-character.compact {
-  transform: scale(1.03) !important;
+  transform: scale(.88) !important;
   transform-origin: center !important;
 }
-
-#profileCard .player-lobby-stage {
-  display: inline-flex !important;
-  width: auto !important;
-  max-width: 92% !important;
-  margin: 6px auto 10px !important;
-  align-self: center !important;
-}
-
-#profileCard .player-lobby-shell h2 {
-  width: 100% !important;
-  margin: 6px 0 4px !important;
-  text-align: center !important;
-}
-
-#profileCard .player-lobby-class {
-  width: 100% !important;
-  margin: 0 0 16px !important;
-  padding: 0 !important;
-  text-align: center !important;
-  background: transparent !important;
-  border: none !important;
-}
-
-#profileCard .player-lobby-xp-row {
-  width: 100% !important;
-  max-width: 100% !important;
-  display: flex !important;
-  justify-content: space-between !important;
-  gap: 12px !important;
-  text-align: left !important;
-}
-
-#profileCard .player-lobby-xp {
-  width: 100% !important;
-  max-width: 100% !important;
-}
-
-#profileCard .player-lobby-xp-text {
-  width: 100% !important;
-  text-align: center !important;
-}
-
-#profileCard .player-lobby-stats {
-  width: 100% !important;
-  max-width: 100% !important;
-  display: grid !important;
-  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-  gap: 8px !important;
-}
-
-#profileCard .player-lobby-actions {
-  width: 100% !important;
-  display: flex !important;
-  justify-content: center !important;
-  gap: 10px !important;
-  flex-wrap: wrap !important;
-  margin-top: 18px !important;
-}
-
-#profileCard .player-lobby-actions button {
-  min-width: 145px !important;
-}
-
-/* =====================================================
-   PLAYER LOBBY — FORÇAR HOME MOBILE
-===================================================== */
-
-@media (max-width:720px){
-  #dashboardCard .app-view-home#profileCard,
-  #dashboardCard #profileCard.app-view-home,
-  #profileCard.app-view-home {
-    display:block!important;
-    width:100%!important;
-    max-width:100%!important;
-    left:auto!important;
-    right:auto!important;
-    transform:none!important;
-    margin:0 auto 18px!important;
-    padding:0!important;
-    overflow:hidden!important;
-  }
-
-  #dashboardCard .app-view-home#profileCard .player-lobby-shell,
-  #dashboardCard #profileCard.app-view-home .player-lobby-shell,
-  #profileCard.app-view-home .player-lobby-shell {
-    width:100%!important;
-    max-width:100%!important;
-    min-width:0!important;
-    box-sizing:border-box!important;
-    margin:0 auto!important;
-    padding:22px 16px 120px!important;
-    display:flex!important;
-    flex-direction:column!important;
-    align-items:center!important;
-    justify-content:flex-start!important;
-    text-align:center!important;
-  }
-
-  #profileCard.app-view-home .player-lobby-avatar,
-  #profileCard.app-view-home .player-lobby-kicker,
-  #profileCard.app-view-home .player-lobby-stage,
-  #profileCard.app-view-home h2,
-  #profileCard.app-view-home .player-lobby-class,
-  #profileCard.app-view-home .player-lobby-xp-row,
-  #profileCard.app-view-home .player-lobby-xp,
-  #profileCard.app-view-home .player-lobby-xp-text,
-  #profileCard.app-view-home .player-lobby-stats,
-  #profileCard.app-view-home .player-lobby-actions {
-    align-self:center!important;
-    margin-left:auto!important;
-    margin-right:auto!important;
-  }
-
-  #profileCard.app-view-home .player-lobby-avatar {
-    width:100%!important;
-    height:235px!important;
-    display:flex!important;
-    justify-content:center!important;
-    align-items:center!important;
-  }
-
-  #profileCard.app-view-home .player-lobby-avatar .bebcom-character.compact{
-    transform:scale(1.02)!important;
-    transform-origin:center!important;
-  }
-
-  #profileCard.app-view-home .player-lobby-stage {
-    display:inline-flex!important;
-    width:auto!important;
-  }
-
-  #profileCard.app-view-home h2,
-  #profileCard.app-view-home .player-lobby-class,
-  #profileCard.app-view-home .player-lobby-xp-text {
-    width:100%!important;
-    text-align:center!important;
-  }
-
-  #profileCard.app-view-home .player-lobby-xp-row {
-    width:100%!important;
-    display:flex!important;
-    justify-content:space-between!important;
-  }
-
-  #profileCard.app-view-home .player-lobby-stats {
-    width:100%!important;
-    display:grid!important;
-    grid-template-columns:repeat(3,minmax(0,1fr))!important;
-    gap:8px!important;
-  }
-}
-
-/* AJUSTE FINAL — PERFIL / LOBBY */
 
 #profileCard .char-stage-badge {
   display: none !important;
 }
 
+#profileCard .player-lobby-stage {
+  width: auto !important;
+  margin: 4px auto 2px !important;
+  padding: 8px 18px !important;
+  border-radius: 999px;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 950;
+  background: rgba(0,0,0,.42);
+  border: 1px solid rgba(6,182,212,.45);
+}
+
+#profileCard h2 {
+  margin: 4px 0 0 !important;
+  font-size: 42px !important;
+  line-height: 1 !important;
+}
+
 #profileCard .player-lobby-class {
   display: none !important;
 }
 
-#profileCard .player-lobby-avatar {
-  height: 210px !important;
+#profileCard .player-lobby-xp-row {
+  width: 100% !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  color: #fbbf24;
+  font-weight: 950;
+  margin-top: 8px !important;
 }
 
-#profileCard .player-lobby-avatar .bebcom-character.compact {
-  transform: scale(.92) !important;
+#profileCard .player-lobby-xp {
+  width: 100% !important;
+  height: 16px !important;
+  margin: 0 !important;
 }
 
-#profileCard .player-lobby-shell {
-  padding-bottom: 34px !important;
+#profileCard .player-lobby-xp-text {
+  margin: 0 0 8px !important;
+  color: #94a3b8 !important;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+#profileCard .player-lobby-stats {
+  width: 100% !important;
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 8px !important;
+  margin: 8px 0 10px !important;
+}
+
+#profileCard .player-lobby-stats .stat {
+  min-height: 86px !important;
+  border-radius: 20px !important;
+}
+
+#profileCard .player-lobby-actions {
+  width: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 10px !important;
+  margin: 6px 0 0 !important;
 }
 
 #profileCard .player-lobby-actions button {
-  background: linear-gradient(135deg, #f97316, #dc2626) !important;
+  width: min(280px, 92%) !important;
+  padding: 14px 16px !important;
+  border-radius: 18px !important;
   color: #fff !important;
+  font-weight: 950 !important;
+  background: linear-gradient(135deg, #f97316, #dc2626) !important;
   border: none !important;
-  box-shadow: 0 10px 26px rgba(249,115,22,.28) !important;
+  box-shadow: 0 10px 26px rgba(249,115,22,.25) !important;
 }
 
 #profileCard .player-lobby-actions button:nth-child(2) {
   background: rgba(255,255,255,.08) !important;
   border: 1px solid rgba(249,115,22,.35) !important;
+  box-shadow: none !important;
 }
-
-@media (max-width:720px){
-  #profileCard .player-lobby-avatar {
-    height: 195px !important;
-  }
-
-  #profileCard .player-lobby-shell {
-    padding: 20px 14px 34px !important;
-  }
-
-  #profileCard .player-lobby-actions {
-    margin-top: 14px !important;
-  }
-}
-
-/* PERFIL ONLY + LIMPEZA FINAL */
 
 @media (max-width:720px){
   body:not([data-mobile-view="profile"]) #profileCard {
@@ -259,35 +135,5 @@
 
   body[data-mobile-view="profile"] #mobileScanFab {
     display: none !important;
-  }
-
-  #profileCard .char-stage-badge,
-  #profileCard .player-lobby-class {
-    display: none !important;
-  }
-
-  #profileCard .player-lobby-avatar {
-    height: 190px !important;
-    min-height: 190px !important;
-  }
-
-  #profileCard .player-lobby-avatar .bebcom-character.compact {
-    transform: scale(.88) !important;
-  }
-
-  #profileCard .player-lobby-shell {
-    padding: 20px 14px 135px !important;
-  }
-
-  #profileCard .player-lobby-actions button {
-    background: linear-gradient(135deg, #f97316, #dc2626) !important;
-    color: #fff !important;
-    border: none !important;
-    box-shadow: 0 10px 26px rgba(249,115,22,.28) !important;
-  }
-
-  #profileCard .player-lobby-actions button:nth-child(2) {
-    background: rgba(255,255,255,.08) !important;
-    border: 1px solid rgba(249,115,22,.38) !important;
   }
 }
