@@ -249,3 +249,45 @@
     margin-top: 14px !important;
   }
 }
+
+/* PERFIL ONLY + LIMPEZA FINAL */
+
+@media (max-width:720px){
+  body:not([data-mobile-view="profile"]) #profileCard {
+    display: none !important;
+  }
+
+  body[data-mobile-view="profile"] #mobileScanFab {
+    display: none !important;
+  }
+
+  #profileCard .char-stage-badge,
+  #profileCard .player-lobby-class {
+    display: none !important;
+  }
+
+  #profileCard .player-lobby-avatar {
+    height: 190px !important;
+    min-height: 190px !important;
+  }
+
+  #profileCard .player-lobby-avatar .bebcom-character.compact {
+    transform: scale(.88) !important;
+  }
+
+  #profileCard .player-lobby-shell {
+    padding: 20px 14px 135px !important;
+  }
+
+  #profileCard .player-lobby-actions button {
+    background: linear-gradient(135deg, #f97316, #dc2626) !important;
+    color: #fff !important;
+    border: none !important;
+    box-shadow: 0 10px 26px rgba(249,115,22,.28) !important;
+  }
+
+  #profileCard .player-lobby-actions button:nth-child(2) {
+    background: rgba(255,255,255,.08) !important;
+    border: 1px solid rgba(249,115,22,.38) !important;
+  }
+}
