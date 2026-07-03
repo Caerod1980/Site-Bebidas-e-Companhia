@@ -418,9 +418,7 @@ function renderPlayerLobby(player) {
 
       <h2 id="playerName">${player.name}</h2>
 
-      <p id="avatarName" class="player-lobby-class">
-        ${characterName}
-      </p>
+     <p id="avatarName" class="player-lobby-class"></p>
 
       <div class="player-lobby-xp-row">
         <span>${player.xp} XP</span>
