@@ -201,3 +201,51 @@
     gap:8px!important;
   }
 }
+
+/* AJUSTE FINAL — PERFIL / LOBBY */
+
+#profileCard .char-stage-badge {
+  display: none !important;
+}
+
+#profileCard .player-lobby-class {
+  display: none !important;
+}
+
+#profileCard .player-lobby-avatar {
+  height: 210px !important;
+}
+
+#profileCard .player-lobby-avatar .bebcom-character.compact {
+  transform: scale(.92) !important;
+}
+
+#profileCard .player-lobby-shell {
+  padding-bottom: 34px !important;
+}
+
+#profileCard .player-lobby-actions button {
+  background: linear-gradient(135deg, #f97316, #dc2626) !important;
+  color: #fff !important;
+  border: none !important;
+  box-shadow: 0 10px 26px rgba(249,115,22,.28) !important;
+}
+
+#profileCard .player-lobby-actions button:nth-child(2) {
+  background: rgba(255,255,255,.08) !important;
+  border: 1px solid rgba(249,115,22,.35) !important;
+}
+
+@media (max-width:720px){
+  #profileCard .player-lobby-avatar {
+    height: 195px !important;
+  }
+
+  #profileCard .player-lobby-shell {
+    padding: 20px 14px 34px !important;
+  }
+
+  #profileCard .player-lobby-actions {
+    margin-top: 14px !important;
+  }
+}
