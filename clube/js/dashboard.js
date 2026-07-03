@@ -391,6 +391,9 @@ function renderPlayerLobby(player) {
   const card = document.getElementById('profileCard');
   if (!card) return;
 
+  card.classList.remove('app-view-home', 'app-view-universe', 'app-view-inventory');
+  card.classList.add('app-view-profile');
+
   const characterName =
     player.character?.archetype?.name ||
     'Explorador Neon';
