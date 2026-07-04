@@ -517,3 +517,329 @@
   width: 58px;
   height: 42px;
 }
+
+/* =====================================================
+   MÓDULO 15 — MASCOTE OFICIAL BEBCOM
+   Substitui visual modular antigo
+===================================================== */
+
+.bebcom-character .char-body,
+.bebcom-character .char-evo-aura,
+.bebcom-character .char-evo-particles,
+.bebcom-character .char-platform,
+.bebcom-character .char-evo-drone,
+.bebcom-character .char-evo-wings {
+  display: none !important;
+}
+
+.bebcom-character {
+  width: 190px;
+  height: 230px;
+}
+
+.bebcom-character.compact {
+  width: 150px;
+  height: 180px;
+}
+
+.mascot-aura {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: var(--char-primary);
+  opacity: .18;
+  filter: blur(32px);
+  animation: charAuraPulse 3s ease-in-out infinite;
+}
+
+.mascot-platform {
+  position: absolute;
+  bottom: 18px;
+  width: 130px;
+  height: 28px;
+  border-radius: 50%;
+  background: radial-gradient(circle, color-mix(in srgb, var(--char-primary) 55%, transparent), transparent 70%);
+  opacity: .65;
+  filter: blur(1px);
+}
+
+.mascot-body {
+  position: relative;
+  width: 100px;
+  height: 170px;
+  animation: charFloat 3s ease-in-out infinite;
+}
+
+.compact .mascot-body {
+  transform: scale(.78);
+  transform-origin: center;
+}
+
+/* cabeça */
+.mascot-head {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 78px;
+  height: 62px;
+  transform: translateX(-50%);
+  border-radius: 32px;
+  background:
+    radial-gradient(circle at 30% 18%, rgba(255,255,255,.95), transparent 18%),
+    linear-gradient(135deg, #fff, #cbd5e1 48%, #64748b);
+  border: 3px solid color-mix(in srgb, var(--char-primary) 55%, white);
+  box-shadow:
+    0 0 30px color-mix(in srgb, var(--char-primary) 48%, transparent),
+    inset 0 0 14px rgba(255,255,255,.28);
+  z-index: 5;
+}
+
+.mascot-visor {
+  position: absolute;
+  left: 50%;
+  top: 22px;
+  width: 50px;
+  height: 17px;
+  transform: translateX(-50%);
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at 25% 40%, rgba(255,255,255,.9), transparent 18%),
+    linear-gradient(90deg, var(--char-primary), var(--char-accent));
+  box-shadow: 0 0 18px var(--char-primary);
+}
+
+.mascot-symbol {
+  position: absolute;
+  right: -9px;
+  top: -9px;
+  width: 25px;
+  height: 25px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  font-size: 12px;
+  background: rgba(0,0,0,.72);
+  border: 1px solid rgba(255,255,255,.22);
+}
+
+.mascot-neck {
+  position: absolute;
+  left: 50%;
+  top: 57px;
+  width: 28px;
+  height: 16px;
+  transform: translateX(-50%);
+  border-radius: 8px;
+  background: #64748b;
+  z-index: 2;
+}
+
+/* corpo */
+.mascot-torso {
+  position: absolute;
+  left: 50%;
+  top: 68px;
+  width: 86px;
+  height: 72px;
+  transform: translateX(-50%);
+  border-radius: 30px 30px 34px 34px;
+  background:
+    radial-gradient(circle at 32% 18%, rgba(255,255,255,.72), transparent 18%),
+    linear-gradient(135deg, #f8fafc, #cbd5e1 48%, #94a3b8);
+  border: 3px solid color-mix(in srgb, var(--char-primary) 50%, white);
+  box-shadow:
+    inset 0 0 14px rgba(0,0,0,.12),
+    0 0 24px color-mix(in srgb, var(--char-primary) 30%, transparent);
+  z-index: 3;
+}
+
+.mascot-core {
+  position: absolute;
+  left: 50%;
+  top: 20px;
+  width: 28px;
+  height: 28px;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 25%, #fff, var(--char-accent));
+  box-shadow: 0 0 24px var(--char-accent);
+}
+
+.mascot-mark {
+  position: absolute;
+  left: 50%;
+  bottom: 12px;
+  width: 38px;
+  height: 6px;
+  transform: translateX(-50%);
+  border-radius: 999px;
+  background: var(--char-primary);
+  opacity: .35;
+}
+
+/* braços e pernas */
+.mascot-arms span,
+.mascot-legs span {
+  position: absolute;
+  display: block;
+  background:
+    linear-gradient(135deg, #f8fafc, #94a3b8);
+  border: 3px solid color-mix(in srgb, var(--char-primary) 45%, white);
+  box-shadow: 0 0 12px color-mix(in srgb, var(--char-primary) 25%, transparent);
+}
+
+.mascot-arms span {
+  top: 82px;
+  width: 24px;
+  height: 54px;
+  border-radius: 20px;
+  z-index: 2;
+}
+
+.mascot-arms span:first-child {
+  left: 0;
+  transform: rotate(12deg);
+}
+
+.mascot-arms span:last-child {
+  right: 0;
+  transform: rotate(-12deg);
+}
+
+.mascot-legs span {
+  top: 132px;
+  width: 28px;
+  height: 38px;
+  border-radius: 14px 14px 20px 20px;
+  z-index: 1;
+}
+
+.mascot-legs span:first-child { left: 25px; }
+.mascot-legs span:last-child { right: 25px; }
+
+/* TIER 2 — maior e mais luminoso */
+.mascot-tier-2 .mascot-body {
+  transform: scale(1.05);
+}
+
+.mascot-tier-2 .mascot-aura {
+  opacity: .24;
+}
+
+.mascot-tier-2 .mascot-core {
+  width: 32px;
+  height: 32px;
+}
+
+/* TIER 3 — forma mais forte */
+.mascot-tier-3 .mascot-body {
+  transform: scale(1.10);
+}
+
+.mascot-tier-3 .mascot-head {
+  width: 82px;
+}
+
+.mascot-tier-3 .mascot-torso {
+  width: 94px;
+  height: 78px;
+}
+
+.mascot-tier-3 .mascot-arms span {
+  width: 28px;
+  height: 60px;
+}
+
+.mascot-tier-3 .mascot-aura {
+  width: 180px;
+  height: 180px;
+  opacity: .30;
+}
+
+/* TIER 4 — herói */
+.mascot-tier-4 .mascot-body {
+  transform: scale(1.15);
+}
+
+.mascot-tier-4 .mascot-head,
+.mascot-tier-4 .mascot-torso {
+  border-width: 4px;
+}
+
+.mascot-tier-4 .mascot-mark {
+  opacity: .75;
+  height: 8px;
+}
+
+.mascot-tier-4 .mascot-aura {
+  width: 200px;
+  height: 200px;
+  opacity: .34;
+}
+
+/* TIER 5 — comandante */
+.mascot-tier-5 .mascot-body {
+  transform: scale(1.20);
+}
+
+.mascot-tier-5 .mascot-antenna {
+  position: absolute;
+  left: 50%;
+  top: -14px;
+  width: 42px;
+  height: 18px;
+  transform: translateX(-50%);
+  border-radius: 999px 999px 0 0;
+  background: linear-gradient(135deg, var(--char-accent), #fff3c4);
+  filter: drop-shadow(0 0 12px var(--char-accent));
+}
+
+.mascot-tier-5 .mascot-aura {
+  width: 220px;
+  height: 220px;
+  opacity: .40;
+}
+
+/* TIER 6 — lenda */
+.mascot-tier-6 .mascot-body {
+  transform: scale(1.25);
+  filter: drop-shadow(0 0 24px var(--char-accent));
+}
+
+.mascot-tier-6 .mascot-aura {
+  width: 240px;
+  height: 240px;
+  opacity: .48;
+}
+
+.mascot-tier-6 .mascot-platform {
+  width: 170px;
+  opacity: .95;
+}
+
+.mascot-tier-6::after {
+  content: "";
+  position: absolute;
+  inset: 18px;
+  background:
+    radial-gradient(circle at 20% 30%, var(--char-accent) 0 2px, transparent 3px),
+    radial-gradient(circle at 80% 40%, var(--char-primary) 0 2px, transparent 3px),
+    radial-gradient(circle at 55% 80%, #fff 0 1.5px, transparent 3px);
+  animation: particleFloat 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* mantém preview pequeno */
+.compact.mascot-tier-2 .mascot-body,
+.compact.mascot-tier-3 .mascot-body,
+.compact.mascot-tier-4 .mascot-body,
+.compact.mascot-tier-5 .mascot-body,
+.compact.mascot-tier-6 .mascot-body {
+  transform: scale(.78);
+}
+
+@keyframes particleFloat {
+  0%,100% { transform: translateY(0); opacity: .55; }
+  50% { transform: translateY(-10px); opacity: .95; }
+}
