@@ -246,3 +246,274 @@
 @keyframes charFloat { 0%,100% { transform: translateY(0) rotate(-1deg); } 50% { transform: translateY(-8px) rotate(1deg); } }
 @keyframes charAuraPulse { 0%,100% { transform: scale(.94); opacity: .13; } 50% { transform: scale(1.08); opacity: .24; } }
 @keyframes droneFloat { 0%,100% { transform: translateY(0) translateX(0); } 50% { transform: translateY(-10px) translateX(5px); } }
+
+/* =====================================================
+   MÓDULO 14 — EVOLUÇÃO VISUAL MODULAR
+===================================================== */
+
+.char-evo-aura {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: var(--char-primary);
+  opacity: .10;
+  filter: blur(28px);
+  animation: charAuraPulse 2.8s ease-in-out infinite;
+}
+
+.char-tier-2 .char-evo-aura { opacity: .18; }
+.char-tier-3 .char-evo-aura { opacity: .24; width: 170px; height: 170px; }
+.char-tier-4 .char-evo-aura { opacity: .30; width: 190px; height: 190px; }
+.char-tier-5 .char-evo-aura,
+.char-tier-6 .char-evo-aura { opacity: .38; width: 215px; height: 215px; }
+
+.char-tier-2 .char-core {
+  width: 31px;
+  height: 31px;
+  box-shadow: 0 0 32px var(--char-accent);
+}
+
+.char-tier-3 .char-core,
+.char-tier-4 .char-core,
+.char-tier-5 .char-core,
+.char-tier-6 .char-core {
+  width: 34px;
+  height: 34px;
+  box-shadow: 0 0 42px var(--char-accent), 0 0 20px var(--char-primary);
+}
+
+.char-shoulder {
+  position: absolute;
+  top: 10px;
+  width: 28px;
+  height: 20px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--char-primary), #111827);
+  border: 1px solid rgba(255,255,255,.28);
+  z-index: 4;
+}
+
+.char-shoulder.left {
+  left: -18px;
+  transform: rotate(-18deg);
+}
+
+.char-shoulder.right {
+  right: -18px;
+  transform: rotate(18deg);
+}
+
+.char-chest-lines {
+  position: absolute;
+  left: 50%;
+  bottom: 12px;
+  width: 54px;
+  height: 12px;
+  transform: translateX(-50%);
+  border-radius: 999px;
+  background:
+    linear-gradient(90deg,
+      transparent,
+      var(--char-accent),
+      transparent);
+  opacity: .85;
+  box-shadow: 0 0 18px var(--char-accent);
+}
+
+.char-gauntlets span {
+  position: absolute;
+  top: 108px;
+  width: 24px;
+  height: 20px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--char-primary), #020617);
+  border: 1px solid rgba(255,255,255,.22);
+  z-index: 6;
+}
+
+.char-gauntlets span:first-child {
+  left: -7px;
+  transform: rotate(12deg);
+}
+
+.char-gauntlets span:last-child {
+  right: -7px;
+  transform: rotate(-12deg);
+}
+
+.char-boots span {
+  position: absolute;
+  top: 163px;
+  width: 31px;
+  height: 17px;
+  border-radius: 8px 8px 14px 14px;
+  background: linear-gradient(135deg, var(--char-primary), #111827);
+  border: 1px solid rgba(255,255,255,.22);
+  z-index: 6;
+}
+
+.char-boots span:first-child { left: 20px; }
+.char-boots span:last-child { right: 20px; }
+
+.char-backpack {
+  position: absolute;
+  left: 50%;
+  top: 75px;
+  width: 98px;
+  height: 56px;
+  transform: translateX(-50%);
+  border-radius: 22px;
+  background: linear-gradient(135deg, rgba(15,23,42,.95), rgba(30,41,59,.82));
+  border: 1px solid rgba(255,255,255,.16);
+  box-shadow: 0 0 25px rgba(0,0,0,.35);
+  z-index: 1;
+}
+
+.char-evo-drone {
+  position: absolute;
+  right: 0;
+  top: 52px;
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: var(--char-accent);
+  background: rgba(0,0,0,.58);
+  border: 1px solid rgba(255,255,255,.22);
+  box-shadow: 0 0 22px var(--char-primary);
+  animation: droneFloat 2.2s ease-in-out infinite;
+  z-index: 8;
+}
+
+.char-crown {
+  position: absolute;
+  left: 50%;
+  top: -15px;
+  width: 42px;
+  height: 18px;
+  transform: translateX(-50%);
+  background:
+    linear-gradient(135deg, var(--char-accent), #fff3c4);
+  clip-path: polygon(0 100%, 12% 35%, 28% 100%, 50% 20%, 72% 100%, 88% 35%, 100% 100%);
+  filter: drop-shadow(0 0 12px var(--char-accent));
+}
+
+.char-evo-wings {
+  position: absolute;
+  left: 50%;
+  top: 82px;
+  width: 180px;
+  height: 70px;
+  transform: translateX(-50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.char-evo-wings span {
+  position: absolute;
+  width: 78px;
+  height: 58px;
+  border-radius: 60% 12% 60% 12%;
+  background: linear-gradient(135deg, rgba(255,255,255,.28), color-mix(in srgb, var(--char-primary) 50%, transparent));
+  filter: blur(.2px);
+  opacity: .55;
+}
+
+.char-evo-wings span:first-child {
+  left: 0;
+  transform: rotate(-26deg);
+}
+
+.char-evo-wings span:last-child {
+  right: 0;
+  transform: rotate(26deg) scaleX(-1);
+}
+
+.char-evo-particles {
+  display: none;
+}
+
+.char-tier-5 .char-evo-particles,
+.char-tier-6 .char-evo-particles {
+  display: block;
+  position: absolute;
+  inset: 20px;
+  background:
+    radial-gradient(circle at 20% 30%, var(--char-accent) 0 2px, transparent 3px),
+    radial-gradient(circle at 80% 40%, var(--char-primary) 0 2px, transparent 3px),
+    radial-gradient(circle at 35% 78%, #fff 0 1.5px, transparent 3px),
+    radial-gradient(circle at 72% 74%, var(--char-accent) 0 2px, transparent 3px);
+  opacity: .75;
+  animation: particleFloat 3s ease-in-out infinite;
+}
+
+.char-tier-6 .char-body {
+  filter: drop-shadow(0 0 20px var(--char-accent));
+}
+
+@keyframes particleFloat {
+  0%,100% { transform: translateY(0); opacity: .55; }
+  50% { transform: translateY(-10px); opacity: .95; }
+}
+
+/* Compact ajustes */
+.compact .char-shoulder {
+  width: 20px;
+  height: 15px;
+  top: 8px;
+}
+
+.compact .char-shoulder.left { left: -13px; }
+.compact .char-shoulder.right { right: -13px; }
+
+.compact .char-chest-lines {
+  width: 40px;
+  bottom: 9px;
+}
+
+.compact .char-gauntlets span {
+  top: 82px;
+  width: 18px;
+  height: 15px;
+}
+
+.compact .char-boots span {
+  top: 121px;
+  width: 23px;
+  height: 13px;
+}
+
+.compact .char-boots span:first-child { left: 15px; }
+.compact .char-boots span:last-child { right: 15px; }
+
+.compact .char-backpack {
+  top: 58px;
+  width: 72px;
+  height: 42px;
+}
+
+.compact .char-evo-drone {
+  right: 5px;
+  top: 38px;
+  width: 27px;
+  height: 27px;
+}
+
+.compact .char-crown {
+  top: -11px;
+  width: 32px;
+  height: 14px;
+}
+
+.compact .char-evo-wings {
+  top: 62px;
+  width: 132px;
+  height: 52px;
+}
+
+.compact .char-evo-wings span {
+  width: 58px;
+  height: 42px;
+}
