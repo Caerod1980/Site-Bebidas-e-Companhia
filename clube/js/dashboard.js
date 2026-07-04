@@ -394,11 +394,11 @@ function getPlayerCompanions(rewards = []) {
   const companions = [];
 
   if (conquered.length >= 1) {
-    companions.push({
-      type: 'pet',
-      icon: '🐾',
-      label: 'Pet Bebcom'
-    });
+  companions.push({
+  type: 'dog',
+  icon: '',
+  label: 'Cãopanheiro Bebcom'
+});
   }
 
   if (conquered.length >= 2) {
