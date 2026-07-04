@@ -15,14 +15,16 @@ const BEBCOM_CHARACTERS = [
 let avatarSelection = null;
 let avatarOpenedFromDashboard = false;
 
-function getCharacterStage(level = 1) {
-  const lvl = Number(level || 1);
-  if (lvl >= 50) return { id: 'cosmic_legend', label: 'Lenda Cósmica', tier: 6, next: null };
-  if (lvl >= 30) return { id: 'commander', label: 'Comandante', tier: 5, next: 50 };
-  if (lvl >= 20) return { id: 'guardian', label: 'Guardião', tier: 4, next: 30 };
-  if (lvl >= 10) return { id: 'cadet_plus', label: 'Cadete Avançado', tier: 3, next: 20 };
-  if (lvl >= 5) return { id: 'cadet', label: 'Cadete', tier: 2, next: 10 };
-  return { id: 'explorer', label: 'Explorador', tier: 1, next: 5 };
+function getCharacterStageByXp(xp = 0) {
+  const totalXp = Number(xp || 0);
+
+  if (totalXp >= 500) return { id: 'legend', label: 'Lenda Bebcom', tier: 6, nextXp: null };
+  if (totalXp >= 400) return { id: 'commander', label: 'Comandante Bebcom', tier: 5, nextXp: 500 };
+  if (totalXp >= 300) return { id: 'guardian', label: 'Guardião Bebcom', tier: 4, nextXp: 400 };
+  if (totalXp >= 200) return { id: 'energy_guardian', label: 'Guardião da Energia', tier: 3, nextXp: 300 };
+  if (totalXp >= 100) return { id: 'cadet', label: 'Cadete Bebcom', tier: 2, nextXp: 200 };
+
+  return { id: 'explorer', label: 'Explorador', tier: 1, nextXp: 100 };
 }
 
 function getLocalCharacterFromAvatar(avatar) {
@@ -31,11 +33,12 @@ function getLocalCharacterFromAvatar(avatar) {
 }
 
 function renderBebcomCharacter(characterData = {}, options = {}) {
-  const level = Number(characterData?.progression?.level || currentUser?.level || 1);
-  const stage = characterData?.progression || getCharacterStage(level);
+  const xp = Number(characterData?.progression?.xp || currentUser?.xp || 0);
+  const stage = getCharacterStageByXp(xp);
+  const level = Math.floor(xp / 100) + 1;
   const archetype = characterData?.archetype || getLocalCharacterFromAvatar(getSavedAvatar());
   const appearance = characterData?.appearance || {};
-  const tier = Number(stage.tier || getCharacterStage(level).tier || 1);
+  const tier = Number(stage.tier || 1);
 
   const primary = appearance?.palette?.primary || archetype.color;
   const accent = appearance?.palette?.accent || archetype.accent;
