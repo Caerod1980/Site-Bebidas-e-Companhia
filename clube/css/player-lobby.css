@@ -240,14 +240,17 @@
   }
 }
 
-/* PET CACHORRO BEBCOM */
+/* PET ESPACIAL BEBCOM — CORPO INTEIRO */
 
 .player-companion.companion-dog {
-  width: 58px;
-  height: 48px;
+  width: 78px;
+  height: 82px;
   background: transparent !important;
   border: none !important;
   box-shadow: none !important;
+  left: 13%;
+  bottom: 16%;
+  animation: companionFloat 3s ease-in-out infinite;
 }
 
 .companion-dog span {
@@ -257,36 +260,113 @@
 .companion-dog::before {
   content: "";
   position: absolute;
-  left: 12px;
-  top: 14px;
-  width: 36px;
-  height: 26px;
-  border-radius: 18px 18px 16px 16px;
+  left: 20px;
+  top: 26px;
+  width: 42px;
+  height: 38px;
+  border-radius: 22px 22px 24px 24px;
   background:
-    radial-gradient(circle at 72% 35%, #111 0 3px, transparent 4px),
-    radial-gradient(circle at 58% 35%, #111 0 3px, transparent 4px),
-    linear-gradient(135deg, #f97316, #dc2626);
-  box-shadow: 0 0 22px rgba(249,115,22,.35);
+    radial-gradient(circle at 50% 35%, #fbbf24 0 7px, transparent 8px),
+    linear-gradient(135deg, #f8fafc, #cbd5e1 55%, #94a3b8);
+  border: 2px solid #f97316;
+  box-shadow: 0 0 22px rgba(249,115,22,.45);
 }
 
 .companion-dog::after {
   content: "";
   position: absolute;
-  left: 5px;
-  top: 6px;
+  left: 17px;
+  top: 4px;
   width: 48px;
   height: 38px;
+  border-radius: 22px;
   background:
-    radial-gradient(circle at 12px 12px, #7c2d12 0 8px, transparent 9px),
-    radial-gradient(circle at 38px 12px, #7c2d12 0 8px, transparent 9px),
-    radial-gradient(circle at 28px 30px, #111 0 3px, transparent 4px),
-    radial-gradient(circle at 21px 24px, #fff 0 3px, transparent 4px),
-    radial-gradient(circle at 35px 24px, #fff 0 3px, transparent 4px);
-  border-radius: 18px;
-  filter: drop-shadow(0 0 10px rgba(249,115,22,.35));
+    radial-gradient(circle at 32% 46%, #111827 0 3px, transparent 4px),
+    radial-gradient(circle at 68% 46%, #111827 0 3px, transparent 4px),
+    radial-gradient(circle at 50% 64%, #111827 0 3px, transparent 4px),
+    radial-gradient(circle at 30% 18%, rgba(255,255,255,.95), transparent 18%),
+    linear-gradient(135deg, #fff, #cbd5e1 58%, #94a3b8);
+  border: 2px solid #f97316;
+  box-shadow: 0 0 20px rgba(249,115,22,.38);
 }
 
-.companion-dog {
-  left: 16%;
-  bottom: 20%;
+/* orelhas */
+.companion-dog .dog-ear-left,
+.companion-dog .dog-ear-right {
+  position: absolute;
+  top: 0;
+  width: 18px;
+  height: 24px;
+  border-radius: 14px 14px 6px 6px;
+  background: linear-gradient(135deg, #f97316, #dc2626);
+  z-index: 0;
+}
+
+.companion-dog .dog-ear-left {
+  left: 9px;
+  transform: rotate(-28deg);
+}
+
+.companion-dog .dog-ear-right {
+  right: 9px;
+  transform: rotate(28deg);
+}
+
+/* visor espacial */
+.companion-dog .dog-visor {
+  position: absolute;
+  left: 29px;
+  top: 17px;
+  width: 24px;
+  height: 9px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #06b6d4, #fbbf24);
+  box-shadow: 0 0 10px rgba(6,182,212,.75);
+  z-index: 4;
+}
+
+/* perninhas */
+.companion-dog .dog-leg-left,
+.companion-dog .dog-leg-right {
+  position: absolute;
+  top: 60px;
+  width: 14px;
+  height: 18px;
+  border-radius: 8px 8px 12px 12px;
+  background: linear-gradient(135deg, #f8fafc, #94a3b8);
+  border: 2px solid #f97316;
+}
+
+.companion-dog .dog-leg-left {
+  left: 28px;
+}
+
+.companion-dog .dog-leg-right {
+  right: 19px;
+}
+
+/* mochila/propulsor */
+.companion-dog .dog-jetpack {
+  position: absolute;
+  left: 8px;
+  top: 34px;
+  width: 18px;
+  height: 28px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #111827, #334155);
+  border: 1px solid rgba(255,255,255,.25);
+  box-shadow: 0 0 14px rgba(6,182,212,.35);
+}
+
+/* cauda foguete */
+.companion-dog .dog-tail {
+  position: absolute;
+  right: 4px;
+  top: 40px;
+  width: 24px;
+  height: 10px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #f97316, #fbbf24);
+  transform: rotate(-25deg);
+  box-shadow: 0 0 12px rgba(249,115,22,.45);
 }
