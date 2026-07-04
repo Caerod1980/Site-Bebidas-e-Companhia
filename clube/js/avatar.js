@@ -35,62 +35,48 @@ function getLocalCharacterFromAvatar(avatar) {
 function renderBebcomCharacter(characterData = {}, options = {}) {
   const xp = Number(characterData?.progression?.xp || currentUser?.xp || 0);
   const stage = getCharacterStageByXp(xp);
-  const level = Math.floor(xp / 100) + 1;
   const archetype = characterData?.archetype || getLocalCharacterFromAvatar(getSavedAvatar());
   const appearance = characterData?.appearance || {};
   const tier = Number(stage.tier || 1);
 
   const primary = appearance?.palette?.primary || archetype.color;
   const accent = appearance?.palette?.accent || archetype.accent;
-  const aura = appearance?.aura && appearance.aura !== 'none';
-  const companion = appearance?.companion && appearance.companion !== 'none';
 
   return `
-  <div class="bebcom-character ${options.compact ? 'compact' : ''} char-tier-${tier}"
-       style="--char-primary:${primary};--char-accent:${accent};">
+    <div class="bebcom-character ${options.compact ? 'compact' : ''} mascot-tier-${tier}"
+         style="--char-primary:${primary};--char-accent:${accent};">
 
-    <div class="char-evo-aura"></div>
-    <div class="char-evo-particles"></div>
-    <div class="char-platform"></div>
+      <div class="mascot-aura"></div>
+      <div class="mascot-platform"></div>
 
-    ${tier >= 4 ? `<div class="char-evo-drone">◆</div>` : ''}
-    ${tier >= 5 ? `<div class="char-evo-wings"><span></span><span></span></div>` : ''}
+      <div class="mascot-body">
+        <div class="mascot-antenna"></div>
+        <div class="mascot-head">
+          <div class="mascot-visor"></div>
+          <div class="mascot-symbol">${archetype.symbol || '🚀'}</div>
+        </div>
 
-    <div class="char-body tier-${tier}">
-      ${tier >= 4 ? `<div class="char-backpack"></div>` : ''}
+        <div class="mascot-neck"></div>
 
-      <div class="char-head">
-        ${tier >= 5 ? `<div class="char-crown"></div>` : ''}
-        <div class="char-visor"></div>
-        <div class="char-symbol">${archetype.symbol || '🚀'}</div>
+        <div class="mascot-torso">
+          <div class="mascot-core"></div>
+          <div class="mascot-mark"></div>
+        </div>
+
+        <div class="mascot-arms">
+          <span></span>
+          <span></span>
+        </div>
+
+        <div class="mascot-legs">
+          <span></span>
+          <span></span>
+        </div>
       </div>
 
-      <div class="char-neck"></div>
-
-      <div class="char-torso">
-        ${tier >= 2 ? `<div class="char-shoulder left"></div><div class="char-shoulder right"></div>` : ''}
-        <div class="char-core"></div>
-        ${tier >= 3 ? `<div class="char-chest-lines"></div>` : ''}
-      </div>
-
-      <div class="char-arms">
-        <span></span>
-        <span></span>
-      </div>
-
-      ${tier >= 3 ? `<div class="char-gauntlets"><span></span><span></span></div>` : ''}
-
-      <div class="char-legs">
-        <span></span>
-        <span></span>
-      </div>
-
-      ${tier >= 2 ? `<div class="char-boots"><span></span><span></span></div>` : ''}
+      <div class="char-stage-badge">${stage.label}</div>
     </div>
-
-    <div class="char-stage-badge">${stage.label}</div>
-  </div>
-`;
+  `;
 }
 
 function renderAvatarCards() {
