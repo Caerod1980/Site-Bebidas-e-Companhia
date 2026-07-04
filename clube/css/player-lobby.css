@@ -137,3 +137,105 @@
     display: none !important;
   }
 }
+
+/* =====================================================
+   MÓDULO 14.1 — COMPANIONS / PETS DO JOGADOR
+===================================================== */
+
+.companion-stage {
+  position: relative !important;
+}
+
+.player-companions {
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  pointer-events: none;
+}
+
+.player-companion {
+  position: absolute;
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 30% 20%, rgba(255,255,255,.75), transparent 22%),
+    linear-gradient(135deg, rgba(249,115,22,.95), rgba(220,38,38,.92));
+  border: 1px solid rgba(255,255,255,.18);
+  box-shadow:
+    0 0 24px rgba(249,115,22,.35),
+    0 12px 28px rgba(0,0,0,.35);
+  animation: companionFloat 3s ease-in-out infinite;
+}
+
+.player-companion span {
+  font-size: 22px;
+  line-height: 1;
+}
+
+.companion-pet {
+  left: 18%;
+  bottom: 18%;
+  animation-delay: 0s;
+}
+
+.companion-ship {
+  right: 16%;
+  top: 16%;
+  animation-delay: .4s;
+}
+
+.companion-drone {
+  left: 18%;
+  top: 20%;
+  animation-delay: .8s;
+}
+
+.companion-aura {
+  right: 20%;
+  bottom: 20%;
+  animation-delay: 1.2s;
+}
+
+@keyframes companionFloat {
+  0%,100% {
+    transform: translateY(0) scale(1);
+  }
+
+  50% {
+    transform: translateY(-8px) scale(1.06);
+  }
+}
+
+@media (max-width:720px) {
+  .player-companion {
+    width: 36px;
+    height: 36px;
+  }
+
+  .player-companion span {
+    font-size: 19px;
+  }
+
+  .companion-pet {
+    left: 17%;
+    bottom: 18%;
+  }
+
+  .companion-ship {
+    right: 17%;
+    top: 15%;
+  }
+
+  .companion-drone {
+    left: 17%;
+    top: 18%;
+  }
+
+  .companion-aura {
+    right: 18%;
+    bottom: 20%;
+  }
+}
