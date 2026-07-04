@@ -46,20 +46,51 @@ function renderBebcomCharacter(characterData = {}, options = {}) {
   const companion = appearance?.companion && appearance.companion !== 'none';
 
   return `
-    <div class="bebcom-character ${options.compact ? 'compact' : ''}" style="--char-primary:${primary};--char-accent:${accent};">
-      <div class="char-aura ${aura ? 'active' : ''}"></div>
-      <div class="char-platform"></div>
-      ${companion ? `<div class="char-drone">◆</div>` : ''}
-      <div class="char-body tier-${tier}">
-        <div class="char-head"><div class="char-visor"></div><div class="char-symbol">${archetype.symbol || '🚀'}</div></div>
-        <div class="char-neck"></div>
-        <div class="char-torso"><div class="char-core"></div><div class="char-armor left"></div><div class="char-armor right"></div></div>
-        <div class="char-arms"><span></span><span></span></div>
-        <div class="char-legs"><span></span><span></span></div>
+  <div class="bebcom-character ${options.compact ? 'compact' : ''} char-tier-${tier}"
+       style="--char-primary:${primary};--char-accent:${accent};">
+
+    <div class="char-evo-aura"></div>
+    <div class="char-evo-particles"></div>
+    <div class="char-platform"></div>
+
+    ${tier >= 4 ? `<div class="char-evo-drone">◆</div>` : ''}
+    ${tier >= 5 ? `<div class="char-evo-wings"><span></span><span></span></div>` : ''}
+
+    <div class="char-body tier-${tier}">
+      ${tier >= 4 ? `<div class="char-backpack"></div>` : ''}
+
+      <div class="char-head">
+        ${tier >= 5 ? `<div class="char-crown"></div>` : ''}
+        <div class="char-visor"></div>
+        <div class="char-symbol">${archetype.symbol || '🚀'}</div>
       </div>
-      <div class="char-stage-badge">${stage.stageLabel || stage.label || getCharacterStage(level).label}</div>
+
+      <div class="char-neck"></div>
+
+      <div class="char-torso">
+        ${tier >= 2 ? `<div class="char-shoulder left"></div><div class="char-shoulder right"></div>` : ''}
+        <div class="char-core"></div>
+        ${tier >= 3 ? `<div class="char-chest-lines"></div>` : ''}
+      </div>
+
+      <div class="char-arms">
+        <span></span>
+        <span></span>
+      </div>
+
+      ${tier >= 3 ? `<div class="char-gauntlets"><span></span><span></span></div>` : ''}
+
+      <div class="char-legs">
+        <span></span>
+        <span></span>
+      </div>
+
+      ${tier >= 2 ? `<div class="char-boots"><span></span><span></span></div>` : ''}
     </div>
-  `;
+
+    <div class="char-stage-badge">${stage.label}</div>
+  </div>
+`;
 }
 
 function renderAvatarCards() {
