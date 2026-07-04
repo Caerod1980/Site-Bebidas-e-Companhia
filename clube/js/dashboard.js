@@ -55,15 +55,16 @@ async function loadProfile() {
   const level = Number(currentUser.level || 1);
   const rank = currentUser.rank || 'Explorador';
 
-  renderPlayerLobby({
-    name: currentUser.name || 'Jogador Bebcom',
-    xp,
-    level,
-    rank,
-    scans: currentUser.stats?.scans || 0,
-    rewards: currentUser.stats?.rewardsUnlocked || 0,
-    character: currentUser.character
-  });
+ renderPlayerLobby({
+  name: currentUser.name || 'Jogador Bebcom',
+  xp,
+  level,
+  rank,
+  scans: currentUser.stats?.scans || 0,
+  rewards: currentUser.stats?.rewardsUnlocked || 0,
+  character: currentUser.character,
+  rewardItems: data.rewards || []
+});
 
   renderRewards(data.rewards || []);
   renderScans(data.scans || []);
@@ -387,6 +388,62 @@ function renderScans(scans) {
   `).join('');
 }
 
+function getPlayerCompanions(rewards = []) {
+  const conquered = rewards.filter(reward => reward.status || reward.createdAt);
+
+  const companions = [];
+
+  if (conquered.length >= 1) {
+    companions.push({
+      type: 'pet',
+      icon: '🐾',
+      label: 'Pet Bebcom'
+    });
+  }
+
+  if (conquered.length >= 2) {
+    companions.push({
+      type: 'ship',
+      icon: '🛸',
+      label: 'Nave Bebcom'
+    });
+  }
+
+  if (conquered.length >= 3) {
+    companions.push({
+      type: 'drone',
+      icon: '🛰️',
+      label: 'Drone Orbital'
+    });
+  }
+
+  if (conquered.length >= 4) {
+    companions.push({
+      type: 'aura',
+      icon: '✨',
+      label: 'Aura de Conquista'
+    });
+  }
+
+  return companions.slice(0, 4);
+}
+
+function renderPlayerCompanions(rewards = []) {
+  const companions = getPlayerCompanions(rewards);
+
+  if (!companions.length) return '';
+
+  return `
+    <div class="player-companions">
+      ${companions.map(companion => `
+        <div class="player-companion companion-${companion.type}" title="${companion.label}">
+          <span>${companion.icon}</span>
+        </div>
+      `).join('')}
+    </div>
+  `;
+}
+
 function renderPlayerLobby(player) {
   const card = document.getElementById('profileCard');
   if (!card) return;
@@ -409,13 +466,15 @@ function renderPlayerLobby(player) {
     <div class="player-lobby-shell">
       <div class="player-lobby-kicker">🌌 PERSONAGEM BEBCOM</div>
 
-      <div id="dashboardAvatar" class="player-lobby-avatar">
-        ${
-          typeof renderBebcomCharacter === 'function'
-            ? renderBebcomCharacter(player.character, { compact: true })
-            : '🧑‍🚀'
-        }
-      </div>
+    <div id="dashboardAvatar" class="player-lobby-avatar companion-stage">
+  ${renderPlayerCompanions(player.rewardItems || [])}
+
+  ${
+    typeof renderBebcomCharacter === 'function'
+      ? renderBebcomCharacter(player.character, { compact: true })
+      : '🧑‍🚀'
+  }
+</div> 
 
       <div class="player-lobby-stage">${stage}</div>
 
