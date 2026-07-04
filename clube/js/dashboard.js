@@ -444,9 +444,11 @@ ${companion.type === 'dog' ? `
   <i class="dog-visor"></i>
   <i class="dog-jetpack"></i>
   <i class="dog-tail"></i>
+  <i class="dog-arm-left"></i>
+  <i class="dog-arm-right"></i>
   <i class="dog-leg-left"></i>
   <i class="dog-leg-right"></i>
-` : ''} 
+` : ''}
         </div>
       `).join('')}
     </div>
