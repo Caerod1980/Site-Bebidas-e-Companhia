@@ -240,11 +240,11 @@
   }
 }
 
-/* PET ESPACIAL BEBCOM — CORPO INTEIRO */
+/* PET ESPACIAL BEBCOM — AJUSTE DE PROPORÇÃO */
 
 .player-companion.companion-dog {
   width: 78px;
-  height: 82px;
+  height: 86px;
   background: transparent !important;
   border: none !important;
   box-shadow: none !important;
@@ -253,70 +253,74 @@
   animation: companionFloat 3s ease-in-out infinite;
 }
 
-.companion-dog span {
-  display: none;
-}
-
-.companion-dog::before {
-  content: "";
-  position: absolute;
-  left: 20px;
-  top: 26px;
-  width: 42px;
-  height: 38px;
-  border-radius: 22px 22px 24px 24px;
-  background:
-    radial-gradient(circle at 50% 35%, #fbbf24 0 7px, transparent 8px),
-    linear-gradient(135deg, #f8fafc, #cbd5e1 55%, #94a3b8);
-  border: 2px solid #f97316;
-  box-shadow: 0 0 22px rgba(249,115,22,.45);
-}
-
+/* cabeça */
 .companion-dog::after {
   content: "";
   position: absolute;
-  left: 17px;
-  top: 4px;
+  left: 15px;
+  top: 6px;
   width: 48px;
   height: 38px;
-  border-radius: 22px;
+  border-radius: 23px;
   background:
-    radial-gradient(circle at 32% 46%, #111827 0 3px, transparent 4px),
-    radial-gradient(circle at 68% 46%, #111827 0 3px, transparent 4px),
-    radial-gradient(circle at 50% 64%, #111827 0 3px, transparent 4px),
+    radial-gradient(circle at 34% 50%, #111827 0 3px, transparent 4px),
+    radial-gradient(circle at 66% 50%, #111827 0 3px, transparent 4px),
+    radial-gradient(circle at 50% 68%, #111827 0 3px, transparent 4px),
     radial-gradient(circle at 30% 18%, rgba(255,255,255,.95), transparent 18%),
     linear-gradient(135deg, #fff, #cbd5e1 58%, #94a3b8);
   border: 2px solid #f97316;
   box-shadow: 0 0 20px rgba(249,115,22,.38);
+  z-index: 3;
 }
 
-/* orelhas */
+/* corpo */
+.companion-dog::before {
+  content: "";
+  position: absolute;
+  left: 19px;
+  top: 39px;
+  width: 40px;
+  height: 34px;
+  border-radius: 20px 20px 22px 22px;
+  background:
+    radial-gradient(circle at 50% 36%, #fbbf24 0 6px, transparent 7px),
+    linear-gradient(135deg, #f8fafc, #cbd5e1 55%, #94a3b8);
+  border: 2px solid #f97316;
+  box-shadow: 0 0 20px rgba(249,115,22,.35);
+  z-index: 2;
+}
+
+.companion-dog span {
+  display: none;
+}
+
+/* orelhas iguais */
 .companion-dog .dog-ear-left,
 .companion-dog .dog-ear-right {
   position: absolute;
-  top: 0;
-  width: 18px;
-  height: 24px;
-  border-radius: 14px 14px 6px 6px;
+  top: 2px;
+  width: 17px;
+  height: 22px;
+  border-radius: 16px 16px 6px 6px;
   background: linear-gradient(135deg, #f97316, #dc2626);
-  z-index: 0;
+  z-index: 1;
 }
 
 .companion-dog .dog-ear-left {
-  left: 9px;
-  transform: rotate(-28deg);
+  left: 10px;
+  transform: rotate(-25deg);
 }
 
 .companion-dog .dog-ear-right {
-  right: 9px;
-  transform: rotate(28deg);
+  right: 10px;
+  transform: rotate(25deg);
 }
 
-/* visor espacial */
+/* visor */
 .companion-dog .dog-visor {
   position: absolute;
-  left: 29px;
-  top: 17px;
+  left: 27px;
+  top: 20px;
   width: 24px;
   height: 9px;
   border-radius: 999px;
@@ -325,48 +329,74 @@
   z-index: 4;
 }
 
+/* braços/mãos simétricos */
+.companion-dog .dog-arm-left,
+.companion-dog .dog-arm-right {
+  position: absolute;
+  top: 46px;
+  width: 12px;
+  height: 26px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #f8fafc, #94a3b8);
+  border: 2px solid #f97316;
+  z-index: 1;
+}
+
+.companion-dog .dog-arm-left {
+  left: 10px;
+  transform: rotate(16deg);
+}
+
+.companion-dog .dog-arm-right {
+  right: 10px;
+  transform: rotate(-16deg);
+}
+
 /* perninhas */
 .companion-dog .dog-leg-left,
 .companion-dog .dog-leg-right {
   position: absolute;
-  top: 60px;
-  width: 14px;
-  height: 18px;
+  top: 70px;
+  width: 13px;
+  height: 17px;
   border-radius: 8px 8px 12px 12px;
   background: linear-gradient(135deg, #f8fafc, #94a3b8);
   border: 2px solid #f97316;
+  z-index: 1;
 }
 
 .companion-dog .dog-leg-left {
-  left: 28px;
+  left: 27px;
 }
 
 .companion-dog .dog-leg-right {
-  right: 19px;
+  right: 27px;
 }
 
-/* mochila/propulsor */
+/* mochila/propulsor discreto */
 .companion-dog .dog-jetpack {
   position: absolute;
-  left: 8px;
-  top: 34px;
-  width: 18px;
-  height: 28px;
+  left: 4px;
+  top: 43px;
+  width: 16px;
+  height: 25px;
   border-radius: 10px;
   background: linear-gradient(135deg, #111827, #334155);
   border: 1px solid rgba(255,255,255,.25);
-  box-shadow: 0 0 14px rgba(6,182,212,.35);
+  box-shadow: 0 0 12px rgba(6,182,212,.28);
+  z-index: 0;
 }
 
-/* cauda foguete */
+/* cauda */
 .companion-dog .dog-tail {
   position: absolute;
-  right: 4px;
-  top: 40px;
-  width: 24px;
-  height: 10px;
+  right: 3px;
+  top: 47px;
+  width: 22px;
+  height: 9px;
   border-radius: 999px;
   background: linear-gradient(90deg, #f97316, #fbbf24);
   transform: rotate(-25deg);
   box-shadow: 0 0 12px rgba(249,115,22,.45);
+  z-index: 0;
 }
