@@ -437,7 +437,16 @@ function renderPlayerCompanions(rewards = []) {
     <div class="player-companions">
       ${companions.map(companion => `
         <div class="player-companion companion-${companion.type}" title="${companion.label}">
-          <span>${companion.icon}</span>
+         <span>${companion.icon}</span>
+${companion.type === 'dog' ? `
+  <i class="dog-ear-left"></i>
+  <i class="dog-ear-right"></i>
+  <i class="dog-visor"></i>
+  <i class="dog-jetpack"></i>
+  <i class="dog-tail"></i>
+  <i class="dog-leg-left"></i>
+  <i class="dog-leg-right"></i>
+` : ''} 
         </div>
       `).join('')}
     </div>
