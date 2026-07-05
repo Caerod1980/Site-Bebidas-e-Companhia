@@ -388,75 +388,6 @@ function renderScans(scans) {
   `).join('');
 }
 
-function getPlayerCompanions(rewards = []) {
-  const conquered = rewards.filter(reward => reward.status || reward.createdAt);
-
-  const companions = [];
-
-  if (conquered.length >= 1) {
-  companions.push({
-  type: 'dog',
-  icon: '',
-  label: 'Cãopanheiro Bebcom'
-});
-  }
-
-  if (conquered.length >= 2) {
-    companions.push({
-      type: 'ship',
-      icon: '🛸',
-      label: 'Nave Bebcom'
-    });
-  }
-
-  if (conquered.length >= 3) {
-    companions.push({
-      type: 'drone',
-      icon: '🛰️',
-      label: 'Drone Orbital'
-    });
-  }
-
-  if (conquered.length >= 4) {
-    companions.push({
-      type: 'aura',
-      icon: '✨',
-      label: 'Aura de Conquista'
-    });
-  }
-
-  return companions.slice(0, 4);
-}
-
-function renderPlayerCompanions(rewards = []) {
-  const companions = getPlayerCompanions(rewards);
-
-  if (!companions.length) return '';
-
-  return `
-    <div class="player-companions">
-      ${companions.map(companion => `
-        <div class="player-companion companion-${companion.type}" title="${companion.label}">
-         <span>${companion.icon}</span>
-${companion.type === 'dog' ? `
-  <i class="dog-head"></i>
-  <i class="dog-visor"></i>
-  <i class="dog-ear-left"></i>
-  <i class="dog-ear-right"></i>
-  <i class="dog-body"></i>
-  <i class="dog-leg dog-leg-1"></i>
-  <i class="dog-leg dog-leg-2"></i>
-  <i class="dog-leg dog-leg-3"></i>
-  <i class="dog-leg dog-leg-4"></i>
-  <i class="dog-tail"></i>
-  <i class="dog-jetpack"></i>
-` : ''}
-        </div>
-      `).join('')}
-    </div>
-  `;
-}
-
 function renderPlayerLobby(player) {
   const card = document.getElementById('profileCard');
   if (!card) return;
@@ -479,15 +410,18 @@ function renderPlayerLobby(player) {
     <div class="player-lobby-shell">
       <div class="player-lobby-kicker">🌌 PERSONAGEM BEBCOM</div>
 
-    <div id="dashboardAvatar" class="player-lobby-avatar companion-stage">
-  ${renderPlayerCompanions(player.rewardItems || [])}
+  <div id="dashboardAvatar" class="player-lobby-avatar evolution-stage evolution-stage-${Math.min(Math.floor(Number(player.xp || 0) / 100) + 1, 6)}">
+  <div class="evolution-bg-stars"></div>
+  <div class="evolution-bg-planet"></div>
+  <div class="evolution-bg-portal"></div>
+  <div class="evolution-bg-floor"></div>
 
   ${
     typeof renderBebcomCharacter === 'function'
       ? renderBebcomCharacter(player.character, { compact: true })
       : '🧑‍🚀'
   }
-</div> 
+</div>
 
       <div class="player-lobby-stage">${stage}</div>
 
