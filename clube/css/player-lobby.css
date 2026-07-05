@@ -138,233 +138,139 @@
   }
 }
 
-/* =====================================================
-   MÓDULO 14.1 — COMPANIONS / PETS DO JOGADOR
-===================================================== */
+/* CENÁRIO EVOLUTIVO DO PERSONAGEM */
 
-.companion-stage {
+.evolution-stage {
   position: relative !important;
+  overflow: hidden !important;
+  border-radius: 28px;
 }
 
-.player-companions {
-  position: absolute;
-  inset: 0;
-  z-index: 6;
-  pointer-events: none;
-}
-
-.player-companion {
-  position: absolute;
-  width: 42px;
-  height: 42px;
-  display: grid;
-  place-items: center;
-  border-radius: 50%;
-  background:
-    radial-gradient(circle at 30% 20%, rgba(255,255,255,.75), transparent 22%),
-    linear-gradient(135deg, rgba(249,115,22,.95), rgba(220,38,38,.92));
-  border: 1px solid rgba(255,255,255,.18);
-  box-shadow:
-    0 0 24px rgba(249,115,22,.35),
-    0 12px 28px rgba(0,0,0,.35);
-  animation: companionFloat 3s ease-in-out infinite;
-}
-
-.player-companion span {
-  font-size: 22px;
-  line-height: 1;
-}
-
-.companion-pet {
-  left: 18%;
-  bottom: 18%;
-  animation-delay: 0s;
-}
-
-.companion-ship {
-  right: 16%;
-  top: 16%;
-  animation-delay: .4s;
-}
-
-.companion-drone {
-  left: 18%;
-  top: 20%;
-  animation-delay: .8s;
-}
-
-.companion-aura {
-  right: 20%;
-  bottom: 20%;
-  animation-delay: 1.2s;
-}
-
-@keyframes companionFloat {
-  0%,100% {
-    transform: translateY(0) scale(1);
-  }
-
-  50% {
-    transform: translateY(-8px) scale(1.06);
-  }
-}
-
-@media (max-width:720px) {
-  .player-companion {
-    width: 36px;
-    height: 36px;
-  }
-
-  .player-companion span {
-    font-size: 19px;
-  }
-
-  .companion-pet {
-    left: 17%;
-    bottom: 18%;
-  }
-
-  .companion-ship {
-    right: 17%;
-    top: 15%;
-  }
-
-  .companion-drone {
-    left: 17%;
-    top: 18%;
-  }
-
-  .companion-aura {
-    right: 18%;
-    bottom: 20%;
-  }
-}
-
-/* PET ESPACIAL BEBCOM — QUATRO PATAS */
-
-.player-companion.companion-dog {
-  width: 96px;
-  height: 58px;
-  background: transparent !important;
-  border: none !important;
-  box-shadow: none !important;
-  left: 11%;
-  bottom: 22%;
-  animation: companionFloat 3s ease-in-out infinite;
-}
-
-.companion-dog span {
-  display: none;
-}
-
-.companion-dog i {
-  position: absolute;
-  display: block;
-}
-
-/* corpo horizontal */
-.companion-dog .dog-body {
-  left: 26px;
-  top: 20px;
-  width: 50px;
-  height: 28px;
-  border-radius: 20px 24px 18px 18px;
-  background:
-    radial-gradient(circle at 40% 45%, #fbbf24 0 5px, transparent 6px),
-    linear-gradient(135deg, #f8fafc, #cbd5e1 55%, #94a3b8);
-  border: 2px solid #f97316;
-  box-shadow: 0 0 20px rgba(249,115,22,.35);
-  z-index: 2;
-}
-
-/* cabeça */
-.companion-dog .dog-head {
-  left: 4px;
-  top: 10px;
-  width: 34px;
-  height: 30px;
-  border-radius: 18px 18px 16px 16px;
-  background:
-    radial-gradient(circle at 35% 56%, #111827 0 2.5px, transparent 3.5px),
-    radial-gradient(circle at 65% 56%, #111827 0 2.5px, transparent 3.5px),
-    radial-gradient(circle at 50% 72%, #111827 0 2.5px, transparent 3.5px),
-    radial-gradient(circle at 30% 18%, rgba(255,255,255,.95), transparent 18%),
-    linear-gradient(135deg, #fff, #cbd5e1 58%, #94a3b8);
-  border: 2px solid #f97316;
-  z-index: 4;
-}
-
-/* visor no rosto */
-.companion-dog .dog-visor {
-  left: 10px;
-  top: 20px;
-  width: 22px;
-  height: 8px;
-  border-radius: 999px;
-  background: linear-gradient(90deg, #06b6d4, #fbbf24);
-  box-shadow: 0 0 10px rgba(6,182,212,.75);
+.evolution-stage .bebcom-character {
+  position: relative;
   z-index: 5;
 }
 
-/* orelhas */
-.companion-dog .dog-ear-left,
-.companion-dog .dog-ear-right {
-  top: 5px;
-  width: 13px;
-  height: 17px;
-  border-radius: 12px 12px 5px 5px;
-  background: linear-gradient(135deg, #f97316, #dc2626);
-  z-index: 3;
+.evolution-bg-stars,
+.evolution-bg-planet,
+.evolution-bg-portal,
+.evolution-bg-floor {
+  position: absolute;
+  pointer-events: none;
 }
 
-.companion-dog .dog-ear-left {
-  left: 3px;
-  transform: rotate(-24deg);
-}
-
-.companion-dog .dog-ear-right {
-  left: 25px;
-  transform: rotate(24deg);
-}
-
-/* quatro patas */
-.companion-dog .dog-leg {
-  top: 42px;
-  width: 10px;
-  height: 14px;
-  border-radius: 7px 7px 10px 10px;
-  background: linear-gradient(135deg, #f8fafc, #94a3b8);
-  border: 2px solid #f97316;
+.evolution-bg-stars {
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(255,255,255,.65) 0 1px, transparent 2px),
+    radial-gradient(circle at 80% 25%, rgba(255,255,255,.45) 0 1px, transparent 2px),
+    radial-gradient(circle at 68% 70%, rgba(245,158,11,.45) 0 1px, transparent 2px);
+  opacity: .18;
   z-index: 1;
 }
 
-.companion-dog .dog-leg-1 { left: 30px; }
-.companion-dog .dog-leg-2 { left: 43px; }
-.companion-dog .dog-leg-3 { left: 60px; }
-.companion-dog .dog-leg-4 { left: 73px; }
-
-/* cauda foguete */
-.companion-dog .dog-tail {
-  right: 2px;
-  top: 21px;
-  width: 22px;
-  height: 8px;
-  border-radius: 999px;
-  background: linear-gradient(90deg, #f97316, #fbbf24);
-  transform: rotate(-24deg);
-  box-shadow: 0 0 12px rgba(249,115,22,.45);
+.evolution-bg-planet {
+  width: 95px;
+  height: 95px;
+  right: 14%;
+  top: 18%;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 30% 25%, rgba(255,255,255,.7), transparent 18%),
+    linear-gradient(135deg, rgba(249,115,22,.45), rgba(220,38,38,.18));
+  opacity: 0;
+  filter: blur(.2px);
   z-index: 1;
 }
 
-/* propulsor discreto */
-.companion-dog .dog-jetpack {
-  left: 64px;
-  top: 12px;
-  width: 18px;
-  height: 18px;
-  border-radius: 8px;
-  background: linear-gradient(135deg, #111827, #334155);
-  border: 1px solid rgba(255,255,255,.25);
-  box-shadow: 0 0 12px rgba(6,182,212,.28);
-  z-index: 3;
+.evolution-bg-portal {
+  width: 150px;
+  height: 150px;
+  left: 50%;
+  top: 42%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 2px solid rgba(6,182,212,.28);
+  box-shadow: 0 0 38px rgba(6,182,212,.18);
+  opacity: 0;
+  z-index: 2;
+}
+
+.evolution-bg-floor {
+  width: 160px;
+  height: 34px;
+  left: 50%;
+  bottom: 18px;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(6,182,212,.32), transparent 70%);
+  opacity: .45;
+  z-index: 2;
+}
+
+/* XP 100+ */
+.evolution-stage-2 .evolution-bg-stars {
+  opacity: .28;
+}
+
+.evolution-stage-2 .evolution-bg-floor {
+  opacity: .62;
+}
+
+/* XP 200+ */
+.evolution-stage-3 .evolution-bg-portal {
+  opacity: .75;
+  animation: portalPulse 3.2s ease-in-out infinite;
+}
+
+.evolution-stage-3 .evolution-bg-stars {
+  opacity: .38;
+}
+
+/* XP 300+ */
+.evolution-stage-4 .evolution-bg-planet {
+  opacity: .7;
+}
+
+.evolution-stage-4 .evolution-bg-portal {
+  opacity: .8;
+}
+
+/* XP 400+ */
+.evolution-stage-5 {
+  background:
+    radial-gradient(circle at 50% 40%, rgba(6,182,212,.14), transparent 34%),
+    radial-gradient(circle at 80% 20%, rgba(249,115,22,.18), transparent 26%);
+}
+
+.evolution-stage-5 .evolution-bg-stars {
+  opacity: .55;
+}
+
+/* XP 500+ */
+.evolution-stage-6 {
+  background:
+    radial-gradient(circle at 50% 42%, rgba(6,182,212,.22), transparent 34%),
+    radial-gradient(circle at 80% 20%, rgba(249,115,22,.28), transparent 26%),
+    radial-gradient(circle at 20% 25%, rgba(220,38,38,.18), transparent 28%);
+}
+
+.evolution-stage-6 .evolution-bg-stars {
+  opacity: .75;
+  animation: starsDrift 6s linear infinite;
+}
+
+.evolution-stage-6 .evolution-bg-planet,
+.evolution-stage-6 .evolution-bg-portal {
+  opacity: .9;
+}
+
+@keyframes portalPulse {
+  0%,100% { transform: translate(-50%, -50%) scale(.94); opacity: .55; }
+  50% { transform: translate(-50%, -50%) scale(1.08); opacity: .9; }
+}
+
+@keyframes starsDrift {
+  from { transform: translateY(0); }
+  to { transform: translateY(-12px); }
 }
