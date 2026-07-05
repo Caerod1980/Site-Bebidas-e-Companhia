@@ -240,163 +240,131 @@
   }
 }
 
-/* PET ESPACIAL BEBCOM — AJUSTE DE PROPORÇÃO */
+/* PET ESPACIAL BEBCOM — QUATRO PATAS */
 
 .player-companion.companion-dog {
-  width: 78px;
-  height: 86px;
+  width: 96px;
+  height: 58px;
   background: transparent !important;
   border: none !important;
   box-shadow: none !important;
-  left: 13%;
-  bottom: 16%;
+  left: 11%;
+  bottom: 22%;
   animation: companionFloat 3s ease-in-out infinite;
-}
-
-/* cabeça */
-.companion-dog::after {
-  content: "";
-  position: absolute;
-  left: 15px;
-  top: 6px;
-  width: 48px;
-  height: 38px;
-  border-radius: 23px;
-  background:
-    radial-gradient(circle at 34% 50%, #111827 0 3px, transparent 4px),
-    radial-gradient(circle at 66% 50%, #111827 0 3px, transparent 4px),
-    radial-gradient(circle at 50% 68%, #111827 0 3px, transparent 4px),
-    radial-gradient(circle at 30% 18%, rgba(255,255,255,.95), transparent 18%),
-    linear-gradient(135deg, #fff, #cbd5e1 58%, #94a3b8);
-  border: 2px solid #f97316;
-  box-shadow: 0 0 20px rgba(249,115,22,.38);
-  z-index: 3;
-}
-
-/* corpo */
-.companion-dog::before {
-  content: "";
-  position: absolute;
-  left: 19px;
-  top: 39px;
-  width: 40px;
-  height: 34px;
-  border-radius: 20px 20px 22px 22px;
-  background:
-    radial-gradient(circle at 50% 36%, #fbbf24 0 6px, transparent 7px),
-    linear-gradient(135deg, #f8fafc, #cbd5e1 55%, #94a3b8);
-  border: 2px solid #f97316;
-  box-shadow: 0 0 20px rgba(249,115,22,.35);
-  z-index: 2;
 }
 
 .companion-dog span {
   display: none;
 }
 
-/* orelhas iguais */
-.companion-dog .dog-ear-left,
-.companion-dog .dog-ear-right {
+.companion-dog i {
   position: absolute;
-  top: 2px;
-  width: 17px;
-  height: 22px;
-  border-radius: 16px 16px 6px 6px;
-  background: linear-gradient(135deg, #f97316, #dc2626);
-  z-index: 1;
+  display: block;
 }
 
-.companion-dog .dog-ear-left {
-  left: 10px;
-  transform: rotate(-25deg);
-}
-
-.companion-dog .dog-ear-right {
-  right: 10px;
-  transform: rotate(25deg);
-}
-
-/* visor */
-.companion-dog .dog-visor {
-  position: absolute;
-  left: 27px;
+/* corpo horizontal */
+.companion-dog .dog-body {
+  left: 26px;
   top: 20px;
-  width: 24px;
-  height: 9px;
-  border-radius: 999px;
-  background: linear-gradient(90deg, #06b6d4, #fbbf24);
-  box-shadow: 0 0 10px rgba(6,182,212,.75);
+  width: 50px;
+  height: 28px;
+  border-radius: 20px 24px 18px 18px;
+  background:
+    radial-gradient(circle at 40% 45%, #fbbf24 0 5px, transparent 6px),
+    linear-gradient(135deg, #f8fafc, #cbd5e1 55%, #94a3b8);
+  border: 2px solid #f97316;
+  box-shadow: 0 0 20px rgba(249,115,22,.35);
+  z-index: 2;
+}
+
+/* cabeça */
+.companion-dog .dog-head {
+  left: 4px;
+  top: 10px;
+  width: 34px;
+  height: 30px;
+  border-radius: 18px 18px 16px 16px;
+  background:
+    radial-gradient(circle at 35% 56%, #111827 0 2.5px, transparent 3.5px),
+    radial-gradient(circle at 65% 56%, #111827 0 2.5px, transparent 3.5px),
+    radial-gradient(circle at 50% 72%, #111827 0 2.5px, transparent 3.5px),
+    radial-gradient(circle at 30% 18%, rgba(255,255,255,.95), transparent 18%),
+    linear-gradient(135deg, #fff, #cbd5e1 58%, #94a3b8);
+  border: 2px solid #f97316;
   z-index: 4;
 }
 
-/* braços/mãos simétricos */
-.companion-dog .dog-arm-left,
-.companion-dog .dog-arm-right {
-  position: absolute;
-  top: 46px;
-  width: 12px;
-  height: 26px;
-  border-radius: 999px;
-  background: linear-gradient(135deg, #f8fafc, #94a3b8);
-  border: 2px solid #f97316;
-  z-index: 1;
-}
-
-.companion-dog .dog-arm-left {
+/* visor no rosto */
+.companion-dog .dog-visor {
   left: 10px;
-  transform: rotate(16deg);
+  top: 20px;
+  width: 22px;
+  height: 8px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #06b6d4, #fbbf24);
+  box-shadow: 0 0 10px rgba(6,182,212,.75);
+  z-index: 5;
 }
 
-.companion-dog .dog-arm-right {
-  right: 10px;
-  transform: rotate(-16deg);
-}
-
-/* perninhas */
-.companion-dog .dog-leg-left,
-.companion-dog .dog-leg-right {
-  position: absolute;
-  top: 70px;
+/* orelhas */
+.companion-dog .dog-ear-left,
+.companion-dog .dog-ear-right {
+  top: 5px;
   width: 13px;
   height: 17px;
-  border-radius: 8px 8px 12px 12px;
+  border-radius: 12px 12px 5px 5px;
+  background: linear-gradient(135deg, #f97316, #dc2626);
+  z-index: 3;
+}
+
+.companion-dog .dog-ear-left {
+  left: 3px;
+  transform: rotate(-24deg);
+}
+
+.companion-dog .dog-ear-right {
+  left: 25px;
+  transform: rotate(24deg);
+}
+
+/* quatro patas */
+.companion-dog .dog-leg {
+  top: 42px;
+  width: 10px;
+  height: 14px;
+  border-radius: 7px 7px 10px 10px;
   background: linear-gradient(135deg, #f8fafc, #94a3b8);
   border: 2px solid #f97316;
   z-index: 1;
 }
 
-.companion-dog .dog-leg-left {
-  left: 27px;
+.companion-dog .dog-leg-1 { left: 30px; }
+.companion-dog .dog-leg-2 { left: 43px; }
+.companion-dog .dog-leg-3 { left: 60px; }
+.companion-dog .dog-leg-4 { left: 73px; }
+
+/* cauda foguete */
+.companion-dog .dog-tail {
+  right: 2px;
+  top: 21px;
+  width: 22px;
+  height: 8px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #f97316, #fbbf24);
+  transform: rotate(-24deg);
+  box-shadow: 0 0 12px rgba(249,115,22,.45);
+  z-index: 1;
 }
 
-.companion-dog .dog-leg-right {
-  right: 27px;
-}
-
-/* mochila/propulsor discreto */
+/* propulsor discreto */
 .companion-dog .dog-jetpack {
-  position: absolute;
-  left: 4px;
-  top: 43px;
-  width: 16px;
-  height: 25px;
-  border-radius: 10px;
+  left: 64px;
+  top: 12px;
+  width: 18px;
+  height: 18px;
+  border-radius: 8px;
   background: linear-gradient(135deg, #111827, #334155);
   border: 1px solid rgba(255,255,255,.25);
   box-shadow: 0 0 12px rgba(6,182,212,.28);
-  z-index: 0;
-}
-
-/* cauda */
-.companion-dog .dog-tail {
-  position: absolute;
-  right: 3px;
-  top: 47px;
-  width: 22px;
-  height: 9px;
-  border-radius: 999px;
-  background: linear-gradient(90deg, #f97316, #fbbf24);
-  transform: rotate(-25deg);
-  box-shadow: 0 0 12px rgba(249,115,22,.45);
-  z-index: 0;
+  z-index: 3;
 }
