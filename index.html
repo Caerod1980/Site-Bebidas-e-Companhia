@@ -716,6 +716,35 @@
         font-size: 14px;
       }
     }
+
+    /* ACESSO RÁPIDO AO CLUBE BEBCOM — mobile */
+    .clube-fab {
+      position: fixed;
+      right: 16px;
+      bottom: calc(88px + env(safe-area-inset-bottom, 0px));
+      z-index: 900; /* abaixo do menu lateral (1000) */
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 13px 17px;
+      min-height: 52px;
+      color: #fff;
+      background: linear-gradient(135deg, #dc2626, #a81717);
+      border: 1px solid rgba(255,255,255,.22);
+      border-radius: 999px;
+      box-shadow: 0 6px 22px rgba(0,0,0,.55), 0 3px 12px rgba(220,38,38,.35);
+      font-size: 14px;
+      font-weight: 800;
+      text-decoration: none;
+      line-height: 1.1;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .clube-fab:hover, .clube-fab:focus-visible { background: #b91c1c; color: #fff; }
+    .clube-fab:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+    .clube-fab i { font-size: 20px; }
+    @media (min-width: 769px) { .clube-fab { display: none; } }
+    @media (max-width: 360px) { .clube-fab { right: 10px; padding: 12px 14px; font-size: 13px; } }
   </style>
 </head>
 <body class="dark-bg">
@@ -724,6 +753,11 @@
     <i class="fas fa-download"></i>
     Instalar App
   </button>
+
+  <!-- Atalho permanente para clientes acessarem o Clube sem rolar a página -->
+  <a class="clube-fab" href="/clube/" aria-label="Entrar no Clube Bebcom">
+    <i class="fas fa-gamepad" aria-hidden="true"></i><span>Clube Bebcom</span>
+  </a>
 
   <!-- Header -->
   <header class="header-gradient text-white shadow-2xl relative z-10">
@@ -780,6 +814,10 @@
       </button>
     </div>
     <div class="mobile-menu-content">
+      <a href="/clube/" class="mobile-menu-item external-link" aria-label="Entrar no Clube Bebcom">
+        <i class="fas fa-gamepad" aria-hidden="true"></i>
+        <span><strong>Clube Bebcom</strong></span>
+      </a>
       <a href="https://www.instagram.com/bebcombauru" class="mobile-menu-item" target="_blank">
         <i class="fab fa-instagram"></i>
         <span>Instagram</span>
@@ -1475,7 +1513,6 @@
   </script>
 </body>
 </html>
-
 
 
 
