@@ -843,3 +843,27 @@
   0%,100% { transform: translateY(0); opacity: .55; }
   50% { transform: translateY(-10px); opacity: .95; }
 }
+
+/* CORREÇÃO 2026-11-13 — confirmação de avatar no celular */
+@media (max-width: 760px) {
+  /* O seletor deve ficar acima da barra de navegação (z-index: 10010). */
+  .avatar-stage:not(.hidden) {
+    z-index: 10030;
+    box-sizing: border-box;
+    height: 100dvh;
+    padding-bottom: calc(36px + env(safe-area-inset-bottom, 0px));
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .avatar-confirm-box {
+    margin-bottom: 24px;
+  }
+
+  #confirmAvatarBtn {
+    display: block;
+    width: 100%;
+    min-height: 52px;
+    touch-action: manipulation;
+  }
+}
